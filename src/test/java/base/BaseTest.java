@@ -13,6 +13,7 @@ import java.time.Duration;
 public class BaseTest {
     public WebDriver driver;
 
+
     @BeforeAll
     static void beforeAllTests(){
         WebDriverManager.chromedriver().setup();
@@ -20,7 +21,6 @@ public class BaseTest {
     @BeforeEach
     void beforeEachTest(){
         driver = new ChromeDriver();
-
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.manage().window().maximize();
         driver.get("https://magento.softwaretestingboard.com/");
@@ -36,6 +36,8 @@ public class BaseTest {
         //takeScreenshot()
         driver.quit();
     }
+
+
 //    void takeScreenshot() throws IOException {
 //        TakesScreenshot camera = (TakesScreenshot)driver;
 //        File screenshot = camera.getScreenshotAs(OutputType.FILE);
