@@ -1,6 +1,5 @@
 package basePage;
 
-import customScript.Highlighter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -11,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import javax.swing.text.Highlighter;
 import java.time.Duration;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -29,13 +29,10 @@ public class BasePage {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-    public boolean isElementDisplayed(WebElement element) {
-        try {
-            return element.isDisplayed();
-        } catch (NoSuchElementException e) {
-            return false;
-        }
+//        public void pauseSeconds(WebElement element, Integer seconds){
+//            WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(seconds));
+//            wait.until(ExpectedConditions.visibilityOf(element));
+//        }
     }
     //Wait elements
     public void waitToBeVisible(WebElement element, int seconds) {
@@ -64,12 +61,12 @@ public class BasePage {
     public String getTitle(){
         return driver.getTitle();
     }
-    public void getListElements(WebElement element){
-        List<WebElement> links = element.findElements(By.tagName("li"));
-        for (int i = 0; i < links.size(); i++){
-            Highlighter.highlightElement(driver,links.get(i));
-        }
-    }
+//    public void getListElements(WebElement element){
+//        List<WebElement> links = element.findElements(By.tagName("li"));
+//        for (int i = 0; i < links.size(); i++){
+//            Highlighter.highlightElement(driver,links.get(i));
+//        }
+//    }
     public void clickOptionFromList(WebElement element,String option){
         List<WebElement> links = element.findElements(By.tagName("i"));
         for (int i = 0; i < links.size(); i++){
@@ -132,7 +129,6 @@ public class BasePage {
 
     //Input Fields
     public void setTextToField(WebElement element, String text){
-        isElementDisplayed(element);
         element.clear();
         element.sendKeys(text);
     }
