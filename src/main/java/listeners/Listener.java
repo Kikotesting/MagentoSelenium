@@ -28,5 +28,7 @@ public class Listener implements TestWatcher {
     @Override
     public void testFailed(ExtensionContext context, Throwable cause) {
         TestWatcher.super.testFailed(context, cause);
+        System.out.println("--------------------------");
+        System.out.println("This test was failed: " + context.getTestMethod());
     }
 }

@@ -17,7 +17,7 @@ import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
 public class BasePage {
-    private final WebDriver driver;
+    protected final WebDriver driver;
 
     public BasePage(WebDriver driver){
         this.driver = driver;
