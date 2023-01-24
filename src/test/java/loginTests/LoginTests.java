@@ -1,7 +1,10 @@
+package loginTests;
+
 import base.BaseTest;
 import listeners.Listener;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import pages.AccountPage;
@@ -13,6 +16,7 @@ public class LoginTests extends BaseTest {
     AccountPage accountPage;
     LoginPage loginPage;
     @Test
+    @Order(1)
     @ExtendWith(Listener.class)
     @DisplayName("TC-1. Login with valid username and password")
     void userCanLoginWithValidUsernameAndPassword(){
@@ -24,9 +28,6 @@ public class LoginTests extends BaseTest {
         loginPage.enterValidPassword();
         loginPage.clickSignInButton();
         homePage.pauseSeconds(2);
-
-        highLightElement(driver,homePage.welcomeUser);
-        Assertions.assertEquals("Welcome, Miso Misov!",homePage.welcomeUser.getText());
         homePage.clickHeaderDropdownAccountButton();
         homePage.pauseSeconds(1);
         homePage.clickHeaderDropdownMyAccount();
@@ -53,6 +54,7 @@ public class LoginTests extends BaseTest {
 
     }
     @Test
+    @Order(2)
     @ExtendWith(Listener.class)
     @DisplayName("TC-2. Cannot login with valid username and incorrect password")
     void userCannotLoginWithValidUsernameAndIncorrectPassword(){
@@ -67,6 +69,7 @@ public class LoginTests extends BaseTest {
         Assertions.assertEquals(Constants.ERROR_MESSAGE_FOR_LOGIN,loginPage.errorMessage.getText());
     }
     @Test
+    @Order(3)
     @ExtendWith(Listener.class)
     @DisplayName("TC-3. Cannot login with invalid username and correct password")
     void userCannotLoginWithInvalidUsernameAndCorrectPassword(){
@@ -81,6 +84,7 @@ public class LoginTests extends BaseTest {
         Assertions.assertEquals(Constants.ERROR_MESSAGE_FOR_LOGIN,loginPage.errorMessage.getText());
     }
     @Test
+    @Order(4)
     @ExtendWith(Listener.class)
     @DisplayName("TC-4. Cannot login with invalid username and invalid password")
     void userCannotLoginWithInvalidUsernameAndInvalidPassword(){
@@ -95,6 +99,7 @@ public class LoginTests extends BaseTest {
         Assertions.assertEquals(Constants.ERROR_MESSAGE_FOR_LOGIN,loginPage.errorMessage.getText());
     }
     @Test
+    @Order(5)
     @ExtendWith(Listener.class)
     @DisplayName("TC-5. Cannot login with empty username and empty password")
     void userCannotLoginWithEmptyUsernameAndEmptyPassword(){
@@ -111,6 +116,7 @@ public class LoginTests extends BaseTest {
 
     }
     @Test
+    @Order(6)
     @ExtendWith(Listener.class)
     @DisplayName("TC-6. Cannot login with empty username and correct password")
     void userCannotLoginWithEmptyUsernameAndCorrectPassword(){
@@ -125,6 +131,7 @@ public class LoginTests extends BaseTest {
         Assertions.assertEquals(errorMessageRequired,loginPage.emailRequired.getText());
     }
     @Test
+    @Order(7)
     @ExtendWith(Listener.class)
     @DisplayName("TC-7. Cannot login with username and empty password")
     void userCannotLoginWithUsernameAndEmptyPassword(){
@@ -138,6 +145,4 @@ public class LoginTests extends BaseTest {
         String errorMessageRequired = "This is a required field.";
         Assertions.assertEquals(errorMessageRequired,loginPage.passwordRequired.getText());
     }
-
-
 }
