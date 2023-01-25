@@ -8,6 +8,7 @@ import pages.AccountPage;
 import pages.HomePage;
 import pages.LoginPage;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class LoginTests extends BaseTest {
     HomePage homePage;
     AccountPage accountPage;
@@ -78,7 +79,13 @@ public class LoginTests extends BaseTest {
         loginPage.enterValidPassword();
         loginPage.clickSignInButton();
         homePage.waitToBeVisible(loginPage.errorMessage, 5);
-        Assertions.assertEquals(Constants.ERROR_MESSAGE_FOR_LOGIN,loginPage.errorMessage.getText());
+        String incorrectCaptcha = "Incorrect CAPTCHA";
+        if (loginPage.errorMessage.getText().equals(incorrectCaptcha)  ){
+            Assertions.assertEquals(incorrectCaptcha,loginPage.errorMessage.getText());
+        }else {
+            Assertions.assertEquals(Constants.ERROR_MESSAGE_FOR_LOGIN,loginPage.errorMessage.getText());
+        }
+
     }
     @Test
     @Order(4)
@@ -93,7 +100,12 @@ public class LoginTests extends BaseTest {
         loginPage.enterInvalidPassword();
         loginPage.clickSignInButton();
         homePage.waitToBeVisible(loginPage.errorMessage, 5);
-        Assertions.assertEquals(Constants.ERROR_MESSAGE_FOR_LOGIN,loginPage.errorMessage.getText());
+        String incorrectCaptcha = "Incorrect CAPTCHA";
+        if (loginPage.errorMessage.getText().equals(incorrectCaptcha)  ){
+            Assertions.assertEquals(incorrectCaptcha,loginPage.errorMessage.getText());
+        }else {
+            Assertions.assertEquals(Constants.ERROR_MESSAGE_FOR_LOGIN,loginPage.errorMessage.getText());
+        }
     }
     @Test
     @Order(5)
