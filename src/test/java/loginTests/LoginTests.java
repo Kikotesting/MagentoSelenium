@@ -51,7 +51,7 @@ public class LoginTests extends BaseTest {
         highLightElement(driver,accountPage.accountNewslettersText);
         Assertions.assertEquals(Constants.ACCOUNT_NEWSLETTERS_INFORMATION,accountPage.accountNewslettersText.getText());
         highLightElement(driver,accountPage.userNameInfo);
-        Assertions.assertEquals(Constants.USER_NAME_INFO,accountPage.userNameInfo.getText());
+        Assertions.assertEquals("Miso Misov\nmislead4@mail.bg",accountPage.userNameInfo.getText());
         highLightElement(driver,accountPage.addressBookInfo);
         Assertions.assertEquals(Constants.ADDRESS_BOOK,accountPage.addressBookInfo.getText());
         highLightElement(driver,accountPage.defaultBillingAddress);
@@ -85,7 +85,7 @@ public class LoginTests extends BaseTest {
         Assertions.assertEquals(Constants.ACCOUNT_INFORMATION,accountPage.accountInfoText.getText());
         Assertions.assertEquals(Constants.ACCOUNT_CONTACT_INFORMATION,accountPage.accountContactInfoText.getText());
         Assertions.assertEquals(Constants.ACCOUNT_NEWSLETTERS_INFORMATION,accountPage.accountNewslettersText.getText());
-        Assertions.assertEquals(Constants.USER_NAME_INFO,accountPage.userNameInfo.getText());
+        Assertions.assertEquals("Miso Misov\nmislead4@mail.bg",accountPage.userNameInfo.getText());
         Assertions.assertEquals(Constants.ADDRESS_BOOK,accountPage.addressBookInfo.getText());
         Assertions.assertEquals(Constants.ADDRESS_BOOK_DEFAULT_BILLING_ADDRESS,accountPage.defaultBillingAddress.getText());
         Assertions.assertEquals(Constants.ADDRESS_BOOK_DEFAULT_SHIPPING_ADDRESS,accountPage.defaultShippingAddress.getText());

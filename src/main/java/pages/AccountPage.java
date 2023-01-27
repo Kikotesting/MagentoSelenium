@@ -13,8 +13,10 @@ public class AccountPage extends BasePage {
         PageFactory.initElements(driver,this);
     }
 
-    // Text Information
+    // TEXT INFORMATION
+    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[1]/div[2]/div/div/div") public WebElement registerNewAccountMessage;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[2]/div[1]/div[1]/h1/span") public WebElement myAccountTextHeader;
+
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[2]/div[1]/div[3]/div[1]/strong") public WebElement accountInfoText;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[2]/div[1]/div[3]/div[2]/div[1]/strong/span") public WebElement accountContactInfoText;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[2]/div[1]/div[3]/div[2]/div[2]/strong/span") public WebElement accountNewslettersText;
