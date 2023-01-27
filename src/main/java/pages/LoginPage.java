@@ -19,6 +19,8 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"email-error\"]") public WebElement emailRequired;
     @FindBy(xpath = "//*[@id=\"pass-error\"]") public WebElement passwordRequired;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[2]/div[2]/div/div/div") public WebElement errorMessage;
+    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[1]/h1/span") public WebElement signOutMessageHeader;
+    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div/p") public WebElement signOutMessageParagraph;
     public void enterValidEmail(){
         emailField.isDisplayed();
         emailField.sendKeys("mislead4@mail.bg");

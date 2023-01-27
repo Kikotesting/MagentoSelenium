@@ -28,7 +28,9 @@ public class HomePage extends BasePage {
 
 
     // FIELDS
-    @FindBy(id = "#search") public WebElement searchInputField;
+    @FindBy(className = "input-text") public WebElement searchInputField;
+    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[2]") public WebElement searchNoResultMessage;
+    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[2]/dl/dt") public WebElement relatedSearchTerms;
     @FindBy(id = "#newsletter") public WebElement newsLetterField;
 
     // BUTTONS
@@ -38,6 +40,7 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "/html/body/div[2]/header/div[1]/div/ul/li[2]/a") WebElement signIn_Btn;
     @FindBy(xpath = "/html/body/div[2]/header/div[1]/div/ul/li[2]/span/button") WebElement dropdownAccBtn;
     @FindBy(xpath = "/html/body/div[2]/header/div[1]/div/ul/li[2]/div/ul/li[1]/a") WebElement dropdown_MyAccount;
+    @FindBy(xpath = "/html/body/div[2]/header/div[1]/div/ul/li[2]/div/ul/li[3]/a") WebElement dropdown_SignOut;
     public void clickHeaderSignInButton(){
         signIn_Btn.isDisplayed();
         signIn_Btn.click();
@@ -49,6 +52,10 @@ public class HomePage extends BasePage {
     public void clickHeaderDropdownMyAccount(){
         dropdown_MyAccount.isDisplayed();
         dropdown_MyAccount.click();
+    }
+    public void clickDropdownSignOut(){
+        dropdown_SignOut.isDisplayed();
+        dropdown_SignOut.click();
     }
 
     // IMAGES BANNERS

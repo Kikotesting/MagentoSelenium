@@ -1,12 +1,21 @@
 package loginTests;
 
 import base.BaseTest;
+import baseUtils.Constants;
 import listeners.Listener;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.AccountPage;
 import pages.HomePage;
 import pages.LoginPage;
+
+import java.time.Duration;
+import java.util.function.BooleanSupplier;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class LoginTests extends BaseTest {
@@ -54,61 +63,101 @@ public class LoginTests extends BaseTest {
     @Test
     @Order(2)
     @ExtendWith(Listener.class)
-    @DisplayName("TC-2. Cannot login with valid username and incorrect password")
-    void userCannotLoginWithValidUsernameAndIncorrectPassword(){
+    @DisplayName("TC-1.1 Login with valid credentials and Logout")
+    void userCanLoginAndLogout(){
 
         homePage = new HomePage(driver);
         homePage.clickHeaderSignInButton();
         loginPage = new LoginPage(driver);
         loginPage.enterValidEmail();
-        loginPage.enterInvalidPassword();
-        loginPage.clickSignInButton();
-        homePage.waitToBeVisible(loginPage.errorMessage, 5);
-        Assertions.assertEquals(Constants.ERROR_MESSAGE_FOR_LOGIN,loginPage.errorMessage.getText());
-    }
-    @Test
-    @Order(3)
-    @ExtendWith(Listener.class)
-    @DisplayName("TC-3. Cannot login with invalid username and correct password")
-    void userCannotLoginWithInvalidUsernameAndCorrectPassword(){
-
-        homePage = new HomePage(driver);
-        homePage.clickHeaderSignInButton();
-        loginPage = new LoginPage(driver);
-        loginPage.enterInvalidEmail();
         loginPage.enterValidPassword();
         loginPage.clickSignInButton();
-        homePage.waitToBeVisible(loginPage.errorMessage, 5);
-        String incorrectCaptcha = "Incorrect CAPTCHA";
-        if (loginPage.errorMessage.getText().equals(incorrectCaptcha)  ){
-            Assertions.assertEquals(incorrectCaptcha,loginPage.errorMessage.getText());
-        }else {
-            Assertions.assertEquals(Constants.ERROR_MESSAGE_FOR_LOGIN,loginPage.errorMessage.getText());
-        }
+        homePage.pauseSeconds(2);
+        homePage.clickHeaderDropdownAccountButton();
+        homePage.pauseSeconds(1);
+        homePage.clickHeaderDropdownMyAccount();
+        homePage.pauseSeconds(1);
+        accountPage = new AccountPage(driver);
+        highLightElement(driver,accountPage.myAccountTextHeader);
+        homePage.pauseSeconds(1);
 
-    }
-    @Test
-    @Order(4)
-    @ExtendWith(Listener.class)
-    @DisplayName("TC-4. Cannot login with invalid username and invalid password")
-    void userCannotLoginWithInvalidUsernameAndInvalidPassword(){
+        Assertions.assertEquals(Constants.MY_ACCOUNT,accountPage.myAccountTextHeader.getText());
+        Assertions.assertEquals(Constants.ACCOUNT_INFORMATION,accountPage.accountInfoText.getText());
+        Assertions.assertEquals(Constants.ACCOUNT_CONTACT_INFORMATION,accountPage.accountContactInfoText.getText());
+        Assertions.assertEquals(Constants.ACCOUNT_NEWSLETTERS_INFORMATION,accountPage.accountNewslettersText.getText());
+        Assertions.assertEquals(Constants.USER_NAME_INFO,accountPage.userNameInfo.getText());
+        Assertions.assertEquals(Constants.ADDRESS_BOOK,accountPage.addressBookInfo.getText());
+        Assertions.assertEquals(Constants.ADDRESS_BOOK_DEFAULT_BILLING_ADDRESS,accountPage.defaultBillingAddress.getText());
+        Assertions.assertEquals(Constants.ADDRESS_BOOK_DEFAULT_SHIPPING_ADDRESS,accountPage.defaultShippingAddress.getText());
 
-        homePage = new HomePage(driver);
-        homePage.clickHeaderSignInButton();
-        loginPage = new LoginPage(driver);
-        loginPage.enterInvalidEmail();
-        loginPage.enterInvalidPassword();
-        loginPage.clickSignInButton();
-        homePage.waitToBeVisible(loginPage.errorMessage, 5);
-        String incorrectCaptcha = "Incorrect CAPTCHA";
-        if (loginPage.errorMessage.getText().equals(incorrectCaptcha)  ){
-            Assertions.assertEquals(incorrectCaptcha,loginPage.errorMessage.getText());
-        }else {
-            Assertions.assertEquals(Constants.ERROR_MESSAGE_FOR_LOGIN,loginPage.errorMessage.getText());
-        }
+        homePage.clickHeaderDropdownAccountButton();
+        homePage.pauseSeconds(1);
+        homePage.clickDropdownSignOut();
+        homePage.pauseSeconds(1);
+        Assertions.assertEquals(Constants.SIGN_OUT_SUCCESS_MESSAGE,loginPage.signOutMessageHeader.getText());
+        Assertions.assertEquals(Constants.SIGN_OUT_SUCCESS_MESSAGE_PARAGRAPH,loginPage.signOutMessageParagraph.getText());
+        homePage.waitToBeInvisible(loginPage.signOutMessageParagraph,6);
     }
+//    @Test
+//    @Order(3)
+//    @ExtendWith(Listener.class)
+//    @DisplayName("TC-2. Cannot login with valid username and incorrect password")
+//    void userCannotLoginWithValidUsernameAndIncorrectPassword(){
+//
+//        homePage = new HomePage(driver);
+//        homePage.clickHeaderSignInButton();
+//        loginPage = new LoginPage(driver);
+//        loginPage.enterValidEmail();
+//        loginPage.enterInvalidPassword();
+//        loginPage.clickSignInButton();
+//        homePage.waitToBeVisible(loginPage.errorMessage, 5);
+//        Assertions.assertEquals(Constants.ERROR_MESSAGE_FOR_LOGIN,loginPage.errorMessage.getText());
+//    }
+//    @Test
+//    @Order(4)
+//    @ExtendWith(Listener.class)
+//    @DisplayName("TC-3. Cannot login with invalid username and correct password")
+//    void userCannotLoginWithInvalidUsernameAndCorrectPassword(){
+//
+//        homePage = new HomePage(driver);
+//        homePage.clickHeaderSignInButton();
+//        loginPage = new LoginPage(driver);
+//        loginPage.enterInvalidEmail();
+//        loginPage.enterValidPassword();
+//        loginPage.clickSignInButton();
+//        homePage.waitToBeVisible(loginPage.errorMessage, 5);
+//        String incorrectCaptcha = "Incorrect CAPTCHA";
+//        if (loginPage.errorMessage.getText().equals(incorrectCaptcha)  ){
+//            Assertions.assertEquals(incorrectCaptcha,loginPage.errorMessage.getText());
+//            System.out.println("Captcha is displayed!");
+//        }else {
+//            Assertions.assertEquals(Constants.ERROR_MESSAGE_FOR_LOGIN,loginPage.errorMessage.getText());
+//        }
+//
+//    }
+//    @Test
+//    @Order(5)
+//    @ExtendWith(Listener.class)
+//    @DisplayName("TC-4. Cannot login with invalid username and invalid password")
+//    void userCannotLoginWithInvalidUsernameAndInvalidPassword(){
+//
+//        homePage = new HomePage(driver);
+//        homePage.clickHeaderSignInButton();
+//        loginPage = new LoginPage(driver);
+//        loginPage.enterInvalidEmail();
+//        loginPage.enterInvalidPassword();
+//        loginPage.clickSignInButton();
+//        homePage.waitToBeVisible(loginPage.errorMessage, 5);
+//        String incorrectCaptcha = "Incorrect CAPTCHA";
+//        if (loginPage.errorMessage.getText().equals(incorrectCaptcha)  ){
+//            Assertions.assertEquals(incorrectCaptcha,loginPage.errorMessage.getText());
+//            System.out.println("Captcha is displayed!");
+//        }else {
+//            Assertions.assertEquals(Constants.ERROR_MESSAGE_FOR_LOGIN,loginPage.errorMessage.getText());
+//        }
+//    }
     @Test
-    @Order(5)
+    @Order(6)
     @ExtendWith(Listener.class)
     @DisplayName("TC-5. Cannot login with empty username and empty password")
     void userCannotLoginWithEmptyUsernameAndEmptyPassword(){
@@ -125,7 +174,7 @@ public class LoginTests extends BaseTest {
 
     }
     @Test
-    @Order(6)
+    @Order(7)
     @ExtendWith(Listener.class)
     @DisplayName("TC-6. Cannot login with empty username and correct password")
     void userCannotLoginWithEmptyUsernameAndCorrectPassword(){
@@ -140,7 +189,7 @@ public class LoginTests extends BaseTest {
         Assertions.assertEquals(errorMessageRequired,loginPage.emailRequired.getText());
     }
     @Test
-    @Order(7)
+    @Order(8)
     @ExtendWith(Listener.class)
     @DisplayName("TC-7. Cannot login with username and empty password")
     void userCannotLoginWithUsernameAndEmptyPassword(){

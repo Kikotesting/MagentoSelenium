@@ -34,6 +34,12 @@ public class BasePage {
 //            wait.until(ExpectedConditions.visibilityOf(element));
 //        }
     }
+
+    public void checkInvisibleElement(WebElement element){
+        if (element.isDisplayed()){
+        }
+    }
+
     //Wait elements
     public void waitToBeVisible(WebElement element, int seconds) {
         final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
