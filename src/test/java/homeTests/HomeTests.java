@@ -3,14 +3,13 @@ package homeTests;
 import base.BaseTest;
 import baseUtils.Constants;
 import fakeData.FakeData;
-import listeners.ListenerTest;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.Keys;
 import pages.HomePage;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@ExtendWith(ListenerTest.class)
+@ExtendWith(listeners.ListenerTest.class)
 public class HomeTests extends BaseTest {
 
     HomePage homePage;

@@ -3,11 +3,13 @@ package loginTests;
 import base.BaseTest;
 import baseUtils.Constants;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 import pages.AccountPage;
 import pages.HomePage;
 import pages.LoginPage;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@ExtendWith(listeners.ListenerTest.class)
 public class LoginTests extends BaseTest {
     HomePage homePage;
     AccountPage accountPage;

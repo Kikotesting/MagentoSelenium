@@ -48,10 +48,12 @@ public class HomePage extends BasePage {
     }
     public void clickHeaderDropdownAccountButton(){
         dropdownAccBtn.isDisplayed();
+        waitToBeVisible(dropdownAccBtn,5);
         dropdownAccBtn.click();
     }
     public void clickHeaderDropdownMyAccount(){
         dropdown_MyAccount.isDisplayed();
+        waitToBeVisible(dropdown_MyAccount,5);
         dropdown_MyAccount.click();
     }
     public void clickDropdownSignOut(){
