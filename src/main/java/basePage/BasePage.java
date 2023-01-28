@@ -9,11 +9,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import javax.swing.text.Highlighter;
 import java.time.Duration;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
 public class BasePage {
@@ -33,11 +30,6 @@ public class BasePage {
 //            WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(seconds));
 //            wait.until(ExpectedConditions.visibilityOf(element));
 //        }
-    }
-
-    public void checkInvisibleElement(WebElement element){
-        if (element.isDisplayed()){
-        }
     }
 
     //Wait elements

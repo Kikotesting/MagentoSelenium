@@ -3,7 +3,7 @@ package homeTests;
 import base.BaseTest;
 import baseUtils.Constants;
 import fakeData.FakeData;
-import listeners.Listener;
+import listeners.ListenerTest;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.Keys;
@@ -18,7 +18,7 @@ public class HomeTests extends BaseTest {
 
     @Test
     @Order(1)
-    @ExtendWith(Listener.class)
+    //@ExtendWith(ListenerTest.class)
     @DisplayName("TC-1. Search with invalid data")
     void searchWithInvalidData(){
         homePage = new HomePage(driver);
@@ -32,7 +32,7 @@ public class HomeTests extends BaseTest {
     }
     @Test
     @Order(2)
-    @ExtendWith(Listener.class)
+    @ExtendWith(ListenerTest.class)
     @DisplayName("TC-2. Search with valid data")
     void searchWithValidData(){
         homePage = new HomePage(driver);
@@ -47,7 +47,7 @@ public class HomeTests extends BaseTest {
 
     @Test
     @Order(3)
-    @ExtendWith(Listener.class)
+    @ExtendWith(ListenerTest.class)
     @DisplayName("TC-3. Subscribe to a newsletter with a user who has already subscribed")
     void subscribesForNewsletterWithAlreadySubscribed(){
         homePage = new HomePage(driver);
@@ -62,7 +62,7 @@ public class HomeTests extends BaseTest {
 
     @Test
     @Order(4)
-    @ExtendWith(Listener.class)
+    @ExtendWith(ListenerTest.class)
     @DisplayName("TC-4. Subscribe to a newsletter for new user")
     void subscribesNewsletterForNewUser(){
         homePage = new HomePage(driver);

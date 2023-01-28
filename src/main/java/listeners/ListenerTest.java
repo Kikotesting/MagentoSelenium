@@ -4,7 +4,7 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestWatcher;
 import java.util.Optional;
 
-public class Listener implements TestWatcher {
+public class ListenerTest implements TestWatcher {
     @Override
     public void testDisabled(ExtensionContext context, Optional<String> reason) {
         TestWatcher.super.testDisabled(context, reason);
