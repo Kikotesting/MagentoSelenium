@@ -31,12 +31,13 @@ public class HomePage extends BasePage {
     @FindBy(className = "input-text") public WebElement searchInputField;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[2]") public WebElement searchNoResultMessage;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[2]/dl/dt") public WebElement relatedSearchTerms;
-    @FindBy(id = "#newsletter") public WebElement newsLetterField;
+    @FindBy(id = "newsletter") public WebElement newsLetterField;
+    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[2]/div[2]/div/div/div") public WebElement messageForSubscription;
 
     // BUTTONS
     @FindBy(xpath = "/html/body/div[2]/header/div[1]/div/ul/li[3]/a") public WebElement createAccBtn;
     @FindBy(className = ".showcart") public WebElement showCartIconBtn;
-    @FindBy(xpath = "//button/span[contains(text(),\"Subscribe\")]") public WebElement footerSubscribeBtn;
+    @FindBy(xpath = "//button/span[contains(text(),\"Subscribe\")]") WebElement footerSubscribeBtn;
     @FindBy(xpath = "/html/body/div[2]/header/div[1]/div/ul/li[2]/a") WebElement signIn_Btn;
     @FindBy(xpath = "/html/body/div[2]/header/div[1]/div/ul/li[2]/span/button") WebElement dropdownAccBtn;
     @FindBy(xpath = "/html/body/div[2]/header/div[1]/div/ul/li[2]/div/ul/li[1]/a") WebElement dropdown_MyAccount;
@@ -56,6 +57,10 @@ public class HomePage extends BasePage {
     public void clickDropdownSignOut(){
         dropdown_SignOut.isDisplayed();
         dropdown_SignOut.click();
+    }
+    public void clickFooterSubscribeButton(){
+        footerSubscribeBtn.isDisplayed();
+        footerSubscribeBtn.click();
     }
 
     // IMAGES BANNERS
