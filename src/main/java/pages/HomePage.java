@@ -68,13 +68,16 @@ public class HomePage extends BasePage {
     // IMAGES BANNERS
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div/div[2]/div[1]/a/img") public WebElement newLumaYogaBanner;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div/div[2]/div[1]/a/span") public WebElement getNewLumaYogaContent;
+    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div/div[2]/div[1]/div/a[3]/img") public WebElement lumaTakeItFromErin;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div/div[2]/div[1]/div/a[1]/img") public WebElement lumaPantsBanner;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div/div[2]/div[1]/div/a[1]/span") public WebElement lumaPantsContent;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div/div[2]/div[1]/div/a[2]") public WebElement lumaTeesBanner;
+    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div/div[2]/div[1]/div/a[5]") public WebElement lumaTwiceAround;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div/div[2]/div[1]/div/a[2]/span[2]") public WebElement lumaTeesContent;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div/div[2]/div[1]/div/a[4]") public WebElement lumaPerformanceBanner;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div/div[2]/div[1]/div/a[4]/span") public WebElement lumaPerformanceContent;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div/div[2]/div[3]/div/div/ol") public WebElement hotSellersItems;
+    @FindBy(xpath = "/html/body/div[2]/div[2]/p[1]") public WebElement lastParagraphFooter;
 
 
     // FOOTER LINKS

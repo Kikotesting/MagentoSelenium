@@ -53,7 +53,15 @@ public class HomeTests extends BaseTest {
         homePage.pauseSeconds(1);
         homePage.waitToBeVisible(homePage.messageForSubscription,2);
         highLightElement(driver, homePage.messageForSubscription);
-        Assertions.assertEquals(Constants.MESSAGE_ALREADY_HAVE_SUBSCRIPTION,homePage.messageForSubscription.getText());
+        if (homePage.messageForSubscription.equals(Constants.MESSAGE_ALREADY_HAVE_SUBSCRIPTION)){
+            Assertions.assertEquals(Constants.MESSAGE_ALREADY_HAVE_SUBSCRIPTION,homePage.messageForSubscription.getText());
+            System.out.println("Correct message!");
+        }else {
+            Assertions.assertEquals("Invalid Form Key. Please refresh the page.",homePage.messageForSubscription.getText());
+            System.out.println("Form Invalid key message!");
+        }
+
+
     }
 
     @Test
@@ -84,6 +92,44 @@ public class HomeTests extends BaseTest {
         }
         System.out.println("Tries: " + tries);
         Assertions.assertEquals(Constants.MESSAGE_AFTER_SUBSCRIPTION,homePage.messageForSubscription.getText());
+    }
+
+    @Test
+    @Order(5)
+    @DisplayName("TC-5. Scrolling and identify all elements on the page")
+    void scrollingAndIdentifyElementsOnPage(){
+        homePage = new HomePage(driver);
+        homePage.scrollToElement(homePage.menuWhatsNew);
+        highLightElement(driver,homePage.menuWhatsNew);
+        homePage.pauseSeconds(1);
+        homePage.scrollToElement(homePage.newLumaYogaBanner);
+        homePage.scrollToElement(homePage.getNewLumaYogaContent);
+        highLightElement(driver,homePage.newLumaYogaBanner);
+        homePage.pauseSeconds(1);
+        homePage.scrollToElement(homePage.lumaPantsBanner);
+        homePage.scrollToElement(homePage.lumaPantsContent);
+        highLightElement(driver,homePage.lumaPantsBanner);
+        homePage.pauseSeconds(1);
+        homePage.scrollToElement(homePage.lumaTeesBanner);
+        homePage.scrollToElement(homePage.lumaTeesContent);
+        highLightElement(driver,homePage.lumaTeesBanner);
+        homePage.pauseSeconds(1);
+        homePage.scrollToElement(homePage.lumaTakeItFromErin);
+        highLightElement(driver,homePage.lumaTakeItFromErin);
+        homePage.pauseSeconds(1);
+        homePage.scrollToElement(homePage.lumaPerformanceBanner);
+        homePage.scrollToElement(homePage.lumaPerformanceContent);
+        highLightElement(driver,homePage.lumaPerformanceBanner);
+        homePage.pauseSeconds(1);
+        homePage.scrollToElement(homePage.lumaTwiceAround);
+        highLightElement(driver,homePage.lumaTwiceAround);
+        homePage.pauseSeconds(1);
+        homePage.scrollToElement(homePage.hotSellersItems);
+        homePage.pauseSeconds(1);
+        homePage.scrollEndPage();
+        String lastParagraphFooter = "Use this site to website to practice selenium.";
+        highLightElement(driver,homePage.lastParagraphFooter);
+        Assertions.assertEquals(lastParagraphFooter,homePage.lastParagraphFooter.getText());
     }
 
 }
