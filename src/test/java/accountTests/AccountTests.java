@@ -46,4 +46,7 @@ public class AccountTests extends BaseTest {
         Assertions.assertEquals(Constants.ADDRESS_BOOK_DEFAULT_SHIPPING_ADDRESS,accountPage.defaultShippingAddress.getText());
 
     }
+
+
+
 }
