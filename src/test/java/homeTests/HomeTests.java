@@ -3,7 +3,11 @@ package homeTests;
 import base.BaseTest;
 import baseUtils.Constants;
 import fakeData.FakeData;
+<<<<<<< HEAD
 import listeners.Listener;
+=======
+import listeners.ListenerTest;
+>>>>>>> testconfig
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.Keys;
@@ -18,7 +22,11 @@ public class HomeTests extends BaseTest {
 
     @Test
     @Order(1)
+<<<<<<< HEAD
     @ExtendWith(Listener.class)
+=======
+    //@ExtendWith(ListenerTest.class)
+>>>>>>> testconfig
     @DisplayName("TC-1. Search with invalid data")
     void searchWithInvalidData(){
         homePage = new HomePage(driver);
@@ -32,7 +40,11 @@ public class HomeTests extends BaseTest {
     }
     @Test
     @Order(2)
+<<<<<<< HEAD
     @ExtendWith(Listener.class)
+=======
+    @ExtendWith(ListenerTest.class)
+>>>>>>> testconfig
     @DisplayName("TC-2. Search with valid data")
     void searchWithValidData(){
         homePage = new HomePage(driver);
@@ -47,7 +59,11 @@ public class HomeTests extends BaseTest {
 
     @Test
     @Order(3)
+<<<<<<< HEAD
     @ExtendWith(Listener.class)
+=======
+    @ExtendWith(ListenerTest.class)
+>>>>>>> testconfig
     @DisplayName("TC-3. Subscribe to a newsletter with a user who has already subscribed")
     void subscribesForNewsletterWithAlreadySubscribed(){
         homePage = new HomePage(driver);
@@ -62,7 +78,11 @@ public class HomeTests extends BaseTest {
 
     @Test
     @Order(4)
+<<<<<<< HEAD
     @ExtendWith(Listener.class)
+=======
+    @ExtendWith(ListenerTest.class)
+>>>>>>> testconfig
     @DisplayName("TC-4. Subscribe to a newsletter for new user")
     void subscribesNewsletterForNewUser(){
         homePage = new HomePage(driver);

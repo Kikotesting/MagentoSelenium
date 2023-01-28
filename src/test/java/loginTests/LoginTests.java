@@ -2,20 +2,10 @@ package loginTests;
 
 import base.BaseTest;
 import baseUtils.Constants;
-import listeners.Listener;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.AccountPage;
 import pages.HomePage;
 import pages.LoginPage;
-
-import java.time.Duration;
-import java.util.function.BooleanSupplier;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class LoginTests extends BaseTest {
@@ -24,7 +14,6 @@ public class LoginTests extends BaseTest {
     LoginPage loginPage;
     @Test
     @Order(1)
-    @ExtendWith(Listener.class)
     @DisplayName("TC-1. Login with valid username and password")
     void userCanLoginWithValidUsernameAndPassword(){
 
@@ -62,7 +51,6 @@ public class LoginTests extends BaseTest {
     }
     @Test
     @Order(2)
-    @ExtendWith(Listener.class)
     @DisplayName("TC-1.1 Login with valid credentials and Logout")
     void userCanLoginAndLogout(){
 
@@ -98,10 +86,13 @@ public class LoginTests extends BaseTest {
         Assertions.assertEquals(Constants.SIGN_OUT_SUCCESS_MESSAGE_PARAGRAPH,loginPage.signOutMessageParagraph.getText());
         homePage.waitToBeInvisible(loginPage.signOutMessageParagraph,6);
     }
+
+/** All tests from order 3 to 5 include are hidden, because the site uses custom captcha method, that is not handle by those scripts.
+ * You can test it each of them after the user is correctly logged after capture is show up.
+ */
 //    @Test
 //    @Order(3)
-//    @ExtendWith(Listener.class)
-//    @DisplayName("TC-2. Cannot login with valid username and incorrect password")
+//    @DisplayName("TC-2. Cannot log in with valid username and incorrect password")
 //    void userCannotLoginWithValidUsernameAndIncorrectPassword(){
 //
 //        homePage = new HomePage(driver);
@@ -115,8 +106,7 @@ public class LoginTests extends BaseTest {
 //    }
 //    @Test
 //    @Order(4)
-//    @ExtendWith(Listener.class)
-//    @DisplayName("TC-3. Cannot login with invalid username and correct password")
+//    @DisplayName("TC-3. Cannot log in with invalid username and correct password")
 //    void userCannotLoginWithInvalidUsernameAndCorrectPassword(){
 //
 //        homePage = new HomePage(driver);
@@ -137,8 +127,7 @@ public class LoginTests extends BaseTest {
 //    }
 //    @Test
 //    @Order(5)
-//    @ExtendWith(Listener.class)
-//    @DisplayName("TC-4. Cannot login with invalid username and invalid password")
+//    @DisplayName("TC-4. Cannot log in with invalid username and invalid password")
 //    void userCannotLoginWithInvalidUsernameAndInvalidPassword(){
 //
 //        homePage = new HomePage(driver);
@@ -158,7 +147,6 @@ public class LoginTests extends BaseTest {
 //    }
     @Test
     @Order(6)
-    @ExtendWith(Listener.class)
     @DisplayName("TC-5. Cannot login with empty username and empty password")
     void userCannotLoginWithEmptyUsernameAndEmptyPassword(){
 
@@ -175,7 +163,6 @@ public class LoginTests extends BaseTest {
     }
     @Test
     @Order(7)
-    @ExtendWith(Listener.class)
     @DisplayName("TC-6. Cannot login with empty username and correct password")
     void userCannotLoginWithEmptyUsernameAndCorrectPassword(){
 
@@ -190,7 +177,6 @@ public class LoginTests extends BaseTest {
     }
     @Test
     @Order(8)
-    @ExtendWith(Listener.class)
     @DisplayName("TC-7. Cannot login with username and empty password")
     void userCannotLoginWithUsernameAndEmptyPassword(){
 

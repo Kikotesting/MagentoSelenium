@@ -2,22 +2,20 @@ package accountTests;
 
 import base.BaseTest;
 import baseUtils.Constants;
-import fakeData.FakeData;
-import listeners.Listener;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import pages.AccountPage;
 import pages.CreateAccountPage;
 import pages.HomePage;
+
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@ExtendWith(listeners.ListenerTest.class)
 public class AccountTests extends BaseTest {
     HomePage homePage;
-    FakeData fakeData;
     AccountPage accountPage;
     CreateAccountPage createAccountPage;
     @Test
     @Order(1)
-    @ExtendWith(Listener.class)
     @DisplayName("TC-1. Create a new account")
     void userCanCreateNewAccount(){
 
