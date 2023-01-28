@@ -1,13 +1,16 @@
-package pages;
+package Pages;
 
-import basePage.BasePage;
+import SetupPage.SetupPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class HomePage extends BasePage {
-    public WebDriver driver;
+public class HomePage extends SetupPage {
+    public HomePage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
     // WELCOME TEXT
     @FindBy(xpath = "//header/div[1]/div/ul/li[1]/span")
     public WebElement welcomeUser;
@@ -90,11 +93,8 @@ public class HomePage extends BasePage {
     WebElement dropdown_MyAccount;
     @FindBy(xpath = "/html/body/div[2]/header/div[1]/div/ul/li[2]/div/ul/li[3]/a")
     WebElement dropdown_SignOut;
-    public HomePage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(driver, this);
-    }
 
+    // Click methods
     public void clickHeaderSignInButton() {
         signIn_Btn.isDisplayed();
         signIn_Btn.click();

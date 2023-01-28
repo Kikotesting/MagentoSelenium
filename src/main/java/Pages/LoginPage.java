@@ -1,13 +1,16 @@
-package pages;
+package Pages;
 
-import basePage.BasePage;
+import SetupPage.SetupPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage extends BasePage {
-    public WebDriver driver;
+public class LoginPage extends SetupPage {
+    public LoginPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
     @FindBy(xpath = "//*[@id=\"email-error\"]")
     public WebElement emailRequired;
     @FindBy(xpath = "//*[@id=\"pass-error\"]")
@@ -24,10 +27,8 @@ public class LoginPage extends BasePage {
     WebElement passwordField;
     @FindBy(id = "send2")
     WebElement signInButton;
-    public LoginPage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(driver, this);
-    }
+
+    // Typing methods
 
     public void enterValidEmail() {
         emailField.isDisplayed();

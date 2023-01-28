@@ -1,4 +1,4 @@
-package fakeData;
+package FakerData;
 
 import net.datafaker.Faker;
 
@@ -9,6 +9,6 @@ public class FakeData {
     public String firstname = faker.name().firstName();
     public String lastname = faker.name().lastName();
 
-    public String emailaddress = faker.internet().emailAddress().toLowerCase(Locale.ROOT);
+    public String emailAddress = faker.internet().emailAddress().toLowerCase(Locale.ROOT);
     public String address = faker.address().fullAddress();
 }

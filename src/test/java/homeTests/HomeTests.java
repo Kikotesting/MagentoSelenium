@@ -1,15 +1,16 @@
 package homeTests;
 
+import ReportUtils.ListenerTest;
 import base.BaseTest;
-import baseUtils.Constants;
-import fakeData.FakeData;
+import base.Constants;
+import FakerData.FakeData;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.Keys;
-import pages.HomePage;
+import Pages.HomePage;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@ExtendWith(listeners.ListenerTest.class)
+@ExtendWith(ListenerTest.class)
 public class HomeTests extends BaseTest {
 
     HomePage homePage;
@@ -72,7 +73,7 @@ public class HomeTests extends BaseTest {
         homePage = new HomePage(driver);
         homePage.scrollToElement(homePage.newsLetterField);
         fakeData = new FakeData();
-        homePage.newsLetterField.sendKeys(fakeData.emailaddress);
+        homePage.newsLetterField.sendKeys(fakeData.emailAddress);
         homePage.clickFooterSubscribeButton();
         homePage.pauseSeconds(1);
         homePage.waitToBeVisible(homePage.messageForSubscription, 2);
@@ -84,7 +85,7 @@ public class HomeTests extends BaseTest {
             while (homePage.messageForSubscription.getText().equals(Constants.MESSAGE_ALREADY_HAVE_SUBSCRIPTION)) {
                 tries += 1;
                 homePage.scrollToElement(homePage.newsLetterField);
-                homePage.newsLetterField.sendKeys(fakeData.emailaddress);
+                homePage.newsLetterField.sendKeys(fakeData.emailAddress);
                 homePage.clickFooterSubscribeButton();
                 homePage.pauseSeconds(1);
                 homePage.waitToBeVisible(homePage.messageForSubscription, 2);

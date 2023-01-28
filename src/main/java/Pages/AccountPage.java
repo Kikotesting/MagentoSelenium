@@ -1,12 +1,16 @@
-package pages;
+package Pages;
 
-import basePage.BasePage;
+import SetupPage.SetupPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class AccountPage extends BasePage {
+public class AccountPage extends SetupPage {
+    public AccountPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     // TEXT INFORMATION
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[1]/div[2]/div/div/div")
@@ -27,8 +31,5 @@ public class AccountPage extends BasePage {
     public WebElement defaultBillingAddress;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[2]/div[1]/div[4]/div[2]/div[2]/strong/span")
     public WebElement defaultShippingAddress;
-    public AccountPage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(driver, this);
-    }
+
 }

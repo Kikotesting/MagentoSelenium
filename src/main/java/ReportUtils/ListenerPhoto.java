@@ -1,6 +1,6 @@
-package listeners;
+package ReportUtils;
 
-import basePage.BasePage;
+import SetupPage.SetupPage;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -10,12 +10,13 @@ import org.openqa.selenium.support.PageFactory;
 import java.io.File;
 import java.io.IOException;
 
-public class ListenerPhoto extends BasePage {
+public class ListenerPhoto extends SetupPage {
     public ListenerPhoto(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
+    // Take a photo and save to the right source
     public void takeScreenshot() throws IOException {
         TakesScreenshot camera = (TakesScreenshot) driver;
         File screenshot = camera.getScreenshotAs(OutputType.FILE);

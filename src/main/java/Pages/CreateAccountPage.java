@@ -1,15 +1,17 @@
-package pages;
+package Pages;
 
-import basePage.BasePage;
-import fakeData.FakeData;
+import SetupPage.SetupPage;
+import FakerData.FakeData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class CreateAccountPage extends BasePage {
-
-    public WebDriver driver;
+public class CreateAccountPage extends SetupPage {
+    public CreateAccountPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
     FakeData fakeData;
     // PERSONAL INFORMATION
     @FindBy(id = "firstname")
@@ -25,10 +27,7 @@ public class CreateAccountPage extends BasePage {
     WebElement passwordConfirmation;
     @FindBy(xpath = "//button/span[contains(text(),\"Create an Account\")]")
     WebElement createAccountButton;
-    public CreateAccountPage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(driver, this);
-    }
+
 
     private void typeFirstnameAndLastName() {
         fakeData = new FakeData();
@@ -41,8 +40,8 @@ public class CreateAccountPage extends BasePage {
 
     private void typeEmail() {
         emailAddress.isDisplayed();
-        emailAddress.sendKeys(fakeData.emailaddress);
-        String savedEmail = fakeData.emailaddress;
+        emailAddress.sendKeys(fakeData.emailAddress);
+        String savedEmail = fakeData.emailAddress;
         System.out.println(savedEmail);
     }
 
