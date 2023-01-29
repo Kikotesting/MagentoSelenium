@@ -1,13 +1,13 @@
-package Pages;
+package pages;
 
-import SetupPage.SetupPage;
-import FakerData.FakeData;
+import helper.Helper;
+import utils.FakeData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class CreateAccountPage extends SetupPage {
+public class CreateAccountPage extends Helper {
     public CreateAccountPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);

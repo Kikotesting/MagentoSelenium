@@ -1,13 +1,13 @@
 package homeTests;
 
-import ReportUtils.ListenerTest;
+import pages.HomePage;
+import reports.ListenerTest;
 import base.BaseTest;
 import base.Constants;
-import FakerData.FakeData;
+import utils.FakeData;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.Keys;
-import Pages.HomePage;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ExtendWith(ListenerTest.class)

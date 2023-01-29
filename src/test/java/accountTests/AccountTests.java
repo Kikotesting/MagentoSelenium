@@ -1,13 +1,13 @@
 package accountTests;
 
-import ReportUtils.ListenerTest;
+import reports.ListenerTest;
 import base.BaseTest;
 import base.Constants;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
-import Pages.AccountPage;
-import Pages.CreateAccountPage;
-import Pages.HomePage;
+import pages.AccountPage;
+import pages.CreateAccountPage;
+import pages.HomePage;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ExtendWith(ListenerTest.class)

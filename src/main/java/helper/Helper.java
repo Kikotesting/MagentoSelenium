@@ -1,4 +1,4 @@
-package SetupPage;
+package helper;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -14,10 +14,10 @@ import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class SetupPage {
+public class Helper {
     public WebDriver driver;
 
-    public SetupPage(WebDriver driver) {
+    public Helper(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
@@ -49,19 +49,15 @@ public class SetupPage {
     }
 
     //GET INFORMATION
-    public String getTextFromElement(WebElement element) {
-        waitToBeVisible(element, 10);
-        return element.getText();
-    }
     public String getTitle() {
         return driver.getTitle();
     }
-/*    public void getListElements(WebElement element){
-//        List<WebElement> links = element.findElements(By.tagName("li"));
-//        for (int i = 0; i < links.size(); i++){
-//            Highlighter.highlightElement(driver,links.get(i));
-//        }
-*/
+    /*    public void getListElements(WebElement element){
+    //        List<WebElement> links = element.findElements(By.tagName("li"));
+    //        for (int i = 0; i < links.size(); i++){
+    //            Highlighter.highlightElement(driver,links.get(i));
+    //        }
+    */
     public void clickOptionFromList(WebElement element, String option) {
         List<WebElement> links = element.findElements(By.tagName("i"));
         for (int i = 0; i < links.size(); i++) {
