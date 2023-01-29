@@ -76,8 +76,8 @@ public class FunctionalityTests extends BaseTest {
 
     @Test
     @Order(3)
-    @DisplayName("TC-3. Set Ascending/Descending directions ")
-    void setAscendingOrDescendingDirectionOnItems() {
+    @DisplayName("TC-3. Set Descending directions ")
+    void setDescendingDirectionOnItems() {
         homePage = new HomePage(driver);
 
         homePage.hoverElement(homePage.menuWomen);
