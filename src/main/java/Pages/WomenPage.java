@@ -22,7 +22,7 @@ public class WomenPage extends Helper {
 
     @FindBy(id = "sorter") public WebElement selectorSortBy;
     @FindBy(id = "limiter") public WebElement selectorShowPage;
-    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[2]/div[4]/a") public WebElement orderIconButton;
+    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[2]/div[4]/a") public WebElement orderDescendingButton;
 
 
 }

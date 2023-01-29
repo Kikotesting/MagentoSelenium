@@ -74,4 +74,38 @@ public class FunctionalityTests extends BaseTest {
         Assertions.assertNotEquals(savePositionNameOne,savePriceNameOne);
     }
 
+    @Test
+    @Order(3)
+    @DisplayName("TC-3. Set Ascending/Descending directions ")
+    void setAscendingOrDescendingDirectionOnItems() {
+        homePage = new HomePage(driver);
+
+        homePage.hoverElement(homePage.menuWomen);
+        homePage.waitToBeVisible(homePage.menuWomen_Tops,2);
+        homePage.hoverElementClick(homePage.menuWomen_Tops);
+
+        womenPage = new WomenPage(driver);
+        womenPage.scrollToElement(womenPage.toolbarProducts);
+
+        // By default is Ascending
+        womenPage.selectByVisibleTextElement(womenPage.selectorSortBy,"Price");
+        womenPage.pauseSeconds(2);
+        womenPage.waitToBeVisible(womenPage.productPriceItemOne,5 );
+        womenPage.scrollToElement(womenPage.productPriceItemOne);
+        womenPage.scrollToPixels(100);
+        String savePriceNameAscending = womenPage.productPriceItemOne.getText();
+        System.out.println(savePriceNameAscending);
+        womenPage.pauseSeconds(2);
+        // Change order
+        womenPage.orderDescendingButton.click();
+        womenPage.pauseSeconds(2);
+        womenPage.scrollToElement(womenPage.productPriceItemOne);
+        womenPage.scrollToPixels(100);
+        String savePriceNameDescending = womenPage.productPriceItemOne.getText();
+        System.out.println(savePriceNameDescending);
+        womenPage.pauseSeconds(2);
+
+        Assertions.assertNotEquals(savePriceNameAscending,savePriceNameDescending);
+    }
+
 }
