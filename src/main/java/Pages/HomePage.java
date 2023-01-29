@@ -21,8 +21,9 @@ public class HomePage extends Helper {
     public WebElement whatsNewHeader;
     @FindBy(xpath = "/html/body/div[2]/div[2]")
     public WebElement breadcrumbs;
-    @FindBy(xpath = "//*[@id=\"ui-id-4\"]/span[2]")
-    public WebElement menuWomen;
+    @FindBy(xpath = "//*[@id=\"ui-id-4\"]/span[2]") public WebElement menuWomen;
+    @FindBy(xpath = "//*[@id=\"ui-id-9\"]/span[2]") public WebElement menuWomen_Tops;
+    @FindBy(xpath = "/html/body/div[2]/div[2]/ul/li[3]/strong") public WebElement breadcrumbs_Women_Tops;
     @FindBy(xpath = "//*[@id=\"ui-id-5\"]/span[2]")
     public WebElement menuMen;
     @FindBy(xpath = "//*[@id=\"ui-id-6\"]/span[2]")

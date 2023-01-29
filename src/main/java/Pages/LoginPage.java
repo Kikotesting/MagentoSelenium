@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage extends Helper {
+    HomePage homePage;
     public LoginPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -30,6 +31,13 @@ public class LoginPage extends Helper {
 
     // Typing methods
 
+    public void defaultLogin(){
+        homePage = new HomePage(driver);
+        homePage.signIn_Btn.click();
+        enterValidEmail();
+        enterValidPassword();
+        clickSignInButton();
+    }
     public void enterValidEmail() {
         emailField.isDisplayed();
         emailField.sendKeys("mislead4@mail.bg");

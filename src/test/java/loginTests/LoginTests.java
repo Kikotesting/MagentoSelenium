@@ -91,66 +91,74 @@ public class LoginTests extends BaseTest {
         Assertions.assertEquals(Constants.SIGN_OUT_SUCCESS_MESSAGE_PARAGRAPH, loginPage.signOutMessageParagraph.getText());
         homePage.waitToBeInvisible(loginPage.signOutMessageParagraph, 6);
     }
-
     /**
      * All tests from order 3 to 5 include are hidden, because the site uses custom captcha method, that is not handle by those scripts.
      * You can test it each of them after the user is correctly logged after capture is show up.
      */
-//    @Test
-//    @Order(3)
-//    @DisplayName("TC-2. Cannot log in with valid username and incorrect password")
-//    void userCannotLoginWithValidUsernameAndIncorrectPassword(){
-//
-//        homePage = new HomePage(driver);
-//        homePage.clickHeaderSignInButton();
-//        loginPage = new LoginPage(driver);
-//        loginPage.enterValidEmail();
-//        loginPage.enterInvalidPassword();
-//        loginPage.clickSignInButton();
-//        homePage.waitToBeVisible(loginPage.errorMessage, 5);
-//        Assertions.assertEquals(Constants.ERROR_MESSAGE_FOR_LOGIN,loginPage.errorMessage.getText());
-//    }
-//    @Test
-//    @Order(4)
-//    @DisplayName("TC-3. Cannot log in with invalid username and correct password")
-//    void userCannotLoginWithInvalidUsernameAndCorrectPassword(){
-//
-//        homePage = new HomePage(driver);
-//        homePage.clickHeaderSignInButton();
-//        loginPage = new LoginPage(driver);
-//        loginPage.enterInvalidEmail();
-//        loginPage.enterValidPassword();
-//        loginPage.clickSignInButton();
-//        homePage.waitToBeVisible(loginPage.errorMessage, 5);
-//        String incorrectCaptcha = "Incorrect CAPTCHA";
-//        if (loginPage.errorMessage.getText().equals(incorrectCaptcha)  ){
-//            Assertions.assertEquals(incorrectCaptcha,loginPage.errorMessage.getText());
-//            System.out.println("Captcha is displayed!");
-//        }else {
-//            Assertions.assertEquals(Constants.ERROR_MESSAGE_FOR_LOGIN,loginPage.errorMessage.getText());
-//        }
-//
-//    }
-//    @Test
-//    @Order(5)
-//    @DisplayName("TC-4. Cannot log in with invalid username and invalid password")
-//    void userCannotLoginWithInvalidUsernameAndInvalidPassword(){
-//
-//        homePage = new HomePage(driver);
-//        homePage.clickHeaderSignInButton();
-//        loginPage = new LoginPage(driver);
-//        loginPage.enterInvalidEmail();
-//        loginPage.enterInvalidPassword();
-//        loginPage.clickSignInButton();
-//        homePage.waitToBeVisible(loginPage.errorMessage, 5);
-//        String incorrectCaptcha = "Incorrect CAPTCHA";
-//        if (loginPage.errorMessage.getText().equals(incorrectCaptcha)  ){
-//            Assertions.assertEquals(incorrectCaptcha,loginPage.errorMessage.getText());
-//            System.out.println("Captcha is displayed!");
-//        }else {
-//            Assertions.assertEquals(Constants.ERROR_MESSAGE_FOR_LOGIN,loginPage.errorMessage.getText());
-//        }
-//    }
+    @Test
+    @Order(3)
+    @DisplayName("TC-2. Cannot log in with valid username and incorrect password")
+    void userCannotLoginWithValidUsernameAndIncorrectPassword(){
+
+        homePage = new HomePage(driver);
+        homePage.clickHeaderSignInButton();
+        loginPage = new LoginPage(driver);
+        loginPage.enterValidEmail();
+        loginPage.enterInvalidPassword();
+        loginPage.clickSignInButton();
+        homePage.waitToBeVisible(loginPage.errorMessage, 5);
+        String incorrectCaptcha = "Incorrect CAPTCHA";
+        if (loginPage.errorMessage.getText().equals(incorrectCaptcha)  ){
+            Assertions.assertEquals(incorrectCaptcha,loginPage.errorMessage.getText()+" FAILED");
+            System.out.println("Captcha is displayed!");
+        }else {
+            Assertions.assertEquals(Constants.ERROR_MESSAGE_FOR_LOGIN,loginPage.errorMessage.getText());
+        }
+    }
+
+    @Test
+    @Order(4)
+    @DisplayName("TC-3. Cannot log in with invalid username and correct password")
+    void userCannotLoginWithInvalidUsernameAndCorrectPassword(){
+
+        homePage = new HomePage(driver);
+        homePage.clickHeaderSignInButton();
+        loginPage = new LoginPage(driver);
+        loginPage.enterInvalidEmail();
+        loginPage.enterValidPassword();
+        loginPage.clickSignInButton();
+        homePage.waitToBeVisible(loginPage.errorMessage, 5);
+        String incorrectCaptcha = "Incorrect CAPTCHA";
+        if (loginPage.errorMessage.getText().equals(incorrectCaptcha)  ){
+            Assertions.assertEquals(incorrectCaptcha,loginPage.errorMessage.getText()+" FAILED");
+            System.out.println("Captcha is displayed!");
+        }else {
+            Assertions.assertEquals(Constants.ERROR_MESSAGE_FOR_LOGIN,loginPage.errorMessage.getText());
+        }
+
+    }
+
+    @Test
+    @Order(5)
+    @DisplayName("TC-4. Cannot log in with invalid username and invalid password")
+    void userCannotLoginWithInvalidUsernameAndInvalidPassword(){
+
+        homePage = new HomePage(driver);
+        homePage.clickHeaderSignInButton();
+        loginPage = new LoginPage(driver);
+        loginPage.enterInvalidEmail();
+        loginPage.enterInvalidPassword();
+        loginPage.clickSignInButton();
+        homePage.waitToBeVisible(loginPage.errorMessage, 5);
+        String incorrectCaptcha = "Incorrect CAPTCHA";
+        if (loginPage.errorMessage.getText().equals(incorrectCaptcha)  ){
+            Assertions.assertEquals(incorrectCaptcha,loginPage.errorMessage.getText()+" FAILED");
+            System.out.println("Captcha is displayed!");
+        }else {
+            Assertions.assertEquals(Constants.ERROR_MESSAGE_FOR_LOGIN,loginPage.errorMessage.getText());
+        }
+    }
+
     @Test
     @Order(6)
     @DisplayName("TC-5. Cannot login with empty username and empty password")

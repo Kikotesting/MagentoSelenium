@@ -35,6 +35,11 @@ public class Helper {
         wait.pollingEvery(Duration.ofSeconds(1));
         wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(element)));
     }
+    public void waitToBeInvisible(WebElement element, int seconds) {
+        final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
+        wait.pollingEvery(Duration.ofSeconds(1));
+        wait.until(ExpectedConditions.refreshed(ExpectedConditions.invisibilityOf(element)));
+    }
     public void waitToBeClickable(WebElement element, int seconds) {
         final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
         wait.pollingEvery(Duration.ofSeconds(1));
@@ -42,15 +47,12 @@ public class Helper {
                 ExpectedConditions.elementToBeClickable(element))
         );
     }
-    public void waitToBeInvisible(WebElement element, int seconds) {
-        final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
-        wait.pollingEvery(Duration.ofSeconds(1));
-        wait.until(ExpectedConditions.invisibilityOf(element));
-    }
 
     //GET INFORMATION
     public String getTitle() {
         return driver.getTitle();
+
+
     }
     /*    public void getListElements(WebElement element){
     //        List<WebElement> links = element.findElements(By.tagName("li"));
@@ -75,6 +77,9 @@ public class Helper {
             }
         }
     }
+    public List<WebElement> getItems(List<WebElement> elements){
+        return elements;
+    }
 
     //SCROLLING
     public void scrollToElement(WebElement element) {
@@ -91,14 +96,12 @@ public class Helper {
     }
 
     //SELECTING
-    public Select selectElement(WebElement element) {
+    private Select selectElement(WebElement element) {
         return new Select(element);
-    }
-    public void selectOptionFromDropdown(WebElement element, String option) {
-        selectElement(element).getOptions().contains(option);
     }
 
     public void selectByVisibleTextElement(WebElement element, String valueText) {
+        element.click();
         selectElement(element).selectByVisibleText(valueText);
     }
     public void selectByValueElement(WebElement element, String value) {

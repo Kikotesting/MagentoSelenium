@@ -62,8 +62,6 @@ public class HomeTests extends BaseTest {
             Assertions.assertEquals("Invalid Form Key. Please refresh the page.", homePage.messageForSubscription.getText());
             System.out.println("Form Invalid key message!");
         }
-
-
     }
 
     @Test
