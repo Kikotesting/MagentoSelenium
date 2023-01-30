@@ -94,6 +94,8 @@ public class HomePage extends Helper {
     WebElement dropdown_MyAccount;
     @FindBy(xpath = "/html/body/div[2]/header/div[1]/div/ul/li[2]/div/ul/li[3]/a")
     WebElement dropdown_SignOut;
+    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[2]/div[2]/ol/li[1]")
+    public WebElement oliviaLightJacket;
 
     // Click methods
     public void clickHeaderSignInButton() {

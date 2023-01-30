@@ -9,12 +9,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import reports.ListenerPhoto;
 
 import java.io.IOException;
 import java.time.Duration;
 
 public class BaseTest {
     public WebDriver driver;
+    ListenerPhoto listenerPhoto;
 
     @BeforeAll
     static void beforeAllTests() {
@@ -39,8 +41,8 @@ public class BaseTest {
     void afterEachTest() throws IOException {
         driver.manage().deleteAllCookies();
         // Activates this method if you want to see the photo after test finished or when it failed will be documents as capture
-        // reports = new ListenerPhoto(driver);
-        // reports.takeScreenshot();
+         listenerPhoto = new ListenerPhoto(driver);
+         listenerPhoto.takeScreenshot();
         driver.quit();
     }
 

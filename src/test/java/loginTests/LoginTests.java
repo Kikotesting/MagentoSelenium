@@ -130,7 +130,7 @@ public class LoginTests extends BaseTest {
         homePage.waitToBeVisible(loginPage.errorMessage, 5);
         String incorrectCaptcha = "Incorrect CAPTCHA";
         if (loginPage.errorMessage.getText().equals(incorrectCaptcha)  ){
-            Assertions.assertEquals(incorrectCaptcha,loginPage.errorMessage.getText()+" FAILED");
+            Assertions.assertEquals(incorrectCaptcha,loginPage.errorMessage.getText());
             System.out.println("Captcha is displayed!");
         }else {
             Assertions.assertEquals(Constants.ERROR_MESSAGE_FOR_LOGIN,loginPage.errorMessage.getText());
@@ -152,7 +152,7 @@ public class LoginTests extends BaseTest {
         homePage.waitToBeVisible(loginPage.errorMessage, 5);
         String incorrectCaptcha = "Incorrect CAPTCHA";
         if (loginPage.errorMessage.getText().equals(incorrectCaptcha)  ){
-            Assertions.assertEquals(incorrectCaptcha,loginPage.errorMessage.getText()+" FAILED");
+            Assertions.assertEquals(incorrectCaptcha,loginPage.errorMessage.getText());
             System.out.println("Captcha is displayed!");
         }else {
             Assertions.assertEquals(Constants.ERROR_MESSAGE_FOR_LOGIN,loginPage.errorMessage.getText());

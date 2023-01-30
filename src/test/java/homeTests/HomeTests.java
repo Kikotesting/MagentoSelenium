@@ -12,10 +12,8 @@ import org.openqa.selenium.Keys;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ExtendWith(ListenerTest.class)
 public class HomeTests extends BaseTest {
-
     HomePage homePage;
     FakeData fakeData;
-
     @Test
     @Order(1)
     @DisplayName("TC-1. Search with invalid data")
@@ -37,11 +35,12 @@ public class HomeTests extends BaseTest {
         homePage = new HomePage(driver);
 
         homePage.searchInputField.click();
-        homePage.searchInputField.sendKeys("Blue");
+        homePage.searchInputField.sendKeys("Light jacket");
         homePage.searchInputField.sendKeys(Keys.ENTER);
-        String foundItems = "items";
-        Assertions.assertTrue(foundItems.contains("items"));
-
+        String firstJacketOlivia = homePage.oliviaLightJacket.getText();
+        homePage.scrollToElement(homePage.oliviaLightJacket);
+        Assertions.assertTrue(firstJacketOlivia.contains("Olivia 1/4 Zip Light Jacket"));
+        System.out.println(firstJacketOlivia);
     }
 
     @Test
@@ -55,7 +54,7 @@ public class HomeTests extends BaseTest {
         homePage.pauseSeconds(1);
         homePage.waitToBeVisible(homePage.messageForSubscription, 2);
         highLightElement(driver, homePage.messageForSubscription);
-        if (homePage.messageForSubscription.equals(Constants.MESSAGE_ALREADY_HAVE_SUBSCRIPTION)) {
+        if (homePage.messageForSubscription.getText().equals(Constants.MESSAGE_ALREADY_HAVE_SUBSCRIPTION)) {
             Assertions.assertEquals(Constants.MESSAGE_ALREADY_HAVE_SUBSCRIPTION, homePage.messageForSubscription.getText());
             System.out.println("Correct message!");
         } else {
@@ -76,7 +75,7 @@ public class HomeTests extends BaseTest {
         homePage.pauseSeconds(1);
         homePage.waitToBeVisible(homePage.messageForSubscription, 2);
         highLightElement(driver, homePage.messageForSubscription);
-        Integer tries = 0;
+        int tries = 0;
         if (homePage.messageForSubscription.getText().equals(Constants.MESSAGE_AFTER_SUBSCRIPTION)) {
             Assertions.assertEquals(Constants.MESSAGE_AFTER_SUBSCRIPTION, homePage.messageForSubscription.getText());
         } else {

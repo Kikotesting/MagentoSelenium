@@ -33,6 +33,7 @@ public class ListenerTest implements TestWatcher {
         TestWatcher.super.testFailed(context, cause);
         System.out.println("--------------------------");
         System.out.println("This test was failed: " + context.getTestMethod());
+
     }
 
 
