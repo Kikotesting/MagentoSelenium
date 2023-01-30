@@ -1,7 +1,6 @@
 package reports;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -9,11 +8,14 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.annotation.Annotation;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ListenerPhoto {
+public class ListenerPhoto{
+
     private final WebDriver driver;
+
 
     public ListenerPhoto(WebDriver driver) {
         this.driver = driver;
@@ -28,10 +30,10 @@ public class ListenerPhoto {
         // Capture a photo
         File screenshot = camera.getScreenshotAs(OutputType.FILE);
         // Create a date
-        String timestamp = new SimpleDateFormat("dd-MMM-yyyy").format(new Date());
+        String timestamp = new SimpleDateFormat("kk-mm-ss-dd_MM_yy").format(new Date());
 
         // Rename the photo
-        String img = RandomStringUtils.randomNumeric(4)+"-"+ timestamp + ".png";
+        String img = "-"+ timestamp + ".png";
 
         // Add timestamp to the photo
         String fullImagePath = SCREENSHOTS_DIR + img;

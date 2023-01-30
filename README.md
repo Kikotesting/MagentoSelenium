@@ -48,8 +48,10 @@ standard folder structure for a jar project.
 
 #### Covered scenarios
 
-- Account tests
-- Login tests
-- Search tests
-- Subscribe tests
+- Create Accounts tests
+- Login/Logout tests
+- Search data tests
+- Subscribe emails tests
+- Add/Delete items to the cart tests
+- 
 

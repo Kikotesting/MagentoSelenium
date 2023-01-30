@@ -1,4 +1,4 @@
-package base;
+package constants;
 
 public abstract class Constants {
     // HOME PAGE

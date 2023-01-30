@@ -11,6 +11,7 @@ public class HomePage extends Helper {
         super(driver);
         PageFactory.initElements(driver, this);
     }
+
     // WELCOME TEXT
     @FindBy(xpath = "//header/div[1]/div/ul/li[1]/span")
     public WebElement welcomeUser;
@@ -22,7 +23,7 @@ public class HomePage extends Helper {
     @FindBy(xpath = "/html/body/div[2]/div[2]")
     public WebElement breadcrumbs;
     @FindBy(xpath = "//*[@id=\"ui-id-4\"]/span[2]") public WebElement menuWomen;
-    @FindBy(xpath = "//*[@id=\"ui-id-9\"]/span[2]") public WebElement menuWomen_Tops;
+    @FindBy(xpath = "//*[@id=\"ui-id-9\"]/span[2]") public WebElement menuWomenTops;
     @FindBy(xpath = "/html/body/div[2]/div[2]/ul/li[3]/strong") public WebElement breadcrumbs_Women_Tops;
     @FindBy(xpath = "//*[@id=\"ui-id-5\"]/span[2]")
     public WebElement menuMen;
@@ -32,6 +33,7 @@ public class HomePage extends Helper {
     public WebElement menuTraining;
     @FindBy(xpath = "//*[@id=\"ui-id-8\"]/span")
     public WebElement menuSale;
+
     // FIELDS
     @FindBy(className = "input-text")
     public WebElement searchInputField;
@@ -43,10 +45,12 @@ public class HomePage extends Helper {
     public WebElement newsLetterField;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[2]/div[2]/div/div/div")
     public WebElement messageForSubscription;
+    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[2]/div[2]/div")
+    public WebElement messageForAdded;
     // BUTTONS
     @FindBy(xpath = "/html/body/div[2]/header/div[1]/div/ul/li[3]/a")
     public WebElement createAccBtn;
-    @FindBy(className = ".showcart")
+    @FindBy(className = "showcart")
     public WebElement showCartIconBtn;
     // IMAGES BANNERS
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div/div[2]/div[1]/a/img")
@@ -87,20 +91,34 @@ public class HomePage extends Helper {
     @FindBy(xpath = "//button/span[contains(text(),\"Subscribe\")]")
     WebElement footerSubscribeBtn;
     @FindBy(xpath = "/html/body/div[2]/header/div[1]/div/ul/li[2]/a")
-    WebElement signIn_Btn;
+    WebElement signInButton;
     @FindBy(xpath = "/html/body/div[2]/header/div[1]/div/ul/li[2]/span/button")
     WebElement dropdownAccBtn;
     @FindBy(xpath = "/html/body/div[2]/header/div[1]/div/ul/li[2]/div/ul/li[1]/a")
-    WebElement dropdown_MyAccount;
+    WebElement dropdownMyAccount;
     @FindBy(xpath = "/html/body/div[2]/header/div[1]/div/ul/li[2]/div/ul/li[3]/a")
-    WebElement dropdown_SignOut;
+    WebElement dropdownSignOut;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[2]/div[2]/ol/li[1]")
     public WebElement oliviaLightJacket;
 
+    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[2]") public WebElement sidebarLeftMenu;
+    @FindBy(xpath = "//*[@id=\"mode-grid\"]") public WebElement gridView;
+    @FindBy(xpath = "//*[@id=\"mode-list\"]") public WebElement listView;
+    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[3]/ol/li[1]/div") public WebElement productEchoFit;
+    @FindBy(xpath = "//*[@id=\"option-label-size-143-item-171\"]")
+    public WebElement chooseSize28EchoFit;
+    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[3]/ol/li[1]/div/div/div[4]/div[1]/div[1]/form/button/span")
+    public WebElement addToCartButtonForEchoFit;
+    @FindBy(xpath = "//*[@id=\"option-label-color-93-item-57\"]")
+    public WebElement chooseColorPinkForEchoFit;
+    @FindBy(xpath = "//*[@id=\"mini-cart\"]/li/div/div/strong/a")
+    public WebElement itemInCartNameForEchoFit;
+
+
     // Click methods
     public void clickHeaderSignInButton() {
-        signIn_Btn.isDisplayed();
-        signIn_Btn.click();
+        signInButton.isDisplayed();
+        signInButton.click();
     }
 
     public void clickHeaderDropdownAccountButton() {
@@ -110,14 +128,14 @@ public class HomePage extends Helper {
     }
 
     public void clickHeaderDropdownMyAccount() {
-        dropdown_MyAccount.isDisplayed();
-        waitToBeVisible(dropdown_MyAccount, 5);
-        dropdown_MyAccount.click();
+        dropdownMyAccount.isDisplayed();
+        waitToBeVisible(dropdownMyAccount, 5);
+        dropdownMyAccount.click();
     }
 
     public void clickDropdownSignOut() {
-        dropdown_SignOut.isDisplayed();
-        dropdown_SignOut.click();
+        dropdownSignOut.isDisplayed();
+        dropdownSignOut.click();
     }
 
     public void clickFooterSubscribeButton() {

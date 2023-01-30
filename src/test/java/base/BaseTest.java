@@ -34,7 +34,8 @@ public class BaseTest {
         options.getLogLevel();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.manage().window().maximize();
-        driver.get("https://magento.softwaretestingboard.com/");
+        final String baseUrl = "https://magento.softwaretestingboard.com/";
+        driver.get(baseUrl);
     }
 
     @AfterEach

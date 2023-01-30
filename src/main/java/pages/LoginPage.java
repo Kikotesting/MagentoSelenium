@@ -33,7 +33,7 @@ public class LoginPage extends Helper {
 
     public void defaultLogin(){
         homePage = new HomePage(driver);
-        homePage.signIn_Btn.click();
+        homePage.signInButton.click();
         enterValidEmail();
         enterValidPassword();
         clickSignInButton();

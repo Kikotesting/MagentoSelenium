@@ -1,4 +1,4 @@
-package functionalityTests;
+package scenarios;
 
 import base.BaseTest;
 import org.junit.jupiter.api.Assertions;
@@ -28,8 +28,8 @@ public class FunctionalityTests extends BaseTest {
         loginPage.defaultLogin();
 
         homePage.hoverElement(homePage.menuWomen);
-        homePage.waitToBeVisible(homePage.menuWomen_Tops,2);
-        homePage.hoverElementClick(homePage.menuWomen_Tops);
+        homePage.waitToBeVisible(homePage.menuWomenTops,2);
+        homePage.hoverElementClick(homePage.menuWomenTops);
 
         String womenMenuTopsUrl = "https://magento.softwaretestingboard.com/women/tops-women.html";
         womenPage = new WomenPage(driver);
@@ -49,8 +49,8 @@ public class FunctionalityTests extends BaseTest {
         homePage = new HomePage(driver);
 
         homePage.hoverElement(homePage.menuWomen);
-        homePage.waitToBeVisible(homePage.menuWomen_Tops,2);
-        homePage.hoverElementClick(homePage.menuWomen_Tops);
+        homePage.waitToBeVisible(homePage.menuWomenTops,2);
+        homePage.hoverElementClick(homePage.menuWomenTops);
 
         womenPage = new WomenPage(driver);
         womenPage.scrollToElement(womenPage.toolbarProducts);
@@ -81,8 +81,8 @@ public class FunctionalityTests extends BaseTest {
         homePage = new HomePage(driver);
 
         homePage.hoverElement(homePage.menuWomen);
-        homePage.waitToBeVisible(homePage.menuWomen_Tops,2);
-        homePage.hoverElementClick(homePage.menuWomen_Tops);
+        homePage.waitToBeVisible(homePage.menuWomenTops,2);
+        homePage.hoverElementClick(homePage.menuWomenTops);
 
         womenPage = new WomenPage(driver);
         womenPage.scrollToElement(womenPage.toolbarProducts);

@@ -1,9 +1,9 @@
-package homeTests;
+package scenarios;
 
 import pages.HomePage;
 import reports.ListenerTest;
 import base.BaseTest;
-import base.Constants;
+import constants.Constants;
 import utils.FakeData;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;

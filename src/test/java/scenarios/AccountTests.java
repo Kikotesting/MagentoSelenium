@@ -1,8 +1,8 @@
-package accountTests;
+package scenarios;
 
 import reports.ListenerTest;
 import base.BaseTest;
-import base.Constants;
+import constants.Constants;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import pages.AccountPage;
