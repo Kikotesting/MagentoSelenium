@@ -112,6 +112,7 @@ public class HomePage extends Helper {
     @FindBy(xpath = "//*[@id=\"option-label-color-93-item-57\"]")
     public WebElement chooseColorPinkForEchoFit;
     @FindBy(xpath = "//*[@id=\"mini-cart\"]/li/div/div/strong/a")
+
     public WebElement itemInCartNameForEchoFit;
 
 
