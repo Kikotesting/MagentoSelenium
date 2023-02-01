@@ -53,5 +53,4 @@ standard folder structure for a jar project.
 - Search data tests
 - Subscribe emails tests
 - Add/Delete items to the cart tests
-- 
 
