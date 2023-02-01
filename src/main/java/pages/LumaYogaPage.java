@@ -12,10 +12,6 @@ public class LumaYogaPage extends Helper {
         super(driver);
         PageFactory.initElements(driver, this);
     }
-    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[3]/ol/li[2]/div/div/div[4]/div/div[1]/form/button/span")
-    public WebElement addToCart;
-
-
 
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[3]/ol/li[2]") public WebElement gwenShortItem;
 
