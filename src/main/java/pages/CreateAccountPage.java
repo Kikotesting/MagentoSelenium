@@ -14,19 +14,13 @@ public class CreateAccountPage extends Helper {
     }
     FakeData fakeData;
     // PERSONAL INFORMATION
-    @FindBy(id = "firstname")
-    WebElement firstnameField;
-    @FindBy(id = "lastname")
-    WebElement lastnameField;
+    @FindBy(id = "firstname") WebElement firstnameField;
+    @FindBy(id = "lastname") WebElement lastnameField;
     // SIGN IN INFORMATION
-    @FindBy(id = "email_address")
-    WebElement emailAddress;
-    @FindBy(id = "password")
-    WebElement password;
-    @FindBy(id = "password-confirmation")
-    WebElement passwordConfirmation;
-    @FindBy(xpath = "//button/span[contains(text(),\"Create an Account\")]")
-    WebElement createAccountButton;
+    @FindBy(id = "email_address") WebElement emailAddress;
+    @FindBy(id = "password") WebElement password;
+    @FindBy(id = "password-confirmation") WebElement passwordConfirmation;
+    @FindBy(xpath = "//button/span[contains(text(),\"Create an Account\")]") WebElement createAccountButton;
 
 
     private void typeFirstnameAndLastName() {
