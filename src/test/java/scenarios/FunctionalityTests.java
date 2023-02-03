@@ -1,14 +1,15 @@
 package scenarios;
 
 import base.BaseTest;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.WomenPage;
+import reports.ListenerTest;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@ExtendWith(ListenerTest.class)
 public class FunctionalityTests extends BaseTest {
 
     HomePage homePage;

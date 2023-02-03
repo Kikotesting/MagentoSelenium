@@ -19,6 +19,5 @@ public class ProductPage extends Helper {
     @FindBy(xpath = "//*[@id=\"product-addtocart-button\"]/span") public WebElement addToCartButton;
     @FindBy(xpath = "//*[@id=\"btn-minicart-close\"]") public WebElement closeCartButton;
     @FindBy(xpath = "//*[@id=\"minicart-content-wrapper\"]/div[2]/div[1]/span[1]") public WebElement counterItems;
-
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[1]/div[2]/div/div/div") public WebElement messageAddedToCart;
 }

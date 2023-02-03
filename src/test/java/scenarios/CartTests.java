@@ -19,7 +19,7 @@ public class CartTests extends BaseTest {
     ProductPage productPage;
     @Test
     @Order(1)
-    @DisplayName("TC-1. Add item to the cart")
+    @DisplayName("TC-1. Add item to the cart container")
     void addItemToCart() {
         homePage = new HomePage(driver);
         homePage.clickHeaderSignInButton();
@@ -48,7 +48,7 @@ public class CartTests extends BaseTest {
     }
     @Test
     @Order(2)
-    @DisplayName("TC-2. Add more than one item to the cart")
+    @DisplayName("TC-2. Add more than one item to the cart container")
     void addMoreItemToTheCart() {
         homePage = new HomePage(driver);
         homePage.clickHeaderSignInButton();
@@ -101,6 +101,39 @@ public class CartTests extends BaseTest {
         Assertions.assertTrue(fionaItem.contains("Fiona Fitness Short"));
         Assertions.assertTrue(gwenItem.contains("Gwen Drawstring Bike Short"));
         Assertions.assertEquals("2",productPage.counterItems.getText());
+        productPage.closeCartButton.click();
+    }
+
+    @Test
+    @Order(3)
+    @DisplayName("TC-3. Delete item from Cart container")
+    void deleteItemFromCart(){
+        homePage = new HomePage(driver);
+        homePage.clickHeaderSignInButton();
+        loginPage = new LoginPage(driver);
+        loginPage.defaultLogin();
+        homePage.newLumaYogaBanner.click();
+        String productName = homePage.productEchoFit.getText();
+        Assertions.assertTrue(productName.contains("Echo Fit"));
+        homePage.chooseColorPinkForEchoFit.click();
+        homePage.pauseSeconds(1);
+        homePage.chooseSize28EchoFit.click();
+        homePage.pauseSeconds(1);
+        homePage.addToCartButtonForEchoFit.click();
+        homePage.scrollToElement(homePage.messageForAdded);
+        String addItemToCart = "You added Echo Fit Compression Short to your shopping cart.";
+        Assertions.assertEquals(homePage.messageForAdded.getText(),addItemToCart);
+        homePage.scrollToElement(homePage.showCartIconBtn);
+        homePage.showCartIconBtn.click();
+        homePage.pauseSeconds(1);
+        String productNameInCart = homePage.itemInCartNameForEchoFit.getText();
+        Assertions.assertTrue(productNameInCart.contains("Echo Fit"));
+        productPage = new ProductPage(driver);
+        homePage.deleteItemButtonEchoFit.click();
+        homePage.waitToBeClickable(homePage.modalConfirmOk,5);
+        homePage.modalConfirmOk.click();
+        homePage.pauseSeconds(2);
+        Assertions.assertTrue(homePage.emptyCartMessage.getText().contains("You have no items in your shopping cart."));
         productPage.closeCartButton.click();
     }
 }

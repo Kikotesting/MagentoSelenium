@@ -112,8 +112,13 @@ public class HomePage extends Helper {
     @FindBy(xpath = "//*[@id=\"option-label-color-93-item-57\"]")
     public WebElement chooseColorPinkForEchoFit;
     @FindBy(xpath = "//*[@id=\"mini-cart\"]/li/div/div/strong/a")
-
     public WebElement itemInCartNameForEchoFit;
+    @FindBy(xpath = "//*[@id=\"mini-cart\"]/li/div/div/div[3]/div[2]/a")
+    public WebElement deleteItemButtonEchoFit;
+    @FindBy(xpath = "/html/body/div[4]/aside[2]/div[2]/footer/button[2]")
+    public WebElement modalConfirmOk;
+    @FindBy(xpath = "//*[@id=\"minicart-content-wrapper\"]/div[2]/strong")
+    public WebElement emptyCartMessage;
 
 
     // Click methods

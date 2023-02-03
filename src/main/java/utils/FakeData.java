@@ -10,5 +10,5 @@ public class FakeData {
     public String lastname = faker.name().lastName();
 
     public String emailAddress = faker.internet().emailAddress().toLowerCase(Locale.ROOT);
-    public String address = faker.address().fullAddress();
+
 }
