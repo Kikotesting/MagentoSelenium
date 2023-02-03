@@ -5,9 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import utils.MainElements;
 
-public class LoginPage extends Helper implements MainElements {
+public class LoginPage extends Helper {
     HomePage homePage;
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -27,7 +26,6 @@ public class LoginPage extends Helper implements MainElements {
 
 
     public void defaultLogin(){
-        signInTextButton.click();
         enterValidEmail();
         enterValidPassword();
         clickSignInButton();

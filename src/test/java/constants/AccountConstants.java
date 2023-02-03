@@ -10,6 +10,5 @@ public abstract class AccountConstants {
     public static final String ADDRESS_BOOK = "Address Book";
     public static final String ADDRESS_BOOK_DEFAULT_BILLING_ADDRESS = "Default Billing Address";
     public static final String ADDRESS_BOOK_DEFAULT_SHIPPING_ADDRESS = "Default Shipping Address";
-    public static final String SIGN_OUT_SUCCESS_MESSAGE = "You are signed out";
-    public static final String SIGN_OUT_SUCCESS_MESSAGE_PARAGRAPH = "You have signed out and will go to our homepage in 5 seconds.";
+
 }
