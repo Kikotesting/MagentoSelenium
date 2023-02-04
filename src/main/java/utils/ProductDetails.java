@@ -13,6 +13,162 @@ public class ProductDetails {
         PageFactory.initElements(driver, this);
     }
 
+    public WebDriver getDriver() {
+        return driver;
+    }
+
+    public WebElement getProductTitleName() {
+        return productTitleName;
+    }
+
+    public WebElement getProductInStock() {
+        return productInStock;
+    }
+
+    public WebElement getProductPrice() {
+        return productPrice;
+    }
+
+    public WebElement getSizeXS() {
+        return sizeXS;
+    }
+
+    public WebElement getSizeS() {
+        return sizeS;
+    }
+
+    public WebElement getSizeM() {
+        return sizeM;
+    }
+
+    public WebElement getSizeL() {
+        return sizeL;
+    }
+
+    public WebElement getSizeXL() {
+        return sizeXL;
+    }
+
+    public WebElement getColorBlack() {
+        return colorBlack;
+    }
+
+    public WebElement getColorBlue() {
+        return colorBlue;
+    }
+
+    public WebElement getColorBrown() {
+        return colorBrown;
+    }
+
+    public WebElement getColorGray() {
+        return colorGray;
+    }
+
+    public WebElement getColorGreen() {
+        return colorGreen;
+    }
+
+    public WebElement getColorLavender() {
+        return colorLavender;
+    }
+
+    public WebElement getColorOrange() {
+        return colorOrange;
+    }
+
+    public WebElement getColorPurple() {
+        return colorPurple;
+    }
+
+    public WebElement getColorRed() {
+        return colorRed;
+    }
+
+    public WebElement getColorWhite() {
+        return colorWhite;
+    }
+
+    public WebElement getColorYellow() {
+        return colorYellow;
+    }
+
+    public WebElement getQuantityField() {
+        return quantityField;
+    }
+
+    public WebElement getAddToCartButton() {
+        return addToCartButton;
+    }
+
+    public WebElement getSubmitButton() {
+        return submitButton;
+    }
+
+    public WebElement getAddToWishList() {
+        return addToWishList;
+    }
+
+    public WebElement getAddToCompare() {
+        return addToCompare;
+    }
+
+    public WebElement getTabDetails() {
+        return tabDetails;
+    }
+
+    public WebElement getTabMoreInformation() {
+        return tabMoreInformation;
+    }
+
+    public WebElement getTabReviews() {
+        return tabReviews;
+    }
+
+    public WebElement getDetailsInfo() {
+        return detailsInfo;
+    }
+
+    public WebElement getMoreInformationInfo() {
+        return moreInformationInfo;
+    }
+
+    public WebElement getReviewsProductNameText() {
+        return reviewsProductNameText;
+    }
+
+    public WebElement getReviewsRating1() {
+        return reviewsRating1;
+    }
+
+    public WebElement getReviewsRating2() {
+        return reviewsRating2;
+    }
+
+    public WebElement getReviewsRating3() {
+        return reviewsRating3;
+    }
+
+    public WebElement getReviewsRating4() {
+        return reviewsRating4;
+    }
+
+    public WebElement getReviewsRating5() {
+        return reviewsRating5;
+    }
+
+    public WebElement getReviewsNickname() {
+        return reviewsNickname;
+    }
+
+    public WebElement getReviewsSummary() {
+        return reviewsSummary;
+    }
+
+    public WebElement getReviewsTextArea() {
+        return reviewsTextArea;
+    }
+
     // HEADERS
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[2]/div/div[1]/div[1]/h1") WebElement productTitleName;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[2]/div/div[1]/div[3]/div[2]/div[1]") WebElement productInStock;

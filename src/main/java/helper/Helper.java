@@ -21,6 +21,11 @@ public class Helper {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
+    public void clickElement(WebElement element){
+        waitToBeVisible(element,5);
+        element.isDisplayed();
+        element.click();
+    }
 
     public void pauseSeconds(Integer seconds) {
         try {
@@ -46,6 +51,11 @@ public class Helper {
         wait.until(ExpectedConditions.refreshed(
                 ExpectedConditions.elementToBeClickable(element))
         );
+    }
+        public void waitForInvisibilityOf(By locator) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(200));
+        wait.pollingEvery(Duration.ofMillis(1000));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
     }
 
     //GET INFORMATION

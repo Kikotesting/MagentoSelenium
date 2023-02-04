@@ -1,7 +1,7 @@
 {
   "name": "magentoselenium",
   "version": "1.0.0",
-  "description": "",
+  "description": "Magento Automation practise website",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/Kikotesting/MagentoSelenium.git"
   },
-  "author": "",
+  "author": "Kliment Hristov",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Kikotesting/MagentoSelenium/issues"

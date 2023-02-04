@@ -25,12 +25,10 @@ public class BaseTest {
 
     @BeforeEach
     void beforeEachTest() {
-        System.out.println(" Executing on Chrome browser");
         driver = new ChromeDriver();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("disable-info-bars");
         options.addArguments("--disable-extensions");
-        options.setHeadless(false);
         options.getLogLevel();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.manage().window().maximize();
@@ -42,8 +40,8 @@ public class BaseTest {
     void afterEachTest() throws IOException {
         driver.manage().deleteAllCookies();
         // Activates this method if you want to see the photo after test finished or when it failed will be documents as capture
-         listenerPhoto = new ListenerPhoto(driver);
-         listenerPhoto.takeScreenshot();
+        listenerPhoto = new ListenerPhoto(driver);
+        listenerPhoto.takeScreenshot();
         driver.quit();
     }
 
