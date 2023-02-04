@@ -7,6 +7,7 @@ import constants.MessageConstants;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import reports.ListenerTest;
+import utils.FakeData;
 import utils.GlobalPage;
 import ItemsPage.ItemsView;
 import utils.ProductDetails;
@@ -15,7 +16,6 @@ import utils.ProductDetails;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ExtendWith(ListenerTest.class)
 public class FunctionalityTests extends BaseTest {
-
 //    }
 //    @Test
 //    @Order(2)
@@ -82,8 +82,8 @@ public class FunctionalityTests extends BaseTest {
 //
 //        Assertions.assertNotEquals(savePriceNameAscending,savePriceNameDescending);
 //    }
-
     GlobalPage globalPage;
+    FakeData fakeData;
     SearchItemsView searchItemsView;
     ItemsView itemsView;
     WomenTopsItemsView womenTopsItemsView;
@@ -131,7 +131,6 @@ public class FunctionalityTests extends BaseTest {
         globalPage.waitToBeVisible(itemsView.getNoResults(), 3);
         Assertions.assertEquals(MessageConstants.MESSAGE_NO_RESULT,itemsView.getNoResults().getText());
     }
-
     @Test
     @DisplayName("TC-3. Get correct URL from each page")
     @Order(3)
@@ -156,6 +155,57 @@ public class FunctionalityTests extends BaseTest {
         Assertions.assertEquals(menuWomenTopsFirstItem,driver.getCurrentUrl());
         System.out.println("Response URLs:"+"\n"+baseUrl+"\n"+menuWomenUrl+"\n"+menuWomenTopsUrl+"\n"+menuWomenTopsFirstItem);
     }
+    @Test
+    @DisplayName("TC-4. Subscribe to a newsletter for the first time")
+    @Order(4)
+    void subscribesNewsletterForFirstTime(){
+        globalPage = new GlobalPage(driver);
+        fakeData = new FakeData();
+        globalPage.scrollToElement(globalPage.getNewsLetterField());
+        globalPage.setText(globalPage.getNewsLetterField(), fakeData.emailAddress);
+        globalPage.clickElement(globalPage.getSubscribeButton());
+        globalPage.pauseSeconds(1);
+        globalPage.waitToBeVisible(globalPage.getMessageSubscription(), 3);
+        highLightElement(driver,globalPage.getMessageSubscription());
+        int trials = 0;
+        if(globalPage.getMessageSubscription().getText().equals(MessageConstants.MESSAGE_FOR_SUBSCRIBE)){
+            Assertions.assertEquals(MessageConstants.MESSAGE_FOR_SUBSCRIBE, globalPage.getMessageSubscription().getText());
+        }
+        else {
+            while(globalPage.getMessageSubscription().getText().equals(MessageConstants.MESSAGE_ALREADY_SUBSCRIBED)){
+                trials +=1;
+                globalPage.scrollToElement(globalPage.getNewsLetterField());
+                globalPage.setText(globalPage.getNewsLetterField(), fakeData.emailAddress);
+                globalPage.clickElement(globalPage.getSubscribeButton());
+                globalPage.pauseSeconds(1);
+                globalPage.waitToBeVisible(globalPage.getMessageSubscription(), 3);
+                highLightElement(driver,globalPage.getMessageSubscription());
+            }
+            System.out.println("Trials for unique emails: " + trials);
+        }
+        Assertions.assertEquals(MessageConstants.MESSAGE_FOR_SUBSCRIBE,globalPage.getMessageSubscription().getText());
+    }
+
+    @Test
+    @DisplayName("TC-5. Subscribe to a newsletter with a user who has already subscribed")
+    @Order(5)
+    void subscribesForNewsletterWithAlreadySubscribedEmail(){
+        globalPage = new GlobalPage(driver);
+        globalPage.scrollToElement(globalPage.getNewsLetterField());
+        globalPage.setText(globalPage.getNewsLetterField(), "mislead4@mail.bg");
+        globalPage.clickElement(globalPage.getSubscribeButton());
+        globalPage.pauseSeconds(1);
+        globalPage.waitToBeVisible(globalPage.getMessageSubscription(), 3);
+        highLightElement(driver,globalPage.getMessageSubscription());
+        if (globalPage.getMessageSubscription().getText().equals(MessageConstants.MESSAGE_ALREADY_SUBSCRIBED)) {
+            Assertions.assertEquals(MessageConstants.MESSAGE_ALREADY_SUBSCRIBED,globalPage.getMessageSubscription().getText());
+            System.out.println("Correct message!");
+        } else {
+            Assertions.assertEquals(MessageConstants.MESSAGE_INVALID_SUBSCRIBE,globalPage.getMessageSubscription().getText());
+            System.out.println("Form Invalid key message!");
+        }
+    }
+
 
 
 }
