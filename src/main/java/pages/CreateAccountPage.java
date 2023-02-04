@@ -14,7 +14,6 @@ public class CreateAccountPage extends Helper {
     }
     FakeData fakeData;
     final private String immutablePassword = "Kiko123@";
-
     public WebElement getCreateAccountHeaderText() {
         return createAccountHeaderText;
     }

@@ -1,9 +1,67 @@
 package utils;
 
+import helper.Helper;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
-public class ShoppingOptions {
+public class ShoppingOptions extends Helper {
+    public ShoppingOptions(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
+    public WebElement getCategoryOption() {
+        return categoryOption;
+    }
+
+    public WebElement getStyleOption() {
+        return styleOption;
+    }
+
+    public WebElement getSizeOption() {
+        return sizeOption;
+    }
+
+    public WebElement getPriceOption() {
+        return priceOption;
+    }
+
+    public WebElement getColorOption() {
+        return colorOption;
+    }
+
+    public WebElement getMaterialOption() {
+        return materialOption;
+    }
+
+    public WebElement getEcoCollectOption() {
+        return ecoCollectOption;
+    }
+
+    public WebElement getPerformanceOption() {
+        return performanceOption;
+    }
+
+    public WebElement getErinRecommendsOption() {
+        return erinRecommendsOption;
+    }
+
+    public WebElement getNewOption() {
+        return newOption;
+    }
+
+    public WebElement getSaleOption() {
+        return saleOption;
+    }
+
+    public WebElement getPatternOption() {
+        return patternOption;
+    }
+
+    public WebElement getClimateOption() {
+        return climateOption;
+    }
 
     @FindBy(xpath = "//*[@id=\"narrow-by-list\"]/div[1]") WebElement categoryOption;
     @FindBy(xpath = "//*[@id=\"narrow-by-list\"]/div[2]") WebElement styleOption;

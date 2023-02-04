@@ -9,7 +9,7 @@ import reports.ListenerTest;
 import base.BaseTest;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
-import utils.GlobalPage;
+import pages.GlobalPage;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ExtendWith(ListenerTest.class)

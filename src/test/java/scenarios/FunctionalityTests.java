@@ -1,14 +1,14 @@
 package scenarios;
 
 import ItemsPage.SearchItemsView;
-import ItemsPage.WomenTopsItemsView;
+import ItemsPage.ItemsPage;
 import base.BaseTest;
 import constants.MessageConstants;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import reports.ListenerTest;
 import randomData.FakeData;
-import utils.GlobalPage;
+import pages.GlobalPage;
 import ItemsPage.ItemsView;
 import utils.ProductDetails;
 
@@ -16,77 +16,11 @@ import utils.ProductDetails;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ExtendWith(ListenerTest.class)
 public class FunctionalityTests extends BaseTest {
-//    }
-//    @Test
-//    @Order(2)
-//    @DisplayName("TC-2. Sort items on Women-Tops-Page by Price")
-//    void sortItemsByProductionName() {
-//        homePage = new HomePage(driver);
-//
-//        homePage.hoverElement(homePage.menuWomen);
-//        homePage.waitToBeVisible(homePage.menuWomenTops,2);
-//        homePage.hoverElementClick(homePage.menuWomenTops);
-//
-//        womenPage = new WomenPage(driver);
-//        womenPage.scrollToElement(womenPage.toolbarProducts);
-//
-//        womenPage.waitToBeVisible(womenPage.productPositionItemOne, 5);
-//        womenPage.scrollToElement(womenPage.productPriceItemOne);
-//        womenPage.scrollToPixels(200);
-//        String savePositionNameOne = womenPage.productPositionItemOne.getText();
-//        System.out.println(savePositionNameOne + "\n==========================");
-//
-//        womenPage.selectByVisibleTextElement(womenPage.selectorSortBy,"Price");
-//        womenPage.pauseSeconds(2);
-//
-//        womenPage.waitToBeVisible(womenPage.productPriceItemOne,5 );
-//        womenPage.scrollToElement(womenPage.productPriceItemOne);
-//        womenPage.scrollToPixels(200);
-//        String savePriceNameOne = womenPage.productPriceItemOne.getText();
-//        System.out.println(savePriceNameOne);
-//        womenPage.pauseSeconds(2);
-//
-//        Assertions.assertNotEquals(savePositionNameOne,savePriceNameOne);
-//    }
-//
-//    @Test
-//    @Order(3)
-//    @DisplayName("TC-3. Set Descending directions ")
-//    void setDescendingDirectionOnItems() {
-//        homePage = new HomePage(driver);
-//
-//        homePage.hoverElement(homePage.menuWomen);
-//        homePage.waitToBeVisible(homePage.menuWomenTops,2);
-//        homePage.hoverElementClick(homePage.menuWomenTops);
-//
-//        womenPage = new WomenPage(driver);
-//        womenPage.scrollToElement(womenPage.toolbarProducts);
-//
-//        // By default is Ascending
-//        womenPage.selectByVisibleTextElement(womenPage.selectorSortBy,"Price");
-//        womenPage.pauseSeconds(2);
-//        womenPage.waitToBeVisible(womenPage.productPriceItemOne,5 );
-//        womenPage.scrollToElement(womenPage.productPriceItemOne);
-//        womenPage.scrollToPixels(100);
-//        String savePriceNameAscending = womenPage.productPriceItemOne.getText();
-//        System.out.println(savePriceNameAscending);
-//        womenPage.pauseSeconds(2);
-//        // Change order
-//        womenPage.orderDescendingButton.click();
-//        womenPage.pauseSeconds(2);
-//        womenPage.scrollToElement(womenPage.productPriceItemOne);
-//        womenPage.scrollToPixels(100);
-//        String savePriceNameDescending = womenPage.productPriceItemOne.getText();
-//        System.out.println(savePriceNameDescending);
-//        womenPage.pauseSeconds(2);
-//
-//        Assertions.assertNotEquals(savePriceNameAscending,savePriceNameDescending);
-//    }
     GlobalPage globalPage;
     FakeData fakeData;
-    SearchItemsView searchItemsView;
+    ItemsPage itemsPage;
     ItemsView itemsView;
-    WomenTopsItemsView womenTopsItemsView;
+    SearchItemsView searchItemsView;
     ProductDetails productDetails;
     @Test
     @DisplayName("TC-1. Lookup items with valid data by color")
@@ -136,7 +70,7 @@ public class FunctionalityTests extends BaseTest {
     @Order(3)
     void getUrlFromDifferentPages(){
         globalPage = new GlobalPage(driver);
-        womenTopsItemsView = new WomenTopsItemsView(driver);
+        itemsPage = new ItemsPage(driver);
 
         String baseUrl = "https://magento.softwaretestingboard.com/";
         Assertions.assertEquals(baseUrl,driver.getCurrentUrl());
@@ -149,8 +83,8 @@ public class FunctionalityTests extends BaseTest {
         String menuWomenTopsUrl = "https://magento.softwaretestingboard.com/women/tops-women.html";
         Assertions.assertEquals(menuWomenTopsUrl,driver.getCurrentUrl());
 
-        womenTopsItemsView.scrollToElement(womenTopsItemsView.getItemOne());
-        womenTopsItemsView.hoverElementClick(womenTopsItemsView.getItemOne());
+        itemsPage.scrollToElement(itemsPage.getItemOne());
+        itemsPage.hoverElementClick(itemsPage.getItemOne());
         String menuWomenTopsFirstItem = "https://magento.softwaretestingboard.com/breathe-easy-tank.html";
         Assertions.assertEquals(menuWomenTopsFirstItem,driver.getCurrentUrl());
         System.out.println("Response URLs:"+"\n"+baseUrl+"\n"+menuWomenUrl+"\n"+menuWomenTopsUrl+"\n"+menuWomenTopsFirstItem);
@@ -204,7 +138,45 @@ public class FunctionalityTests extends BaseTest {
             System.out.println("Form Invalid key message!");
         }
     }
+    @Test
+    @Order(6)
+    @DisplayName("TC-6. Sort Items by value and change order directions")
+    void sortItemsByValueAndChangeOrderDirection(){
+        globalPage = new GlobalPage(driver);
+        itemsPage = new ItemsPage(driver);
+        itemsView = new ItemsView(driver);
 
+        globalPage.hoverElement(globalPage.getMenuWomen());
+        globalPage.waitToBeVisible(globalPage.getMenuWomenTops(), 3);
+        globalPage.hoverElementClick(globalPage.getMenuWomenTops());
+
+        // Default sorting is by Position
+        itemsView.scrollToElement(itemsView.getItemAmountMessage());
+        Assertions.assertTrue(itemsPage.getItemOne().getText().contains("Breathe-Easy Tank"));
+        System.out.println("1 default "+ itemsPage.getItemOne().getText());
+
+        // Sort by product name
+        itemsView.clickElement(itemsView.getSelectSortBy());
+        itemsView.selectByValueElement(itemsView.getSelectSortBy(), "name");
+        itemsView.scrollToElement(itemsView.getItemAmountMessage());
+        itemsPage.waitToBeVisible(itemsPage.getItemOne(), 5);
+        Assertions.assertTrue(itemsPage.getItemOne().getText().contains("Adrienne Trek Jacket"));
+        System.out.println("1 after sort "+ itemsPage.getItemOne().getText());
+
+        // Set Descending order
+        itemsView.clickElement(itemsView.getOrderFilter());
+        itemsView.scrollToElement(itemsView.getItemAmountMessage());
+        itemsPage.waitToBeVisible(itemsPage.getItemOne(), 5);
+        Assertions.assertTrue(itemsPage.getItemOne().getText().contains("Zoe Tank"));
+        System.out.println("1 descending "+ itemsPage.getItemOne().getText());
+
+        // Set Ascending order (revert the old one)
+        itemsView.clickElement(itemsView.getOrderFilter());
+        itemsView.scrollToElement(itemsView.getItemAmountMessage());
+        itemsPage.waitToBeVisible(itemsPage.getItemOne(), 5);
+        Assertions.assertTrue(itemsPage.getItemOne().getText().contains("Adrienne Trek Jacket"));
+        System.out.println("1 after revert "+ itemsPage.getItemOne().getText());
+    }
 
 
 }

@@ -30,25 +30,20 @@ public class LoginPage extends Helper {
     public WebElement getPasswordRequired() {
         return passwordRequired;
     }
-
     public WebElement getWelcomeDefaultMessage() {
         return welcomeDefaultMessage;
     }
-
     public WebElement getWelcomeLoggedInMessage() {
         return welcomeLoggedInMessage;
     }
-
     public WebElement getSignInIncorrectMessage() {
         return signInIncorrectMessage;
     }
-
     public void defaultLogin(){
        setValidEmail();
        setValidPassword();
        clickSignInButton();
     }
-
     public void setValidEmail() {
         getEmailRequired().isDisplayed();
         getEmailRequired().sendKeys("mislead4@mail.bg");
@@ -104,7 +99,5 @@ public class LoginPage extends Helper {
     @FindBy(xpath = "//*[@id=\"email-error\"]") WebElement emailRequired;
     @FindBy(xpath = "//*[@id=\"pass-error\"]") WebElement passwordRequired;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[2]/div[2]/div/div/div") WebElement signInIncorrectMessage;
-
-
 
 }

@@ -38,7 +38,8 @@ public class Helper {
     public void waitToBeVisible(WebElement element, int seconds) {
         final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
         wait.pollingEvery(Duration.ofSeconds(1));
-        wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(element)));
+        // wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(element)));
+        wait.until(ExpectedConditions.visibilityOf(element));
     }
     public void waitToBeInvisible(WebElement element, int seconds) {
         final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));

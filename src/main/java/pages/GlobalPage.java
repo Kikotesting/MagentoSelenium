@@ -1,4 +1,4 @@
-package utils;
+package pages;
 
 import helper.Helper;
 import org.openqa.selenium.Keys;
