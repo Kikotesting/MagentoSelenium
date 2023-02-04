@@ -7,15 +7,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage extends Helper {
-    HomePage homePage;
     public LoginPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
     // Get elements
-    public HomePage getHomePage() {
-        return homePage;
-    }
     public WebElement getEmailField() {
         return emailField;
     }
@@ -42,10 +38,57 @@ public class LoginPage extends Helper {
     public WebElement getWelcomeLoggedInMessage() {
         return welcomeLoggedInMessage;
     }
+
+    public WebElement getSignInIncorrectMessage() {
+        return signInIncorrectMessage;
+    }
+
     public void defaultLogin(){
-       enterValidEmail();
-       enterValidPassword();
+       setValidEmail();
+       setValidPassword();
        clickSignInButton();
+    }
+
+    public void setValidEmail() {
+        getEmailRequired().isDisplayed();
+        getEmailRequired().sendKeys("mislead4@mail.bg");
+    }
+    public void setValidPassword() {
+        getPasswordField().isDisplayed();
+        getPasswordField().sendKeys("Kiko123@");
+    }
+    public void setInvalidEmail() {
+        getEmailField().isDisplayed();
+        getEmailField().sendKeys("929838");
+    }
+    public void setWrongEmail() {
+        getEmailField().isDisplayed();
+        getEmailField().sendKeys("milioannannko@mail.bg");
+    }
+    public void setInvalidPassword() {
+        getPasswordField().isDisplayed();
+        getPasswordField().sendKeys(" " +6+" ");
+    }
+    public void setWrongPassword() {
+        getPasswordField().isDisplayed();
+        getPasswordField().sendKeys("Blagodarya");
+    }
+    public void setEmptyEmail() {
+        getEmailField().isDisplayed();
+        getEmailField().sendKeys("");
+    }
+    public void setEmptyPassword() {
+        getPasswordField().isDisplayed();
+        getPasswordField().sendKeys("");
+    }
+    // CLICK methods
+    public void clickSignInButton() {
+        getSignInButton().isDisplayed();
+        getSignInButton().click();
+    }
+    public void clickCreateAccountButton() {
+        getCreateAccountButton().isDisplayed();
+        getCreateAccountButton().click();
     }
 
     // FIELDS
@@ -54,43 +97,13 @@ public class LoginPage extends Helper {
     // BUTTONS
     @FindBy(id = "send2") WebElement signInButton;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div/div[2]/div[2]/div[2]/div/div/a") WebElement createAccountButton;
+    // MESSAGES
     @FindBy(xpath = "//*[@class=\"not-logged-in\"]") WebElement welcomeDefaultMessage;
     @FindBy(xpath = "//*[@class=\"logged-in\"]") WebElement welcomeLoggedInMessage;
-
-    // REQUIRED MESSAGES
+    // REQUIRED Validation
     @FindBy(xpath = "//*[@id=\"email-error\"]") WebElement emailRequired;
     @FindBy(xpath = "//*[@id=\"pass-error\"]") WebElement passwordRequired;
-
-    // TYPING methods
-    public void enterValidEmail() {
-        emailField.isDisplayed();
-        emailField.sendKeys("mislead4@mail.bg");
-    }
-    public void enterValidPassword() {
-        passwordField.isDisplayed();
-        passwordField.sendKeys("Kiko123@");
-    }
-    public void enterInvalidEmail() {
-        emailField.isDisplayed();
-        emailField.sendKeys("929838");
-    }
-    public void enterInvalidPassword() {
-        passwordField.isDisplayed();
-        passwordField.sendKeys("-1-20201-20");
-    }
-    public void enterEmptyEmail() {
-        emailField.isDisplayed();
-        emailField.sendKeys("");
-    }
-    public void enterEmptyPassword() {
-        passwordField.isDisplayed();
-        passwordField.sendKeys("");
-    }
-    // CLICK methods
-    public void clickSignInButton() {
-        signInButton.isDisplayed();
-        signInButton.click();
-    }
+    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[2]/div[2]/div/div/div") WebElement signInIncorrectMessage;
 
 
 

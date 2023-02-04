@@ -29,13 +29,13 @@ public class LoginTests extends BaseTest {
         globalPage.clickElement(globalPage.getSignInTextButton());
         highLightElement(driver, loginPage.getWelcomeDefaultMessage());
         globalPage.waitToBeVisible(loginPage.getWelcomeDefaultMessage(),5);
-        Assertions.assertTrue(loginPage.getWelcomeDefaultMessage().getText().toLowerCase().toString().contains("welcome msg!"));
-        loginPage.enterValidEmail();
-        loginPage.enterValidPassword();
+        Assertions.assertTrue(loginPage.getWelcomeDefaultMessage().getText().toLowerCase().contains("welcome msg!"));
+        loginPage.setValidEmail();
+        loginPage.setValidPassword();
         loginPage.clickSignInButton();
         loginPage.waitToBeVisible(loginPage.getWelcomeLoggedInMessage(), 5);
         highLightElement(driver, loginPage.getWelcomeLoggedInMessage());
-        Assertions.assertTrue(loginPage.getWelcomeLoggedInMessage().getText().toString().contains("Miso Misov!"));
+        Assertions.assertTrue(loginPage.getWelcomeLoggedInMessage().getText().contains("Miso Misov!"));
     }
     @Test
     @Order(2)
@@ -51,7 +51,7 @@ public class LoginTests extends BaseTest {
         loginPage.waitToBeVisible(loginPage.getWelcomeLoggedInMessage(), 5);
         loginPage.pauseSeconds(2);
         highLightElement(driver, loginPage.getWelcomeLoggedInMessage());
-        Assertions.assertTrue(loginPage.getWelcomeLoggedInMessage().getText().toString().contains("Miso Misov!"));
+        Assertions.assertTrue(loginPage.getWelcomeLoggedInMessage().getText().contains("Miso Misov!"));
         registeredUser.clickElement(registeredUser.getDropdownMenu());
         registeredUser.waitToBeVisible(registeredUser.getDropdownSignOut(), 5);
         registeredUser.waitToBeClickable(registeredUser.getDropdownSignOut(), 5);
@@ -72,8 +72,8 @@ public class LoginTests extends BaseTest {
         globalPage = new GlobalPage(driver);
         loginPage = new LoginPage(driver);
         globalPage.clickElement(globalPage.getSignInTextButton());
-        loginPage.enterValidEmail();
-        loginPage.enterEmptyPassword();
+        loginPage.setValidEmail();
+        loginPage.setEmptyPassword();
         loginPage.clickSignInButton();
         String errorMessageRequired = "This is a required field.";
         Assertions.assertEquals(errorMessageRequired, loginPage.getPasswordRequired().getText());
@@ -85,8 +85,8 @@ public class LoginTests extends BaseTest {
         globalPage = new GlobalPage(driver);
         loginPage = new LoginPage(driver);
         globalPage.clickElement(globalPage.getSignInTextButton());
-        loginPage.enterEmptyEmail();
-        loginPage.enterValidPassword();
+        loginPage.setEmptyEmail();
+        loginPage.setValidPassword();
         loginPage.clickSignInButton();
         String errorMessageRequired = "This is a required field.";
         Assertions.assertEquals(errorMessageRequired, loginPage.getEmailRequired().getText());
@@ -98,8 +98,8 @@ public class LoginTests extends BaseTest {
         globalPage = new GlobalPage(driver);
         loginPage = new LoginPage(driver);
         globalPage.clickElement(globalPage.getSignInTextButton());
-        loginPage.enterEmptyEmail();
-        loginPage.enterEmptyPassword();
+        loginPage.setEmptyEmail();
+        loginPage.setEmptyPassword();
         loginPage.clickSignInButton();
         String errorMessageRequired = "This is a required field.";
         Assertions.assertEquals(errorMessageRequired, loginPage.getEmailRequired().getText());
@@ -112,80 +112,67 @@ public class LoginTests extends BaseTest {
         globalPage = new GlobalPage(driver);
         loginPage = new LoginPage(driver);
         globalPage.clickElement(globalPage.getSignInTextButton());
-        loginPage.enterInvalidEmail();
+        loginPage.setInvalidEmail();
         loginPage.clickSignInButton();
         String errorMessageRequired = "Please enter a valid email address (Ex: johndoe@domain.com).";
         Assertions.assertEquals(errorMessageRequired, loginPage.getEmailRequired().getText());
     }
+    @Test
+    @Order(7)
+    @DisplayName("TC-7. Cannot login with valid username and wrong password")
+    void userCannotLoginWithValidUsernameAndWrongPassword() {
+        globalPage = new GlobalPage(driver);
+        loginPage = new LoginPage(driver);
+        globalPage.clickElement(globalPage.getSignInTextButton());
+        loginPage.setValidEmail();
+        loginPage.setWrongPassword();
+        loginPage.clickSignInButton();
+        String incorrectCaptcha = "Incorrect CAPTCHA";
 
-//    /**
-//     * All tests from order 3 to 5 include are hidden, because the site uses custom captcha method, that is not handle by those scripts.
-//     * You can test it each of them after the user is correctly logged after capture is show up.
-//     */
-//    @Test
-//    @Order(3)
-//    @DisplayName("TC-2. Cannot log in with valid username and incorrect password")
-//    void userCannotLoginWithValidUsernameAndIncorrectPassword(){
-//
-//        homePage = new HomePage(driver);
-//        homePage.clickHeaderSignInButton();
-//        loginPage = new LoginPage(driver);
-//        loginPage.enterValidEmail();
-//        loginPage.enterInvalidPassword();
-//        loginPage.clickSignInButton();
-//        homePage.waitToBeVisible(loginPage.errorMessage, 5);
-//        String incorrectCaptcha = "Incorrect CAPTCHA";
-//        if (loginPage.errorMessage.getText().equals(incorrectCaptcha)  ){
-//            Assertions.assertEquals(incorrectCaptcha,loginPage.errorMessage.getText()+" FAILED");
-//            System.out.println("Captcha is displayed!");
-//        }else {
-//            Assertions.assertEquals(GlobalConstants.ERROR_MESSAGE_FOR_LOGIN,loginPage.errorMessage.getText());
-//        }
-//    }
-//
-//    @Test
-//    @Order(4)
-//    @DisplayName("TC-3. Cannot log in with invalid username and correct password")
-//    void userCannotLoginWithInvalidUsernameAndCorrectPassword(){
-//
-//        homePage = new HomePage(driver);
-//        homePage.clickHeaderSignInButton();
-//        loginPage = new LoginPage(driver);
-//        loginPage.enterInvalidEmail();
-//        loginPage.enterValidPassword();
-//        loginPage.clickSignInButton();
-//        homePage.waitToBeVisible(loginPage.errorMessage, 5);
-//        String incorrectCaptcha = "Incorrect CAPTCHA";
-//        if (loginPage.errorMessage.getText().equals(incorrectCaptcha)  ){
-//            Assertions.assertEquals(incorrectCaptcha,loginPage.errorMessage.getText());
-//            System.out.println("Captcha is displayed!");
-//        }else {
-//            Assertions.assertEquals(GlobalConstants.ERROR_MESSAGE_FOR_LOGIN,loginPage.errorMessage.getText());
-//        }
-//
-//    }
-//
-//    @Test
-//    @Order(5)
-//    @DisplayName("TC-4. Cannot log in with invalid username and invalid password")
-//    void userCannotLoginWithInvalidUsernameAndInvalidPassword(){
-//
-//        homePage = new HomePage(driver);
-//        homePage.clickHeaderSignInButton();
-//        loginPage = new LoginPage(driver);
-//        loginPage.enterInvalidEmail();
-//        loginPage.enterInvalidPassword();
-//        loginPage.clickSignInButton();
-//        homePage.waitToBeVisible(loginPage.errorMessage, 5);
-//        String incorrectCaptcha = "Incorrect CAPTCHA";
-//        if (loginPage.errorMessage.getText().equals(incorrectCaptcha)  ){
-//            Assertions.assertEquals(incorrectCaptcha,loginPage.errorMessage.getText());
-//            System.out.println("Captcha is displayed!");
-//        }else {
-//            Assertions.assertEquals(GlobalConstants.ERROR_MESSAGE_FOR_LOGIN,loginPage.errorMessage.getText());
-//        }
-//    }
-//
-//
-
+        if (loginPage.getSignInIncorrectMessage().getText().equals(incorrectCaptcha)){
+            Assertions.assertEquals(incorrectCaptcha,loginPage.getSignInIncorrectMessage().getText());
+            System.out.println("Captcha is displayed!");
+        }else {
+            Assertions.assertEquals(MessageConstants.MESSAGE_ERROR_FOR_LOGIN,loginPage.getSignInIncorrectMessage().getText());
+            System.out.println("NO Captcha");
+        }
+    }
+    @Test
+    @Order(8)
+    @DisplayName("TC-8. Cannot log in with wrong username and valid password")
+    void userCannotLoginWithWrongUsernameAndValidPassword(){
+        globalPage = new GlobalPage(driver);
+        loginPage = new LoginPage(driver);
+        globalPage.clickElement(globalPage.getSignInTextButton());
+        loginPage.setWrongEmail();
+        loginPage.setValidPassword();
+        loginPage.clickSignInButton();
+        String incorrectCaptcha = "Incorrect CAPTCHA";
+        if (loginPage.getSignInIncorrectMessage().getText().equals(incorrectCaptcha)){
+            Assertions.assertEquals(incorrectCaptcha,loginPage.getSignInIncorrectMessage().getText());
+            System.out.println("Captcha is displayed!");
+        }else {
+            Assertions.assertEquals(MessageConstants.MESSAGE_ERROR_FOR_LOGIN,loginPage.getSignInIncorrectMessage().getText());
+            System.out.println("NO Captcha");
+        }
+    }
+    @Test
+    @Order(9)
+    @DisplayName("TC-9. Cannot log in with Invalid password")
+    void userCannotLoginWithInvalidUsernameAndCorrectPassword(){
+        globalPage = new GlobalPage(driver);
+        loginPage = new LoginPage(driver);
+        globalPage.clickElement(globalPage.getSignInTextButton());
+        loginPage.setValidEmail();
+        loginPage.setInvalidPassword();
+        loginPage.clickSignInButton();
+        String incorrectCaptcha = "Incorrect CAPTCHA";
+        if (loginPage.getSignInIncorrectMessage().getText().equals(incorrectCaptcha)){
+            Assertions.assertEquals(incorrectCaptcha,loginPage.getSignInIncorrectMessage().getText());
+            System.out.println("Captcha is displayed!");
+        }else {
+            Assertions.assertEquals(MessageConstants.MESSAGE_ERROR_FOR_LOGIN,loginPage.getSignInIncorrectMessage().getText());
+            System.out.println("NO Captcha");
+        }
+    }
 }
