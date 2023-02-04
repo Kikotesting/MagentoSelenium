@@ -11,23 +11,18 @@ public class RegisteredUser extends Helper {
         super(driver);
         PageFactory.initElements(driver, this);
     }
-
     public WebElement getDropdownMenu() {
         return dropdownMenu;
     }
-
     public WebElement getDropdownMyAccount() {
         return dropdownMyAccount;
     }
-
     public WebElement getDropdownWishList() {
         return dropdownWishList;
     }
-
     public WebElement getDropdownSignOut() {
         return dropdownSignOut;
     }
-
 
     // DROPDOWN MENU
     @FindBy(xpath = "//div[2]/header/div[1]/div/ul/li[2]/span/button") WebElement dropdownMenu;

@@ -20,24 +20,7 @@
 ////        PageFactory.initElements(driver, this);
 ////    }
 ////
-////    // VISIBILITY
-////    public void waitForVisibilityOf(By locator, int timeOutInSeconds) {
-////        final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOutInSeconds));
-////        wait.pollingEvery(Duration.ofMillis(100));
-////        wait.until(ExpectedConditions.refreshed(
-////                ExpectedConditions.visibilityOfElementLocated(locator))
-////        );
-////    }
-////    public void waitForVisibilityOf(WebElement element, int timeOutInSeconds) {
-////        final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOutInSeconds));
-////        wait.pollingEvery(Duration.ofMillis(100));
-////        wait.until(ExpectedConditions.refreshed(
-////                ExpectedConditions.visibilityOf(element))
-////        );
-////    }
-////    public void waitForVisibilityOf(WebElement element) {
-////        waitForVisibilityOf(element, 90);
-////    }
+
 ////    // TEXT
 ////    public void waitText(String textToBeDisplayed, int timeOutInSecond) {
 ////        waitForVisibilityOf(By.xpath("//*[@text='" + textToBeDisplayed + "']"), timeOutInSecond);
