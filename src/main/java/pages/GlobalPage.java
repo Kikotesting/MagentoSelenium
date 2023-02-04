@@ -86,10 +86,6 @@ public class GlobalPage extends Helper {
         return messageSubscription;
     }
 
-    public WebElement getMessageSearchResults() {
-        return messageSearchResults;
-    }
-
     public void setText(WebElement element, String message){
         element.isDisplayed();
         element.clear();
@@ -127,6 +123,5 @@ public class GlobalPage extends Helper {
 
     // MESSAGES
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[2]/div[2]/div/div/div") WebElement messageSubscription;
-    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[2]/div") WebElement messageSearchResults;
 
 }

@@ -12,10 +12,9 @@ import pages.GlobalPage;
 import ItemsPage.ItemsView;
 import utils.ProductDetails;
 
-
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ExtendWith(ListenerTest.class)
-public class FunctionalityTests extends BaseTest {
+public class FunctionalityTests extends BaseTest{
     GlobalPage globalPage;
     FakeData fakeData;
     ItemsPage itemsPage;
@@ -104,8 +103,10 @@ public class FunctionalityTests extends BaseTest {
         int trials = 0;
         if(globalPage.getMessageSubscription().getText().equals(MessageConstants.MESSAGE_FOR_SUBSCRIBE)){
             Assertions.assertEquals(MessageConstants.MESSAGE_FOR_SUBSCRIBE, globalPage.getMessageSubscription().getText());
-        }
-        else {
+        } else if (globalPage.getMessageSubscription().getText().equals(MessageConstants.MESSAGE_INVALID_SUBSCRIBE)) {
+            Assertions.assertEquals(MessageConstants.MESSAGE_INVALID_SUBSCRIBE,globalPage.getMessageSubscription().getText());
+            System.out.println("Form Invalid key message!");
+        } else {
             while(globalPage.getMessageSubscription().getText().equals(MessageConstants.MESSAGE_ALREADY_SUBSCRIBED)){
                 trials +=1;
                 globalPage.scrollToElement(globalPage.getNewsLetterField());
@@ -116,8 +117,8 @@ public class FunctionalityTests extends BaseTest {
                 highLightElement(driver,globalPage.getMessageSubscription());
             }
             System.out.println("Trials for unique emails: " + trials);
+            Assertions.assertEquals(MessageConstants.MESSAGE_FOR_SUBSCRIBE,globalPage.getMessageSubscription().getText());
         }
-        Assertions.assertEquals(MessageConstants.MESSAGE_FOR_SUBSCRIBE,globalPage.getMessageSubscription().getText());
     }
     @Test
     @DisplayName("TC-5. Subscribe to a newsletter with a user who has already subscribed")

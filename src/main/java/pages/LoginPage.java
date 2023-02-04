@@ -45,8 +45,8 @@ public class LoginPage extends Helper {
        clickSignInButton();
     }
     public void setValidEmail() {
-        getEmailRequired().isDisplayed();
-        getEmailRequired().sendKeys("mislead4@mail.bg");
+        getEmailField().isDisplayed();
+        getEmailField().sendKeys("mislead4@mail.bg");
     }
     public void setValidPassword() {
         getPasswordField().isDisplayed();
