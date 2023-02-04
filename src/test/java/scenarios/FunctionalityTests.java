@@ -1,47 +1,21 @@
 package scenarios;
 
+import ItemsPage.SearchItemsView;
+import ItemsPage.WomenTopsItemsView;
 import base.BaseTest;
+import constants.MessageConstants;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
-import pages.WomenPage;
 import reports.ListenerTest;
 import utils.GlobalPage;
-import utils.ItemsView;
+import ItemsPage.ItemsView;
 import utils.ProductDetails;
-
-import static io.netty.util.ResourceLeakDetector.isEnabled;
 
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ExtendWith(ListenerTest.class)
 public class FunctionalityTests extends BaseTest {
 
-//    @Test
-//    @Order(1)
-//    @DisplayName("TC-1. Get correct URL from each page")
-//    void getUrlFromEachPage() {
-//
-//        homePage = new HomePage(driver);
-//        String baseUrl = "https://magento.softwaretestingboard.com/";
-//
-//        Assertions.assertEquals(baseUrl,driver.getCurrentUrl());
-//        loginPage = new LoginPage(driver);
-//        loginPage.defaultLogin();
-//
-//        homePage.hoverElement(homePage.menuWomen);
-//        homePage.waitToBeVisible(homePage.menuWomenTops,2);
-//        homePage.hoverElementClick(homePage.menuWomenTops);
-//
-//        String womenMenuTopsUrl = "https://magento.softwaretestingboard.com/women/tops-women.html";
-//        womenPage = new WomenPage(driver);
-//        Assertions.assertEquals(womenMenuTopsUrl,driver.getCurrentUrl());
-//
-//
-//
-//        driver.navigate().back();
-//        String womenMenuUrl = "https://magento.softwaretestingboard.com/women";
-//        Assertions.assertEquals(womenMenuUrl,driver.getCurrentUrl());
-//
 //    }
 //    @Test
 //    @Order(2)
@@ -110,37 +84,77 @@ public class FunctionalityTests extends BaseTest {
 //    }
 
     GlobalPage globalPage;
+    SearchItemsView searchItemsView;
     ItemsView itemsView;
+    WomenTopsItemsView womenTopsItemsView;
     ProductDetails productDetails;
     @Test
-    @DisplayName("TC-1. Look items by color in search field")
+    @DisplayName("TC-1. Lookup items with valid data by color")
     @Order(1)
-    void searchItemsByColor(){
+    void searchItemsWithValidDataByColor(){
+        //Initialize objects from classes
         globalPage = new GlobalPage(driver);
         productDetails = new ProductDetails(driver);
-        itemsView = new ItemsView(driver);
+        searchItemsView = new SearchItemsView(driver);
 
+        // Typing valid data in the search input bar
         globalPage.setText(globalPage.getSearchInputField(), "Blue");
         globalPage.pressEnter(globalPage.getSearchInputField());
-
-        itemsView.scrollToElement(itemsView.getItemOne());
-        highLightElement(driver,itemsView.getItemOne());
-        itemsView.hoverElement(itemsView.getItemOne());
-        itemsView.pauseSeconds(2);
+        // Scroll to the found elements and check if its exists and color blue options is displayed
+        searchItemsView.scrollToElement(searchItemsView.getItemOne());
+        highLightElement(driver,searchItemsView.getItemOne());
+        searchItemsView.hoverElement(searchItemsView.getItemOne());
+        searchItemsView.pauseSeconds(2);
         String itemNameChloe = "Chloe Compete Tank";
-        Assertions.assertTrue(itemsView.getItemOne().getText().contains(itemNameChloe));
+        Assertions.assertTrue(searchItemsView.getItemOne().getText().contains(itemNameChloe));
         productDetails.getColorBlue().click();
         Assertions.assertTrue(productDetails.getColorBlue().isDisplayed());
-
-        itemsView.scrollToElement(itemsView.getItemThree());
-        highLightElement(driver,itemsView.getItemThree());
-        itemsView.hoverElement(itemsView.getItemThree());
-        globalPage.pauseSeconds(2);
+        searchItemsView.scrollToElement(searchItemsView.getItemThree());
+        highLightElement(driver,searchItemsView.getItemThree());
+        searchItemsView.hoverElement(searchItemsView.getItemThree());
+        searchItemsView.pauseSeconds(2);
         String itemNameBella = "Bella Tank";
-        Assertions.assertTrue(itemsView.getItemThree().getText().contains(itemNameBella));
+        Assertions.assertTrue(searchItemsView.getItemThree().getText().contains(itemNameBella));
         productDetails.getColorBlue().click();
         Assertions.assertTrue(productDetails.getColorBlue().isDisplayed());
+    }
+    @Test
+    @DisplayName("TC-2. Lookup items with Invalid data")
+    @Order(2)
+    void searchItemsWithInvalidData(){
+        //Initialize objects from classes
+        globalPage = new GlobalPage(driver);
+        itemsView = new ItemsView(driver);
+        // Typing valid data in the search input bar
+        globalPage.setText(globalPage.getSearchInputField(), "jhsddhjgh");
+        globalPage.pressEnter(globalPage.getSearchInputField());
+        globalPage.waitToBeVisible(itemsView.getNoResults(), 3);
+        Assertions.assertEquals(MessageConstants.MESSAGE_NO_RESULT,itemsView.getNoResults().getText());
+    }
 
+    @Test
+    @DisplayName("TC-3. Get correct URL from each page")
+    @Order(3)
+    void getUrlFromDifferentPages(){
+        globalPage = new GlobalPage(driver);
+        womenTopsItemsView = new WomenTopsItemsView(driver);
+
+        String baseUrl = "https://magento.softwaretestingboard.com/";
+        Assertions.assertEquals(baseUrl,driver.getCurrentUrl());
+        String menuWomenUrl = "https://magento.softwaretestingboard.com/women.html";
+        globalPage.clickElement(globalPage.getMenuWomen());
+        Assertions.assertEquals(menuWomenUrl,driver.getCurrentUrl());
+        globalPage.hoverElement(globalPage.getMenuWomen());
+        globalPage.waitToBeVisible(globalPage.getMenuWomenTops(), 5);
+        globalPage.hoverElementClick(globalPage.getMenuWomenTops());
+        String menuWomenTopsUrl = "https://magento.softwaretestingboard.com/women/tops-women.html";
+        Assertions.assertEquals(menuWomenTopsUrl,driver.getCurrentUrl());
+
+        womenTopsItemsView.scrollToElement(womenTopsItemsView.getItemOne());
+        womenTopsItemsView.hoverElementClick(womenTopsItemsView.getItemOne());
+        String menuWomenTopsFirstItem = "https://magento.softwaretestingboard.com/breathe-easy-tank.html";
+        Assertions.assertEquals(menuWomenTopsFirstItem,driver.getCurrentUrl());
+        System.out.println("Response URLs:"+"\n"+baseUrl+"\n"+menuWomenUrl+"\n"+menuWomenTopsUrl+"\n"+menuWomenTopsFirstItem);
     }
 
 

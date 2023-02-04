@@ -12,34 +12,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 public class HomeTests extends BaseTest {
     HomePage homePage;
     FakeData fakeData;
-//    @Test
-//    @Order(1)
-//    @DisplayName("TC-1. Search with invalid data")
-//    void searchWithInvalidData() {
-//        homePage = new HomePage(driver);
-//
-//        homePage.searchInputField.click();
-//        homePage.searchInputField.sendKeys("JJJ&");
-//        homePage.searchInputField.sendKeys(Keys.ENTER);
-//        highLightElement(driver, homePage.searchNoResultMessage);
-//        homePage.pauseSeconds(1);
-//        Assertions.assertEquals(GlobalConstants.SEARCH_NO_RESULT, homePage.searchNoResultMessage.getText());
-//    }
-//
-//    @Test
-//    @Order(2)
-//    @DisplayName("TC-2. Search with valid data")
-//    void searchWithValidData() {
-//        homePage = new HomePage(driver);
-//
-//        homePage.searchInputField.click();
-//        homePage.searchInputField.sendKeys("Light jacket");
-//        homePage.searchInputField.sendKeys(Keys.ENTER);
-//        String firstJacketOlivia = homePage.oliviaLightJacket.getText();
-//        homePage.scrollToElement(homePage.oliviaLightJacket);
-//        Assertions.assertTrue(firstJacketOlivia.contains("Olivia 1/4 Zip Light Jacket"));
-//        System.out.println(firstJacketOlivia);
-//    }
+
 //
 //    @Test
 //    @Order(3)

@@ -5,7 +5,6 @@ import pages.HomePage;
 import pages.LoginPage;
 import reports.ListenerTest;
 import base.BaseTest;
-import constants.GlobalConstants;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 

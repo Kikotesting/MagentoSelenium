@@ -2,7 +2,7 @@ package constants;
 
 public abstract class AccountConstants {
     // ACCOUNT PAGE
-    public static final String REGISTER_NEW_ACCOUNT_MESSAGE = "Thank you for registering with Fake Online Clothing Store.";
+
     public static final String MY_ACCOUNT = "My Account";
     public static final String ACCOUNT_INFORMATION = "Account Information";
     public static final String ACCOUNT_CONTACT_INFORMATION = "Contact Information";
