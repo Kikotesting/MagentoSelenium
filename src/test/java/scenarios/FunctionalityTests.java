@@ -7,7 +7,7 @@ import constants.MessageConstants;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import reports.ListenerTest;
-import utils.FakeData;
+import randomData.FakeData;
 import utils.GlobalPage;
 import ItemsPage.ItemsView;
 import utils.ProductDetails;
@@ -185,7 +185,6 @@ public class FunctionalityTests extends BaseTest {
         }
         Assertions.assertEquals(MessageConstants.MESSAGE_FOR_SUBSCRIBE,globalPage.getMessageSubscription().getText());
     }
-
     @Test
     @DisplayName("TC-5. Subscribe to a newsletter with a user who has already subscribed")
     @Order(5)

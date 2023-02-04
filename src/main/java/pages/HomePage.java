@@ -20,5 +20,4 @@ public class HomePage {
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div/div[2]/div[1]/div/a[4]") WebElement lumaPerformanceBanner;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div/div[2]/div[1]/div/a[4]/span") WebElement lumaPerformanceContent;
 
-
 }

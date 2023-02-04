@@ -1,7 +1,7 @@
 package pages;
 
 import helper.Helper;
-import utils.FakeData;
+import randomData.FakeData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

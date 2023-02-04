@@ -47,7 +47,8 @@
 //        }
 //
 //public void waitText(String textToBeDisplayed, int timeOutInSecond) {
-//        waitForVisibilityOf(By.xpath("//*[@text='" + textToBeDisplayed + "']"), timeOutInSecond);
+//        waitForVisibilityOf(By.xpath("//*[text()[contains(., '"+textToBeDisplayed+"')]]"), timeOutInSecond);
+
 //        }
 ////
 ////    public void waitUntilElementGetsEnabled(WebElement element) {

@@ -90,11 +90,6 @@ public class GlobalPage extends Helper {
         return messageSearchResults;
     }
 
-    public void clickElement(WebElement element){
-        waitToBeVisible(element,5);
-        element.isDisplayed();
-        element.click();
-    }
     public void setText(WebElement element, String message){
         element.isDisplayed();
         element.clear();
