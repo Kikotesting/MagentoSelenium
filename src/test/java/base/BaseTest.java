@@ -9,31 +9,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import reports.ListenerPhoto;
 import java.time.Duration;
-import java.util.logging.Logger;
-
-@TestInstance(TestInstance.Lifecycle.PER_METHOD)
-interface TestLifecycleLogger {
-    static final Logger logger = Logger.getLogger(TestLifecycleLogger.class.getName());
-
-    @BeforeAll
-    default void beforeAllTests() {
-        logger.info("Before all tests");
-    }
-    @AfterAll
-    default void afterAllTests() {
-        logger.info("After all tests");
-    }
-    @BeforeEach
-    default void beforeEachTest(TestInfo testInfo) {
-        logger.info(() -> String.format("About to execute [%s]",
-                testInfo.getDisplayName()));
-    }
-    @AfterEach
-    default void afterEachTest(TestInfo testInfo) {
-        logger.info(() -> String.format("Finished executing [%s]",
-                testInfo.getDisplayName()));
-    }
-}
 public class BaseTest{
     public WebDriver driver;
     ListenerPhoto listenerPhoto;
@@ -46,16 +21,12 @@ public class BaseTest{
         ChromeOptions options = new ChromeOptions();
         options.addArguments("disable-info-bars");
         options.addArguments("--disable-extensions");
-        options.addArguments("headless");
-
+        // options.addArguments("headless"); for invisible browser
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.manage().window().maximize();
         final String baseUrl = "https://magento.softwaretestingboard.com/";
         driver.get(baseUrl);
-
-
-
     }
     @AfterEach
     void afterEachTest() {
