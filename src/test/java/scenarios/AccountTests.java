@@ -28,6 +28,8 @@ public class AccountTests extends BaseTest {
         fakeData = new FakeData();
 
         globalPage.clickElement(globalPage.getCreateAccountTextButton());
+        String createAccountURL = "https://magento.softwaretestingboard.com/customer/account/create/";
+        Assertions.assertTrue(driver.getCurrentUrl().contains(createAccountURL));
         Assertions.assertTrue(createAccountPage.getCreateAccountHeaderText().getText()
                 .contains(CreateAccountConstants.CREATE_ACCOUNT_PAGE_HEADER));
         createAccountPage.setNewAccountInformation();
@@ -39,5 +41,35 @@ public class AccountTests extends BaseTest {
         createAccountPage.clickElement(createAccountPage.getCreateAccountButton());
         accountPage.waitToBeVisible(accountPage.getRegisterNewAccountMessage(),5);
         Assertions.assertEquals(accountPage.getRegisterNewAccountMessage().getText(),MessageConstants.MESSAGE_REGISTER_NEW_ACCOUNT);
+    }
+    @Test
+    @Order(2)
+    @DisplayName("TC-1. Cannot create account with empty fields in Personal information section")
+    void cannotCreateAccountWithEmptyFieldsInPersonalInformationSection() {
+        globalPage = new GlobalPage(driver);
+        createAccountPage = new CreateAccountPage(driver);
+        accountPage = new AccountPage(driver);
+        fakeData = new FakeData();
+
+        globalPage.clickElement(globalPage.getCreateAccountTextButton());
+
+        String createAccountURL = "https://magento.softwaretestingboard.com/customer/account/create/";
+        Assertions.assertTrue(driver.getCurrentUrl().contains(createAccountURL));
+        Assertions.assertTrue(createAccountPage.getCreateAccountHeaderText().getText()
+                .contains(CreateAccountConstants.CREATE_ACCOUNT_PAGE_HEADER));
+        Assertions.assertTrue(createAccountPage.getCreateAccountPersonalInfoText().getText()
+                .contains(CreateAccountConstants.CREATE_ACCOUNT_PERSONAL_INFORMATION));
+
+        createAccountPage.setEmptyFirstname();
+        createAccountPage.setLastname();
+
+        Assertions.assertTrue(createAccountPage.getCreateAccountSignInInfoText().getText()
+                .contains(CreateAccountConstants.CREATE_ACCOUNT_SIGNIN_INFORMATION));
+
+        createAccountPage.setEmailAddress();
+        createAccountPage.setRandomPassword();
+        createAccountPage.setRandomPasswordConfirmation();
+        createAccountPage.clickElement(createAccountPage.getCreateAccountButton());
+
     }
 }

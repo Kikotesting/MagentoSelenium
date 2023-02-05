@@ -1,11 +1,14 @@
 package pages;
 
 import helper.Helper;
+import net.bytebuddy.utility.RandomString;
+import org.apache.commons.lang3.RandomStringUtils;
 import randomData.FakeData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
 
 public class CreateAccountPage extends Helper {
     public CreateAccountPage(WebDriver driver) {
@@ -14,31 +17,40 @@ public class CreateAccountPage extends Helper {
     }
     FakeData fakeData;
     final private String immutablePassword = "Kiko123@";
-    public WebElement getCreateAccountHeaderText() {
-        return createAccountHeaderText;
-    }
+    private String randomPassword = RandomStringUtils.randomAlphabetic(5);
+
     private WebElement getFirstnameField() {
         return firstnameField;
     }
-    private void setFirstname() {
+    public void setFirstname() {
         fakeData = new FakeData();
         getFirstnameField().isDisplayed();
         getFirstnameField().clear();
         getFirstnameField().sendKeys(fakeData.firstname);
     }
+    public void setEmptyFirstname() {
+        getFirstnameField().isDisplayed();
+        getFirstnameField().clear();
+        getFirstnameField().sendKeys("");
+    }
     private WebElement getLastnameField() {
         return lastnameField;
     }
-    private void setLastname() {
+    public void setLastname() {
         fakeData = new FakeData();
         getLastnameField().isDisplayed();
         getLastnameField().clear();
         getLastnameField().sendKeys(fakeData.lastname);
     }
+    public void setEmptyLastname() {
+        getLastnameField().isDisplayed();
+        getLastnameField().clear();
+        getLastnameField().sendKeys("");
+    }
     private WebElement getEmailAddressField() {
         return emailAddressField;
     }
-    private void setEmailAddress() {
+    public void setEmailAddress() {
         fakeData = new FakeData();
         getEmailAddressField().isDisplayed();
         getEmailAddressField().clear();
@@ -54,23 +66,29 @@ public class CreateAccountPage extends Helper {
         getPasswordField().clear();
         getPasswordField().sendKeys(immutablePassword);
     }
+    public void setRandomPassword() {
+        getPasswordField().isDisplayed();
+        getPasswordField().clear();
+
+        getPasswordField().sendKeys(randomPassword);
+    }
     private WebElement getPasswordConfirmationField() {
         return passwordConfirmationField;
     }
-    private void setPasswordConfirmation() {
+    public void setPasswordConfirmation() {
         getPasswordConfirmationField().isDisplayed();
         getPasswordConfirmationField().clear();
         getPasswordConfirmationField().sendKeys(immutablePassword);
     }
+    public void setRandomPasswordConfirmation() {
+        getPasswordConfirmationField().isDisplayed();
+        getPasswordConfirmationField().clear();
+        getPasswordConfirmationField().sendKeys(randomPassword);
+    }
     public WebElement getCreateAccountButton() {
         return createAccountButton;
     }
-    public WebElement getCreateAccountPersonalInfoText() {
-        return createAccountPersonalInfoText;
-    }
-    public WebElement getCreateAccountSignInInfoText() {
-        return createAccountSignInInfoText;
-    }
+
     public WebElement getCheckBoxIsSubscribed() {
         return checkBoxIsSubscribed;
     }
@@ -85,11 +103,32 @@ public class CreateAccountPage extends Helper {
         setPassword();
         setPasswordConfirmation();
     }
+
+    public WebElement getCreateAccountHeaderText() {
+        return createAccountHeaderText;
+    }
+    public WebElement getCreateAccountPersonalInfoText() {
+        return createAccountPersonalInfoText;
+    }
+    public WebElement getCreateAccountSignInInfoText() {
+        return createAccountSignInInfoText;
+    }
+    public WebElement getFirstnameRequired() {
+        return firstnameRequired;
+    }
+    public WebElement getLastnameRequired() {
+        return lastnameRequired;
+    }
+
+
+
     @FindBy(xpath = "//*[@id=\"form-validate\"]/fieldset[1]/legend/span") WebElement createAccountPersonalInfoText;
     @FindBy(xpath = "//*[@id=\"form-validate\"]/fieldset[2]/legend/span") WebElement createAccountSignInInfoText;
     // PERSONAL INFORMATION
     @FindBy(id = "firstname") WebElement firstnameField;
+    @FindBy(xpath = "//*[@id=\"firstname-error\"]") WebElement firstnameRequired;
     @FindBy(id = "lastname") WebElement lastnameField;
+    @FindBy(xpath = "//*[@id=\"lastname-error\"]") WebElement lastnameRequired;
     // SIGN IN INFORMATION
     @FindBy(id = "email_address") WebElement emailAddressField;
     @FindBy(id = "password") WebElement passwordField;
