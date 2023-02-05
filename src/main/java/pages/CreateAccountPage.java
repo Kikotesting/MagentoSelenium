@@ -19,7 +19,7 @@ public class CreateAccountPage extends Helper {
     final private String immutablePassword = "Kiko123@";
     private String randomPassword = RandomStringUtils.randomAlphabetic(5);
 
-    private WebElement getFirstnameField() {
+    public WebElement getFirstnameField() {
         return firstnameField;
     }
     public void setFirstname() {
@@ -33,7 +33,7 @@ public class CreateAccountPage extends Helper {
         getFirstnameField().clear();
         getFirstnameField().sendKeys("");
     }
-    private WebElement getLastnameField() {
+    public WebElement getLastnameField() {
         return lastnameField;
     }
     public void setLastname() {
@@ -47,7 +47,7 @@ public class CreateAccountPage extends Helper {
         getLastnameField().clear();
         getLastnameField().sendKeys("");
     }
-    private WebElement getEmailAddressField() {
+    public WebElement getEmailAddressField() {
         return emailAddressField;
     }
     public void setEmailAddress() {
@@ -58,7 +58,12 @@ public class CreateAccountPage extends Helper {
         String saveNewEmail = fakeData.emailAddress;
         System.out.println(saveNewEmail);
     }
-    private WebElement getPasswordField() {
+    public void setEmptyEmailAddress() {
+        getEmailAddressField().isDisplayed();
+        getEmailAddressField().clear();
+        getEmailAddressField().sendKeys("");
+    }
+    public WebElement getPasswordField() {
         return passwordField;
     }
     private void setPassword() {
@@ -69,10 +74,14 @@ public class CreateAccountPage extends Helper {
     public void setRandomPassword() {
         getPasswordField().isDisplayed();
         getPasswordField().clear();
-
         getPasswordField().sendKeys(randomPassword);
     }
-    private WebElement getPasswordConfirmationField() {
+    public void setEmptyPassword() {
+        getPasswordField().isDisplayed();
+        getPasswordField().clear();
+        getPasswordField().sendKeys("");
+    }
+    public WebElement getPasswordConfirmationField() {
         return passwordConfirmationField;
     }
     public void setPasswordConfirmation() {
@@ -84,6 +93,11 @@ public class CreateAccountPage extends Helper {
         getPasswordConfirmationField().isDisplayed();
         getPasswordConfirmationField().clear();
         getPasswordConfirmationField().sendKeys(randomPassword);
+    }
+    public void setEmptyConfirmationPassword() {
+        getPasswordConfirmationField().isDisplayed();
+        getPasswordConfirmationField().clear();
+        getPasswordConfirmationField().sendKeys("");
     }
     public WebElement getCreateAccountButton() {
         return createAccountButton;
@@ -119,6 +133,19 @@ public class CreateAccountPage extends Helper {
     public WebElement getLastnameRequired() {
         return lastnameRequired;
     }
+    public WebElement getEmailAddressRequired() {
+        return emailAddressRequired;
+    }
+
+    public WebElement getPasswordRequired() {
+        return passwordRequired;
+    }
+    public WebElement getPasswordConfirmationRequired() {
+        return passwordConfirmationRequired;
+    }
+    public WebElement getPasswordStrength() {
+        return passwordStrength;
+    }
 
 
 
@@ -131,8 +158,12 @@ public class CreateAccountPage extends Helper {
     @FindBy(xpath = "//*[@id=\"lastname-error\"]") WebElement lastnameRequired;
     // SIGN IN INFORMATION
     @FindBy(id = "email_address") WebElement emailAddressField;
+    @FindBy(xpath = "//*[@id=\"email_address-error\"]") WebElement emailAddressRequired;
     @FindBy(id = "password") WebElement passwordField;
+    @FindBy(xpath = "//*[@id=\"password-error\"]") WebElement passwordRequired;
+    @FindBy(xpath = "//*[@id=\"password-strength-meter\"]") WebElement passwordStrength;
     @FindBy(id = "password-confirmation") WebElement passwordConfirmationField;
+    @FindBy(xpath = "//*[@id=\"password-confirmation-error\"]") WebElement passwordConfirmationRequired;
     @FindBy(xpath = "//*[@id=\"is_subscribed\"]") WebElement checkBoxIsSubscribed;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[1]/h1/span") WebElement createAccountHeaderText;
     @FindBy(xpath = "//button/span[contains(text(),\"Create an Account\")]") WebElement createAccountButton;

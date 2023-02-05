@@ -53,4 +53,8 @@ standard folder structure for a jar project.
 - Search data tests
 - Subscribe emails tests
 - Add one and more items to the cart tests
+- Check for required fields tests
+- Check for empty fields and invalid data tests
+- Sorting items tests
+- Ascending and Descending order tests
 

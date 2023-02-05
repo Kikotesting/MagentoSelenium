@@ -43,15 +43,19 @@ public class BaseTest{
     }
     @BeforeEach
     void beforeEachTest() {
-        driver = new ChromeDriver();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("disable-info-bars");
         options.addArguments("--disable-extensions");
-        options.getLogLevel();
+        options.addArguments("headless");
+
+        driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.manage().window().maximize();
         final String baseUrl = "https://magento.softwaretestingboard.com/";
         driver.get(baseUrl);
+
+
+
     }
     @AfterEach
     void afterEachTest() {
