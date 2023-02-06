@@ -1,15 +1,12 @@
 package pages;
 
 import helper.Helper;
-import net.bytebuddy.utility.RandomString;
 import org.apache.commons.lang3.RandomStringUtils;
 import randomData.FakeData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-import java.util.Random;
 
 
 public class CreateAccountPage extends Helper {
@@ -22,10 +19,12 @@ public class CreateAccountPage extends Helper {
     private String randomPassword = RandomStringUtils.randomAlphabetic(5);
     private String passwordWeakOneChar = RandomStringUtils.randomAlphabetic(1).toLowerCase();
     private String passwordWeakThreeCharsLower = RandomStringUtils.randomAlphabetic(3).toLowerCase();
-    private String passwordWeakThreeCharsUpper = RandomStringUtils.randomAlphabetic(3).toLowerCase();
-    private String passwordOneDigit = RandomStringUtils.random(1);
-    private String passwordTwoDigits = RandomStringUtils.random(2);
-    private String passwordAlphaNumeric = RandomStringUtils.randomAlphanumeric(10);
+    private String passwordWeakThreeCharsUpper = RandomStringUtils.randomAlphabetic(3).toUpperCase();
+    private String passwordOneDigit = RandomStringUtils.randomNumeric(1);
+    private String passwordTwoDigits = RandomStringUtils.randomNumeric(2);
+    private String passwordThreeDigits = RandomStringUtils.randomNumeric(3);
+    private String passwordTenDigits = RandomStringUtils.randomNumeric(10);
+    private String passwordAlphaNumeric = RandomStringUtils.randomAlphanumeric(25);
 
     public WebElement getFirstnameField() {
         return firstnameField;
@@ -104,29 +103,35 @@ public class CreateAccountPage extends Helper {
     public void setWeakPasswordLowerAndUpperCharsWithoutDigit() {
         getPasswordField().isDisplayed();
         getPasswordField().clear();
-        getPasswordField().sendKeys(passwordWeakThreeCharsLower+passwordWeakThreeCharsLower+passwordWeakThreeCharsUpper);
-        System.out.println(passwordWeakThreeCharsLower+passwordWeakThreeCharsLower+passwordWeakThreeCharsUpper);
+        String lowerUpperChars = passwordWeakThreeCharsLower.concat(passwordWeakThreeCharsUpper);
+        getPasswordField().sendKeys(lowerUpperChars);
+        System.out.println(lowerUpperChars);
     }
-    public void setMediumPasswordLowerAndUpperCharsAndDigit() {
+    public void setWeakPasswordTenDigitsWithoutChars() {
         getPasswordField().isDisplayed();
         getPasswordField().clear();
-        String mediumPasswordLowerAndUpperCharsAndDigit = passwordWeakThreeCharsLower+passwordWeakThreeCharsUpper+passwordTwoDigits;
-        getPasswordField().sendKeys(mediumPasswordLowerAndUpperCharsAndDigit);
-        System.out.println();
+        getPasswordField().sendKeys(passwordTenDigits);
+        System.out.println(passwordTenDigits);
     }
-    public void setStrongPasswordLowerAndUpperCharsAndMoreDigits() {
+    public void setMediumPasswordCharsAndTwoDigits() {
         getPasswordField().isDisplayed();
         getPasswordField().clear();
-        String mediumPasswordLowerAndUpperCharsAndMoreDigit = passwordWeakThreeCharsLower+passwordWeakThreeCharsUpper+passwordTwoDigits + passwordOneDigit;
-        getPasswordField().sendKeys(mediumPasswordLowerAndUpperCharsAndMoreDigit);
-        System.out.println();
+        String mixCharsTwoDigits = passwordWeakThreeCharsUpper.concat(passwordWeakThreeCharsLower).concat(passwordTwoDigits);
+        getPasswordField().sendKeys(mixCharsTwoDigits);
+        System.out.println(mixCharsTwoDigits);
+    }
+    public void setStrongPasswordLowerAndUpperCharsAndThreeDigits() {
+        getPasswordField().isDisplayed();
+        getPasswordField().clear();
+        String mixCharsAndThreeDigit = passwordWeakThreeCharsUpper.concat(passwordWeakThreeCharsLower).concat(passwordThreeDigits);
+        getPasswordField().sendKeys(mixCharsAndThreeDigit);
+        System.out.println(mixCharsAndThreeDigit);
     }
     public void setVeryStrongPasswordLowerAndUpperCharsMoreDigitsAndSymbol() {
         getPasswordField().isDisplayed();
         getPasswordField().clear();
-        String veryStrongPasswordLowerAndUpperCharsMoreDigitsAndSymbol = passwordAlphaNumeric + passwordAlphaNumeric;
-        getPasswordField().sendKeys(veryStrongPasswordLowerAndUpperCharsMoreDigitsAndSymbol);
-        System.out.println();
+        getPasswordField().sendKeys(passwordAlphaNumeric);
+        System.out.println(passwordAlphaNumeric);
     }
 
     public WebElement getPasswordConfirmationField() {
