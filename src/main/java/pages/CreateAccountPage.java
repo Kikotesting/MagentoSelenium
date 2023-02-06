@@ -9,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.Random;
+
 
 public class CreateAccountPage extends Helper {
     public CreateAccountPage(WebDriver driver) {
@@ -18,6 +20,12 @@ public class CreateAccountPage extends Helper {
     FakeData fakeData;
     final private String immutablePassword = "Kiko123@";
     private String randomPassword = RandomStringUtils.randomAlphabetic(5);
+    private String passwordWeakOneChar = RandomStringUtils.randomAlphabetic(1).toLowerCase();
+    private String passwordWeakThreeCharsLower = RandomStringUtils.randomAlphabetic(3).toLowerCase();
+    private String passwordWeakThreeCharsUpper = RandomStringUtils.randomAlphabetic(3).toLowerCase();
+    private String passwordOneDigit = RandomStringUtils.random(1);
+    private String passwordTwoDigits = RandomStringUtils.random(2);
+    private String passwordAlphaNumeric = RandomStringUtils.randomAlphanumeric(10);
 
     public WebElement getFirstnameField() {
         return firstnameField;
@@ -66,7 +74,7 @@ public class CreateAccountPage extends Helper {
     public WebElement getPasswordField() {
         return passwordField;
     }
-    private void setPassword() {
+    private void setDefaultPassword() {
         getPasswordField().isDisplayed();
         getPasswordField().clear();
         getPasswordField().sendKeys(immutablePassword);
@@ -81,10 +89,50 @@ public class CreateAccountPage extends Helper {
         getPasswordField().clear();
         getPasswordField().sendKeys("");
     }
+    public void setWeakPasswordOneChar() {
+        getPasswordField().isDisplayed();
+        getPasswordField().clear();
+        getPasswordField().sendKeys(passwordWeakOneChar);
+        System.out.println(passwordWeakOneChar);
+    }
+    public void setWeakPasswordThreeCharsLower() {
+        getPasswordField().isDisplayed();
+        getPasswordField().clear();
+        getPasswordField().sendKeys(passwordWeakThreeCharsLower);
+        System.out.println(passwordWeakThreeCharsLower);
+    }
+    public void setWeakPasswordLowerAndUpperCharsWithoutDigit() {
+        getPasswordField().isDisplayed();
+        getPasswordField().clear();
+        getPasswordField().sendKeys(passwordWeakThreeCharsLower+passwordWeakThreeCharsLower+passwordWeakThreeCharsUpper);
+        System.out.println(passwordWeakThreeCharsLower+passwordWeakThreeCharsLower+passwordWeakThreeCharsUpper);
+    }
+    public void setMediumPasswordLowerAndUpperCharsAndDigit() {
+        getPasswordField().isDisplayed();
+        getPasswordField().clear();
+        String mediumPasswordLowerAndUpperCharsAndDigit = passwordWeakThreeCharsLower+passwordWeakThreeCharsUpper+passwordTwoDigits;
+        getPasswordField().sendKeys(mediumPasswordLowerAndUpperCharsAndDigit);
+        System.out.println();
+    }
+    public void setStrongPasswordLowerAndUpperCharsAndMoreDigits() {
+        getPasswordField().isDisplayed();
+        getPasswordField().clear();
+        String mediumPasswordLowerAndUpperCharsAndMoreDigit = passwordWeakThreeCharsLower+passwordWeakThreeCharsUpper+passwordTwoDigits + passwordOneDigit;
+        getPasswordField().sendKeys(mediumPasswordLowerAndUpperCharsAndMoreDigit);
+        System.out.println();
+    }
+    public void setVeryStrongPasswordLowerAndUpperCharsMoreDigitsAndSymbol() {
+        getPasswordField().isDisplayed();
+        getPasswordField().clear();
+        String veryStrongPasswordLowerAndUpperCharsMoreDigitsAndSymbol = passwordAlphaNumeric + passwordAlphaNumeric;
+        getPasswordField().sendKeys(veryStrongPasswordLowerAndUpperCharsMoreDigitsAndSymbol);
+        System.out.println();
+    }
+
     public WebElement getPasswordConfirmationField() {
         return passwordConfirmationField;
     }
-    public void setPasswordConfirmation() {
+    public void setDefaultPasswordConfirmation() {
         getPasswordConfirmationField().isDisplayed();
         getPasswordConfirmationField().clear();
         getPasswordConfirmationField().sendKeys(immutablePassword);
@@ -106,7 +154,7 @@ public class CreateAccountPage extends Helper {
     public WebElement getCheckBoxIsSubscribed() {
         return checkBoxIsSubscribed;
     }
-    public void isCheckedBox(){
+    public void clickCheckedBox(){
         if(!getCheckBoxIsSubscribed().isSelected())
             getCheckBoxIsSubscribed().click();
     }
@@ -114,9 +162,10 @@ public class CreateAccountPage extends Helper {
         setFirstname();
         setLastname();
         setEmailAddress();
-        setPassword();
-        setPasswordConfirmation();
+        setDefaultPassword();
+        setDefaultPasswordConfirmation();
     }
+
 
     public WebElement getCreateAccountHeaderText() {
         return createAccountHeaderText;
