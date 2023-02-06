@@ -4,7 +4,6 @@ import constants.CreateAccountConstants;
 import constants.MessageConstants;
 import pages.AccountPage;
 import pages.CreateAccountPage;
-import randomData.FakeData;
 import reports.ListenerTest;
 import base.BaseTest;
 import org.junit.jupiter.api.*;

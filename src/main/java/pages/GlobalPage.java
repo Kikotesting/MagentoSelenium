@@ -18,6 +18,10 @@ public class GlobalPage extends Helper {
         return menuWomenTops;
     }
 
+    public WebElement getMenuWomenTopsJackets() {
+        return menuWomenTopsJackets;
+    }
+
     public WebElement getMenuWhatsNew() {
         return menuWhatsNew;
     }
@@ -97,9 +101,11 @@ public class GlobalPage extends Helper {
     }
 
     // MAIN MENU
-    @FindBy(xpath = "//*[@id=\"ui-id-9\"]/span[2]") WebElement menuWomenTops;
+
     @FindBy(xpath = "//*[@id=\"ui-id-3\"]/span") WebElement menuWhatsNew;
     @FindBy(xpath = "//*[@id=\"ui-id-4\"]/span[2]") WebElement menuWomen;
+    @FindBy(xpath = "//*[@id=\"ui-id-9\"]/span[2]") WebElement menuWomenTops;
+    @FindBy(xpath = "//*[@id=\"ui-id-11\"]/span") WebElement menuWomenTopsJackets;
     @FindBy(xpath = "//*[@id=\"ui-id-5\"]/span[2]") WebElement menuMen;
     @FindBy(xpath = "//*[@id=\"ui-id-6\"]/span[2]") WebElement menuGear;
     @FindBy(xpath = "//*[@id=\"ui-id-7\"]/span[2]") WebElement menuTraining;

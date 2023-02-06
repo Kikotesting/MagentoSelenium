@@ -1,19 +1,51 @@
 package utils;
 
+import helper.Helper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class CartContainer {
-    private final WebDriver driver;
-
+public class CartContainer extends Helper {
 
     public CartContainer(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
         PageFactory.initElements(driver, this);
     }
-    @FindBy(className = "showcart") WebElement cartContainerButton;
+
+    public WebElement getCartContainerButton() {
+        return cartContainerButton;
+    }
+
+    public WebElement getCartContainerCheckoutButton() {
+        return cartContainerCheckoutButton;
+    }
+
+    public WebElement getCartSubtotalText() {
+        return cartSubtotalText;
+    }
+
+    public WebElement getViewAndEditTextButton() {
+        return viewAndEditTextButton;
+    }
+
+    public WebElement getModalCancel() {
+        return modalCancel;
+    }
+
+    public WebElement getModalConfirm() {
+        return modalConfirm;
+    }
+
+    public WebElement getEmptyCartMessage() {
+        return emptyCartMessage;
+    }
+
+    public WebElement getCloseButton() {
+        return closeButton;
+    }
+
+    @FindBy(xpath = "//*[@class='action showcart']") WebElement cartContainerButton;
     @FindBy(xpath = "//*[@id=\"top-cart-btn-checkout\"]") WebElement cartContainerCheckoutButton;
     @FindBy(xpath = "//*[@id=\"minicart-content-wrapper\"]/div[2]/div[2]/div/span/span") WebElement cartSubtotalText;
     @FindBy(xpath = "//*[@id=\"minicart-content-wrapper\"]/div[2]/div[5]/div/a") WebElement viewAndEditTextButton;

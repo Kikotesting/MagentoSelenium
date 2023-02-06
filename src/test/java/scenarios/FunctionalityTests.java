@@ -178,6 +178,39 @@ public class FunctionalityTests extends BaseTest{
         Assertions.assertTrue(itemsPage.getItemOne().getText().contains("Adrienne Trek Jacket"));
         System.out.println("1 after revert "+ itemsPage.getItemOne().getText());
     }
+    @Test
+    @Order(7)
+    @DisplayName("TC-7. Change items view from List to Grid ")
+    void changeItemsViewToFromGridToList(){
+        globalPage = new GlobalPage(driver);
+        itemsPage = new ItemsPage(driver);
+        itemsView = new ItemsView(driver);
+
+        globalPage.hoverElement(globalPage.getMenuWomen());
+        globalPage.waitToBeVisible(globalPage.getMenuWomenTops(), 3);
+        globalPage.hoverElement(globalPage.getMenuWomenTops());
+        globalPage.waitToBeVisible(globalPage.getMenuWomenTopsJackets(), 3);
+        globalPage.hoverElementClick(globalPage.getMenuWomenTopsJackets());
+
+        // Check for amount of items on page ( by default is Grid )
+        itemsView.scrollToElement(itemsView.getItemAmountMessage());
+        System.out.println(itemsView.getItemAmountMessage().getText());
+        itemsView.getGridView();
+        String defaultAmount = itemsView.getItemAmountMessage().getText();
+        Assertions.assertTrue(defaultAmount.contains("12 items"));
+        itemsPage.scrollToElement(itemsPage.getItemOne());
+        Assertions.assertTrue(itemsPage.getItemOne().getText().contains("Olivia 1/4 Zip Light Jacket"));
+        itemsPage.scrollToElement(itemsPage.getItemTwelve());
+        Assertions.assertTrue(itemsPage.getItemTwelve().getText().contains("Stellar Solar Jacket"));
+
+        // Change view to List
+        itemsView.getListView();
+        itemsPage.scrollToElement(itemsPage.getItemOne());
+        Assertions.assertTrue(itemsView.getItemAmountMessage().getText().contains("10 items"));
+        itemsPage.scrollToElement(itemsPage.getItemTen());
+        Assertions.assertTrue(itemsPage.getItemTen().getText().contains("Augusta Pullover Jacket "));
+
+    }
 
 
 }
