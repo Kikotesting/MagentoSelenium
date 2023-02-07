@@ -68,7 +68,7 @@ public class CartTests extends BaseTest {
         cartContainer.scrollToElement(cartContainer.getCartContainerButton());
         cartContainer.clickElement(cartContainer.getCartContainerButton());
         searchItemsView.pauseSeconds(2);
-        Assertions.assertTrue(productDetails.getItemOneTitleName().getText().contains(itemOne));
+        Assertions.assertTrue(productDetails.getItemTitleName().getText().contains(itemOne));
     }
 
 //    @Test
@@ -99,12 +99,6 @@ public class CartTests extends BaseTest {
         productDetails.clickElement(productDetails.getColorBlack());
         searchItemsView.pauseSeconds(1);
         searchItemsView.clickElement(searchItemsView.getAddToCartButtonItemTwo());
-        searchItemsView.pauseSeconds(3);
-        searchItemsView.hoverElement(searchItemsView.getItemTwo());
-        searchItemsView.pauseSeconds(1);
-        productDetails.clickElement(productDetails.getSizeXS());
-        searchItemsView.pauseSeconds(1);
-        productDetails.clickElement(productDetails.getColorBlack());
         searchItemsView.pauseSeconds(1);
         searchItemsView.scrollToElement(searchItemsView.getMessageForAddingItemToCartContainer());
         System.out.println(searchItemsView.getMessageForAddingItemToCartContainer().getText());
@@ -114,12 +108,14 @@ public class CartTests extends BaseTest {
         searchItemsView.pauseSeconds(2);
         cartContainer.clickElement(cartContainer.getCartContainerButton());
         searchItemsView.pauseSeconds(2);
-        Assertions.assertTrue(productDetails.getItemTwoTitleName().getText().contains(itemTwo));
+        Assertions.assertTrue(productDetails.getItemTitleName().getText().contains(itemTwo));
         cartContainer.clickElement(cartContainer.getRemoveButton());
+        searchItemsView.pauseSeconds(2);
         cartContainer.clickElement(cartContainer.getModalConfirm());
         cartContainer.pauseSeconds(3);
         cartContainer.waitToBeVisible(cartContainer.getEmptyCartMessage(), 5);
         Assertions.assertEquals(MessageConstants.MESSAGE_EMPTY_CARD_CONTAINER,cartContainer.getEmptyCartMessage().getText());
+        System.out.println("Item was deleted from shopping cart: "+ searchItemsView.getItemTwo().getText());
 
     }
 

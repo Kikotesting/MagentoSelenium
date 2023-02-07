@@ -16,7 +16,7 @@ public class ProductDetails extends Helper {
         return driver;
     }
 
-    public WebElement getItemOneTitleName() {
+    public WebElement getItemTitleName() {
         return itemOneTitleName;
     }
     public WebElement getItemTwoTitleName() {
