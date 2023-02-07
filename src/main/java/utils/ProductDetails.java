@@ -16,8 +16,11 @@ public class ProductDetails extends Helper {
         return driver;
     }
 
-    public WebElement getItemTitleName() {
-        return itemTitleName;
+    public WebElement getItemOneTitleName() {
+        return itemOneTitleName;
+    }
+    public WebElement getItemTwoTitleName() {
+        return itemTwoTitleName;
     }
 
     public WebElement getProductInStock() {
@@ -169,7 +172,8 @@ public class ProductDetails extends Helper {
     }
 
     // HEADERS
-    @FindBy(xpath = "//*[@id=\"mini-cart\"]/li/div/div/strong/a") WebElement itemTitleName;
+    @FindBy(xpath = "//*[@id=\"mini-cart\"]/li/div/div/strong/a") WebElement itemOneTitleName;
+    @FindBy(xpath = "//*[@id=\"mini-cart\"]/li[2]/div/div/strong/a") WebElement itemTwoTitleName;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[2]/div/div[1]/div[3]/div[2]/div[1]") WebElement productInStock;
     @FindBy(xpath = "//*[@id=\"product-price-1194\"]/span") WebElement productPrice;
 

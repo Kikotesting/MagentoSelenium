@@ -39,7 +39,6 @@ public class CartTests extends BaseTest {
     @DisplayName("TC-2. Add item to the Cart container")
     void addItemToCartContainer(){
         globalPage = new GlobalPage(driver);
-        loginPage = new LoginPage(driver);
         cartContainer = new CartContainer(driver);
         searchItemsView = new SearchItemsView(driver);
         productDetails = new ProductDetails(driver);
@@ -69,15 +68,59 @@ public class CartTests extends BaseTest {
         cartContainer.scrollToElement(cartContainer.getCartContainerButton());
         cartContainer.clickElement(cartContainer.getCartContainerButton());
         searchItemsView.pauseSeconds(2);
-        Assertions.assertTrue(productDetails.getItemTitleName().getText().contains(itemOne));
+        Assertions.assertTrue(productDetails.getItemOneTitleName().getText().contains(itemOne));
     }
 
 //    @Test
 //    @Order(2)
 //    @DisplayName("TC-2. Add more than one item to the Cart container")
 
-//    @Test
-//    @Order(3)
-//    @DisplayName("TC-3. Delete item from Cart container")
+    @Test
+    @Order(3)
+    @DisplayName("TC-3. Delete item from Cart container")
+    void deleteItemFromCartContainer(){
+        globalPage = new GlobalPage(driver);
+        cartContainer = new CartContainer(driver);
+        searchItemsView = new SearchItemsView(driver);
+        productDetails = new ProductDetails(driver);
+
+        // Typing women jackets
+        globalPage.setText(globalPage.getSearchInputField(), "women wear");
+        globalPage.pressEnter(globalPage.getSearchInputField());
+
+        // Add item number two
+        searchItemsView.waitToBeVisible(searchItemsView.getItemTwo(),5);
+        searchItemsView.scrollToElement(searchItemsView.getItemTwo());
+        highLightElement(driver,searchItemsView.getItemTwo());
+        searchItemsView.hoverElement(searchItemsView.getItemTwo());
+        searchItemsView.pauseSeconds(1);
+        productDetails.clickElement(productDetails.getSizeXS());
+        searchItemsView.pauseSeconds(1);
+        productDetails.clickElement(productDetails.getColorBlack());
+        searchItemsView.pauseSeconds(1);
+        searchItemsView.clickElement(searchItemsView.getAddToCartButtonItemTwo());
+        searchItemsView.pauseSeconds(3);
+        searchItemsView.hoverElement(searchItemsView.getItemTwo());
+        searchItemsView.pauseSeconds(1);
+        productDetails.clickElement(productDetails.getSizeXS());
+        searchItemsView.pauseSeconds(1);
+        productDetails.clickElement(productDetails.getColorBlack());
+        searchItemsView.pauseSeconds(1);
+        searchItemsView.scrollToElement(searchItemsView.getMessageForAddingItemToCartContainer());
+        System.out.println(searchItemsView.getMessageForAddingItemToCartContainer().getText());
+        searchItemsView.pauseSeconds(2);
+        String itemTwo = "Electra Bra Top";
+        Assertions.assertTrue(searchItemsView.getMessageForAddingItemToCartContainer().getText().contains("You added "+itemTwo+" to your shopping cart."));
+        searchItemsView.pauseSeconds(2);
+        cartContainer.clickElement(cartContainer.getCartContainerButton());
+        searchItemsView.pauseSeconds(2);
+        Assertions.assertTrue(productDetails.getItemTwoTitleName().getText().contains(itemTwo));
+        cartContainer.clickElement(cartContainer.getRemoveButton());
+        cartContainer.clickElement(cartContainer.getModalConfirm());
+        cartContainer.pauseSeconds(3);
+        cartContainer.waitToBeVisible(cartContainer.getEmptyCartMessage(), 5);
+        Assertions.assertEquals(MessageConstants.MESSAGE_EMPTY_CARD_CONTAINER,cartContainer.getEmptyCartMessage().getText());
+
+    }
 
 }

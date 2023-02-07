@@ -28,8 +28,16 @@ public class SearchItemsView extends Helper {
         return itemTwo;
     }
 
+    public WebElement getAddToCartButtonItemTwo() {
+        return addToCartButtonItemTwo;
+    }
+
     public WebElement getItemThree() {
         return itemThree;
+    }
+
+    public WebElement getAddToCartButtonItemThree() {
+        return addToCartButtonItemThree;
     }
 
     public WebElement getItemFour() {
@@ -67,12 +75,13 @@ public class SearchItemsView extends Helper {
     public WebElement getItemTwelve() {
         return itemTwelve;
     }
-
-    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[2]/div[2]/ol/li[1]/div/div/strong/a") WebElement itemOne;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[2]/div[2]/div/div/div") WebElement messageForAddingItemToCartContainer;
+    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[2]/div[2]/ol/li[1]/div/div/strong/a") WebElement itemOne;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[2]/div[2]/ol/li[1]/div/div/div[4]/div/div[1]/form/button") WebElement addToCartButtonItemOne;
-    @FindBy(xpath = "//*[id=\"maincontent\"]/div[3]/div[1]/div[2]/div[2]/ol/li[2]/div/div/strong/a") WebElement itemTwo;
+    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[2]/div[2]/ol/li[2]/div/div/strong/a") WebElement itemTwo;
+    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[2]/div[2]/ol/li[2]/div/div/div[4]/div/div[1]/form/button") WebElement addToCartButtonItemTwo;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[2]/div[2]/ol/li[3]/div/div/strong/a") WebElement itemThree;
+    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[2]/div[2]/ol/li[3]/div/div/div[4]/div/div[1]/form/button") WebElement addToCartButtonItemThree;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[2]/div[2]/ol/li[4]/div/div/strong/a") WebElement itemFour;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[2]/div[2]/ol/li[5]/div/div/strong/a") WebElement itemFive;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[2]/div[2]/ol/li[6]/div/div/strong/a") WebElement itemSix;
