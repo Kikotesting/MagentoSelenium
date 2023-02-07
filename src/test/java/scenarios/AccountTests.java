@@ -177,6 +177,4 @@ public class AccountTests extends BaseTest {
         Assertions.assertEquals(accountPage.getRegisterNewAccountMessage().getText(),MessageConstants.MESSAGE_REGISTER_NEW_ACCOUNT);
     }
 
-
-
 }

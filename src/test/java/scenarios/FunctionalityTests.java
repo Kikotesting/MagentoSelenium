@@ -193,11 +193,10 @@ public class FunctionalityTests extends BaseTest{
         globalPage.hoverElementClick(globalPage.getMenuWomenTopsJackets());
 
         // Check for amount of items on page ( by default is Grid )
+        itemsView.waitToBeVisible(itemsView.getItemAmountMessage(),5);
         itemsView.scrollToElement(itemsView.getItemAmountMessage());
         System.out.println(itemsView.getItemAmountMessage().getText());
-        itemsView.clickElement(itemsView.getGridView());
-        String defaultAmount = itemsView.getItemAmountMessage().getText();
-        Assertions.assertTrue(defaultAmount.contains("12 items"));
+        Assertions.assertEquals("12",(itemsView.getItemAmountMessage().getText()));
         itemsPage.scrollToElement(itemsPage.getItemOne());
         Assertions.assertTrue(itemsPage.getItemOne().getText().contains("Olivia 1/4 Zip Light Jacket"));
         itemsPage.scrollToElement(itemsPage.getItemTwelve());
@@ -205,10 +204,13 @@ public class FunctionalityTests extends BaseTest{
 
         // Change view to List
         itemsView.clickElement(itemsView.getListView());
+        itemsView.waitToBeVisible(itemsView.getItemAmountMessage(),5);
         itemsPage.scrollToElement(itemsPage.getItemOne());
-        Assertions.assertTrue(itemsView.getItemAmountMessage().getText().contains("10 items"));
+        System.out.println(itemsView.getItemAmountMessage().getText());
+        Assertions.assertEquals("10",(itemsView.getItemAmountMessageWithResult().getText()));
         itemsPage.scrollToElement(itemsPage.getItemTen());
-        Assertions.assertTrue(itemsPage.getItemTen().getText().contains("Augusta Pullover Jacket "));
+        itemsPage.pauseSeconds(1);
+        Assertions.assertTrue(itemsPage.getItemTen().getText().contains("Augusta Pullover Jacket"));
     }
 
 

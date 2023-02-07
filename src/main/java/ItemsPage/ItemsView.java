@@ -48,7 +48,12 @@ public class ItemsView extends Helper {
         return noResults;
     }
 
-    @FindBy(xpath = "//*[@id=\"toolbar-amount\"]") WebElement itemAmountMessage;
+    public WebElement getItemAmountMessageWithResult() {
+        return itemAmountMessageWithResult;
+    }
+
+    @FindBy(xpath = "//*[@id=\"toolbar-amount\"]/span") WebElement itemAmountMessage;
+    @FindBy(xpath = "//*[@id=\"toolbar-amount\"]/span[2]") WebElement itemAmountMessageWithResult;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[2]/div") WebElement noResults;
 
     @FindBy(xpath = "//*[@id=\"mode-grid\"]") WebElement gridView;
