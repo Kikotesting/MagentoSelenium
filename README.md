@@ -37,24 +37,27 @@ The source is structured along the lines of the maven
 standard folder structure for a jar project.
 
 - Core classes [src/main/java]
-- Tests [src/test/java]
+- Tests [src/test/java/scenarios]
+- Constants [src/test/java/constants]
 - The source includes a pom.xml for building with Maven
-- Screenshots after each test:
-    - Report if the test passed or not passed, where is the
-      problem!
+- Screenshots after each test [projectName/resource]
 
 ### Release Notes:
----
+version 1.0
 
 #### Covered scenarios
-
 - Create Accounts tests
-- Login/Logout tests
-- Search data tests
-- Subscribe emails tests
-- Add one and more items to the cart tests
+- Account validation fields before creating account
+- Login test with positive data
+- Log out test
 - Check for required fields tests
 - Check for empty fields and invalid data tests
 - Sorting items tests
 - Ascending and Descending order tests
+- Search data tests
+- Subscribe emails tests
+- Add/Remove items to the card container
+- 
+
+
 
