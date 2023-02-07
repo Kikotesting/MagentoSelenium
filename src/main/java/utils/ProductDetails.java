@@ -1,15 +1,14 @@
 package utils;
 
+import helper.Helper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class ProductDetails {
-    public WebDriver driver;
-
+public class ProductDetails extends Helper {
     public ProductDetails(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
         PageFactory.initElements(driver, this);
     }
 
@@ -17,8 +16,8 @@ public class ProductDetails {
         return driver;
     }
 
-    public WebElement getProductTitleName() {
-        return productTitleName;
+    public WebElement getItemTitleName() {
+        return itemTitleName;
     }
 
     public WebElement getProductInStock() {
@@ -170,7 +169,7 @@ public class ProductDetails {
     }
 
     // HEADERS
-    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[2]/div/div[1]/div[1]/h1") WebElement productTitleName;
+    @FindBy(xpath = "//*[@id=\"mini-cart\"]/li/div/div/strong/a") WebElement itemTitleName;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[2]/div/div[1]/div[3]/div[2]/div[1]") WebElement productInStock;
     @FindBy(xpath = "//*[@id=\"product-price-1194\"]/span") WebElement productPrice;
 

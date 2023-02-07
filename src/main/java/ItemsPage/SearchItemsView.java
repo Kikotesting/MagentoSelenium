@@ -11,8 +11,17 @@ public class SearchItemsView extends Helper {
         super(driver);
         PageFactory.initElements(driver, this);
     }
+
+    public WebElement getMessageForAddingItemToCartContainer() {
+        return messageForAddingItemToCartContainer;
+    }
+
     public WebElement getItemOne() {
         return itemOne;
+    }
+
+    public WebElement getAddToCartButtonItemOne() {
+        return addToCartButtonItemOne;
     }
 
     public WebElement getItemTwo() {
@@ -60,7 +69,9 @@ public class SearchItemsView extends Helper {
     }
 
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[2]/div[2]/ol/li[1]/div/div/strong/a") WebElement itemOne;
-    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[2]/div[2]/ol/li[2]/div/div/strong/a") WebElement itemTwo;
+    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[2]/div[2]/div/div/div") WebElement messageForAddingItemToCartContainer;
+    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[2]/div[2]/ol/li[1]/div/div/div[4]/div/div[1]/form/button") WebElement addToCartButtonItemOne;
+    @FindBy(xpath = "//*[id=\"maincontent\"]/div[3]/div[1]/div[2]/div[2]/ol/li[2]/div/div/strong/a") WebElement itemTwo;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[2]/div[2]/ol/li[3]/div/div/strong/a") WebElement itemThree;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[2]/div[2]/ol/li[4]/div/div/strong/a") WebElement itemFour;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[2]/div[2]/ol/li[5]/div/div/strong/a") WebElement itemFive;

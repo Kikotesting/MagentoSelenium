@@ -13,9 +13,7 @@ import pages.GlobalPage;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ExtendWith(ListenerTest.class)
 public class AccountTests extends BaseTest {
-    final String errorMessageRequired = "This is a required field.";
-    final String confirmationPasswordValue = "Please enter the same value again.";
-    final String createAccountURL = "https://magento.softwaretestingboard.com/customer/account/create/";
+
     GlobalPage globalPage;
     CreateAccountPage createAccountPage;
     AccountPage accountPage;
@@ -30,7 +28,7 @@ public class AccountTests extends BaseTest {
         // Go to create account page
         globalPage.clickElement(globalPage.getCreateAccountTextButton());
         // Check URL of create account page and page-header
-        Assertions.assertTrue(driver.getCurrentUrl().contains(createAccountURL));
+        Assertions.assertTrue(driver.getCurrentUrl().contains(CreateAccountConstants.CREATE_ACCOUNT_URL));
         // Scrolling
         createAccountPage.scrollToElement(createAccountPage.getCreateAccountPersonalInfoText());
         // Populate all the fields
@@ -80,7 +78,7 @@ public class AccountTests extends BaseTest {
 
         globalPage.clickElement(globalPage.getCreateAccountTextButton());
         // Check URL of create account page and page-header
-        Assertions.assertTrue(driver.getCurrentUrl().contains(createAccountURL));
+        Assertions.assertTrue(driver.getCurrentUrl().contains(CreateAccountConstants.CREATE_ACCOUNT_URL));
         Assertions.assertTrue(createAccountPage.getCreateAccountHeaderText().getText()
                 .contains(CreateAccountConstants.CREATE_ACCOUNT_PAGE_HEADER));
         // Check Personal section with empty field firstname
@@ -97,7 +95,7 @@ public class AccountTests extends BaseTest {
         createAccountPage.setRandomPassword();
         createAccountPage.setRandomPasswordConfirmation();
         createAccountPage.clickElement(createAccountPage.getCreateAccountButton());
-        Assertions.assertEquals(errorMessageRequired,createAccountPage.getFirstnameRequired().getText());
+        Assertions.assertEquals(CreateAccountConstants.ERROR_MESSAGE_REQUIRED,createAccountPage.getFirstnameRequired().getText());
         // Check Personal section with empty field for lastName
         createAccountPage.pauseSeconds(2);
         createAccountPage.scrollToElement(createAccountPage.getCreateAccountPersonalInfoText());
@@ -108,7 +106,7 @@ public class AccountTests extends BaseTest {
         createAccountPage.setRandomPassword();
         createAccountPage.setRandomPasswordConfirmation();
         createAccountPage.clickElement(createAccountPage.getCreateAccountButton());
-        Assertions.assertEquals(errorMessageRequired,createAccountPage.getLastnameRequired().getText());
+        Assertions.assertEquals(CreateAccountConstants.ERROR_MESSAGE_REQUIRED,createAccountPage.getLastnameRequired().getText());
     }
     @Test
     @Order(3)
@@ -121,7 +119,7 @@ public class AccountTests extends BaseTest {
 
         globalPage.clickElement(globalPage.getCreateAccountTextButton());
         // Check URL of create account page and page-header
-        Assertions.assertTrue(driver.getCurrentUrl().contains(createAccountURL));
+        Assertions.assertTrue(driver.getCurrentUrl().contains(CreateAccountConstants.CREATE_ACCOUNT_URL));
         // Personal section is populated correctly
         createAccountPage.scrollToElement(createAccountPage.getCreateAccountPersonalInfoText());
         createAccountPage.setFirstname();
@@ -135,22 +133,22 @@ public class AccountTests extends BaseTest {
         createAccountPage.setRandomPasswordConfirmation();
         createAccountPage.clickElement(createAccountPage.getCreateAccountButton());
         createAccountPage.scrollToElement(createAccountPage.getEmailAddressRequired());
-        Assertions.assertEquals(errorMessageRequired,createAccountPage.getEmailAddressRequired().getText());
+        Assertions.assertEquals(CreateAccountConstants.ERROR_MESSAGE_REQUIRED,createAccountPage.getEmailAddressRequired().getText());
         // Check Sign-in section for Empty Password
         createAccountPage.pauseSeconds(2);
         createAccountPage.setEmailAddress();
         createAccountPage.setEmptyPassword();
         createAccountPage.setRandomPasswordConfirmation();
         createAccountPage.clickElement(createAccountPage.getCreateAccountButton());
-        Assertions.assertEquals(errorMessageRequired,createAccountPage.getPasswordRequired().getText());
+        Assertions.assertEquals(CreateAccountConstants.ERROR_MESSAGE_REQUIRED,createAccountPage.getPasswordRequired().getText());
         Assertions.assertEquals(CreateAccountConstants.PASSWORD_NO,createAccountPage.getPasswordStrength().getText());
-        Assertions.assertEquals(confirmationPasswordValue,createAccountPage.getPasswordConfirmationRequired().getText());
+        Assertions.assertEquals(CreateAccountConstants.ERROR_MESSAGE_REQUIRED,createAccountPage.getPasswordConfirmationRequired().getText());
         // Check Sign-in section for Empty Confirmation Password
         createAccountPage.pauseSeconds(2);
         createAccountPage.setRandomPassword();
         createAccountPage.setEmptyConfirmationPassword();
         createAccountPage.clickElement(createAccountPage.getCreateAccountButton());
-        Assertions.assertEquals(errorMessageRequired,createAccountPage.getPasswordConfirmationRequired().getText());
+        Assertions.assertEquals(CreateAccountConstants.CONFIRMATION_PASSWORD_VALUE,createAccountPage.getPasswordConfirmationRequired().getText());
     }
     @Test
     @Order(4)
@@ -163,7 +161,7 @@ public class AccountTests extends BaseTest {
 
         globalPage.clickElement(globalPage.getCreateAccountTextButton());
         // Check URL of create account page and page-header
-        Assertions.assertTrue(driver.getCurrentUrl().contains(createAccountURL));
+        Assertions.assertTrue(driver.getCurrentUrl().contains(CreateAccountConstants.CREATE_ACCOUNT_URL));
         Assertions.assertTrue(createAccountPage.getCreateAccountHeaderText().getText()
                 .contains(CreateAccountConstants.CREATE_ACCOUNT_PAGE_HEADER));
         // Populate all information
