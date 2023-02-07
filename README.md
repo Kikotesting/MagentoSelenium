@@ -57,7 +57,6 @@ version 1.0
 - Search data tests
 - Subscribe emails tests
 - Add/Remove items to the card container
-- 
 
 
 
