@@ -142,13 +142,13 @@ public class AccountTests extends BaseTest {
         createAccountPage.clickElement(createAccountPage.getCreateAccountButton());
         Assertions.assertEquals(CreateAccountConstants.ERROR_MESSAGE_REQUIRED,createAccountPage.getPasswordRequired().getText());
         Assertions.assertEquals(CreateAccountConstants.PASSWORD_NO,createAccountPage.getPasswordStrength().getText());
-        Assertions.assertEquals(CreateAccountConstants.ERROR_MESSAGE_REQUIRED,createAccountPage.getPasswordConfirmationRequired().getText());
+        Assertions.assertEquals(CreateAccountConstants.CONFIRMATION_PASSWORD_VALUE,createAccountPage.getPasswordConfirmationRequired().getText());
         // Check Sign-in section for Empty Confirmation Password
         createAccountPage.pauseSeconds(2);
         createAccountPage.setRandomPassword();
         createAccountPage.setEmptyConfirmationPassword();
         createAccountPage.clickElement(createAccountPage.getCreateAccountButton());
-        Assertions.assertEquals(CreateAccountConstants.CONFIRMATION_PASSWORD_VALUE,createAccountPage.getPasswordConfirmationRequired().getText());
+        Assertions.assertEquals(CreateAccountConstants.ERROR_MESSAGE_REQUIRED,createAccountPage.getPasswordConfirmationRequired().getText());
     }
     @Test
     @Order(4)

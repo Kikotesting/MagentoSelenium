@@ -1,12 +1,12 @@
 package ItemsPage;
 
-import helper.Helper;
+import helpers.PageHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class ItemsView extends Helper {
+public class ItemsView extends PageHelper {
     public ItemsView(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -47,6 +47,7 @@ public class ItemsView extends Helper {
     public WebElement getNoResults() {
         return noResults;
     }
+
 
     @FindBy(xpath = "//*[@id=\"toolbar-amount\"]") WebElement itemAmountMessage;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[2]/div") WebElement noResults;

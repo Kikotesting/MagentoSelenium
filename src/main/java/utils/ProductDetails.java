@@ -1,19 +1,15 @@
 package utils;
 
-import helper.Helper;
+import helpers.PageHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class ProductDetails extends Helper {
+public class ProductDetails extends PageHelper {
     public ProductDetails(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-    }
-
-    public WebDriver getDriver() {
-        return driver;
     }
 
     public WebElement getItemTitleName() {

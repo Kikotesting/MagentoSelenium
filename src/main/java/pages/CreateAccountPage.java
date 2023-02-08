@@ -1,6 +1,6 @@
 package pages;
 
-import helper.Helper;
+import helpers.PageHelper;
 import org.apache.commons.lang3.RandomStringUtils;
 import randomData.FakeData;
 import org.openqa.selenium.WebDriver;
@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 
-public class CreateAccountPage extends Helper {
+public class CreateAccountPage extends PageHelper {
     public CreateAccountPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);

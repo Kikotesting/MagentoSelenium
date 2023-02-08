@@ -1,12 +1,12 @@
 package ItemsPage;
 
-import helper.Helper;
+import helpers.PageHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class ItemsPage extends Helper {
+public class ItemsPage extends PageHelper {
     public ItemsPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);

@@ -1,12 +1,12 @@
 package ItemsPage;
 
-import helper.Helper;
+import helpers.PageHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class SearchItemsView extends Helper {
+public class SearchItemsView extends PageHelper {
     public SearchItemsView(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -91,4 +91,5 @@ public class SearchItemsView extends Helper {
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[2]/div[2]/ol/li[10]/div/div/strong/a") WebElement itemTen;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[2]/div[2]/ol/li[11]/div/div/strong/a") WebElement itemEleven;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[2]/div[2]/ol/li[12]/div/div/strong/a") WebElement itemTwelve;
+
 }
