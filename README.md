@@ -37,6 +37,9 @@ The source is structured along the lines of the maven
 standard folder structure for a jar project.
 
 - Core classes [src/main/java]
+  - folders: helpers, pages, reports, utils, fakeData, itemsUtils
+- Setup test plan before tests
+  - folder: base
 - Tests [src/test/java/scenarios]
 - Constants [src/test/java/constants]
 - The source includes a pom.xml for building with Maven
@@ -48,15 +51,14 @@ version 1.0
 #### Covered scenarios
 - Create Accounts tests
 - Account validation fields before creating account
-- Login test with positive data
-- Log out test
-- Check for required fields tests
-- Check for empty fields and invalid data tests
+- Login/Logout tests
+- Required fields check tests
+- Empty fields check tests
 - Sorting items tests
 - Ascending and Descending order tests
-- Search data tests
+- Search valid/invalid data tests
 - Subscribe emails tests
-- Add/Remove items to the card container
+- Add/Remove items to the card container tests
 
 
 
