@@ -1,12 +1,12 @@
 package utils;
 
-import helper.Helper;
+import helpers.PageHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class CartContainer extends Helper {
+public class CartContainer extends PageHelper {
 
     public CartContainer(WebDriver driver) {
         super(driver);

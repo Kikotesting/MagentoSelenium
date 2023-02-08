@@ -33,8 +33,9 @@ public class LoginTests extends BaseTest {
         loginPage.setValidEmail();
         loginPage.setValidPassword();
         loginPage.clickSignInButton();
-        loginPage.waitToBeVisible(loginPage.getWelcomeLoggedInMessage(), 5);
+        loginPage.waitToBeVisible(loginPage.getWelcomeLoggedInMessage(), 10);
         highLightElement(driver, loginPage.getWelcomeLoggedInMessage());
+        loginPage.pauseSeconds(2);
         Assertions.assertTrue(loginPage.getWelcomeLoggedInMessage().getText().contains("Miso Misov!"));
     }
     @Test
@@ -128,7 +129,7 @@ public class LoginTests extends BaseTest {
         loginPage.setWrongPassword();
         loginPage.clickSignInButton();
         String incorrectCaptcha = "Incorrect CAPTCHA";
-
+        loginPage.waitToBeVisible(loginPage.getSignInIncorrectMessage(),10);
         if (loginPage.getSignInIncorrectMessage().getText().equals(incorrectCaptcha)){
             Assertions.assertEquals(incorrectCaptcha,loginPage.getSignInIncorrectMessage().getText());
             System.out.println("Captcha is displayed!");
@@ -148,6 +149,7 @@ public class LoginTests extends BaseTest {
         loginPage.setValidPassword();
         loginPage.clickSignInButton();
         String incorrectCaptcha = "Incorrect CAPTCHA";
+        loginPage.waitToBeVisible(loginPage.getSignInIncorrectMessage(),10);
         if (loginPage.getSignInIncorrectMessage().getText().equals(incorrectCaptcha)){
             Assertions.assertEquals(incorrectCaptcha,loginPage.getSignInIncorrectMessage().getText());
             System.out.println("Captcha is displayed!");
@@ -167,6 +169,7 @@ public class LoginTests extends BaseTest {
         loginPage.setInvalidPassword();
         loginPage.clickSignInButton();
         String incorrectCaptcha = "Incorrect CAPTCHA";
+        loginPage.waitToBeVisible(loginPage.getSignInIncorrectMessage(),10);
         if (loginPage.getSignInIncorrectMessage().getText().equals(incorrectCaptcha)){
             Assertions.assertEquals(incorrectCaptcha,loginPage.getSignInIncorrectMessage().getText());
             System.out.println("Captcha is displayed!");

@@ -71,10 +71,6 @@ public class CartTests extends BaseTest {
         Assertions.assertTrue(productDetails.getItemTitleName().getText().contains(itemOne));
     }
 
-//    @Test
-//    @Order(2)
-//    @DisplayName("TC-2. Add more than one item to the Cart container")
-
     @Test
     @Order(3)
     @DisplayName("TC-3. Delete item from Cart container")
@@ -117,6 +113,19 @@ public class CartTests extends BaseTest {
         Assertions.assertEquals(MessageConstants.MESSAGE_EMPTY_CARD_CONTAINER,cartContainer.getEmptyCartMessage().getText());
         System.out.println("Item was deleted from shopping cart: "+ searchItemsView.getItemTwo().getText());
 
+    }
+
+    @Test
+    @Order(4)
+    @DisplayName("TC-4. Add more than one item to the Cart container")
+    void addMoreItemsToCartContainer(){
+        globalPage = new GlobalPage(driver);
+        cartContainer = new CartContainer(driver);
+        searchItemsView = new SearchItemsView(driver);
+        productDetails = new ProductDetails(driver);
+        // Typing women jackets
+        globalPage.setText(globalPage.getSearchInputField(), "man");
+        globalPage.pressEnter(globalPage.getSearchInputField());
     }
 
 }
