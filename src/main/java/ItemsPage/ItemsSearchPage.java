@@ -6,8 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class SearchItemsView extends PageHelper {
-    public SearchItemsView(WebDriver driver) {
+public class ItemsSearchPage extends PageHelper {
+    public ItemsSearchPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }

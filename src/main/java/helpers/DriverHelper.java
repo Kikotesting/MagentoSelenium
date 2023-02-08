@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,6 +19,8 @@ public class DriverHelper {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
+
+
     //HOVERING
     public void hoverElement(WebElement element) {
         Actions action = new Actions(driver);
@@ -27,7 +30,8 @@ public class DriverHelper {
         Actions action = new Actions(driver);
         action.moveToElement(element).click().perform();
     }
-    //Wait elements
+
+    // WAITS
     public void waitToBeVisible(WebElement element, int seconds) {
         final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
         wait.pollingEvery(Duration.ofSeconds(1));
@@ -41,21 +45,44 @@ public class DriverHelper {
     }
     public void waitToBeInvisible(WebElement element, int seconds) {
         final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
-        wait.pollingEvery(Duration.ofSeconds(1));
+        wait.pollingEvery(Duration.ofMillis(1000));
         wait.until(ExpectedConditions.refreshed(ExpectedConditions.invisibilityOf(element)));
     }
-    public void waitToBeClickable(WebElement element, int seconds) {
-        final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
-        wait.pollingEvery(Duration.ofSeconds(1));
+    public void waitToBeClickable(WebElement element, int timeOutInSeconds) {
+        final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOutInSeconds));
+        wait.pollingEvery(Duration.ofMillis(100));
         wait.until(ExpectedConditions.refreshed(
                 ExpectedConditions.elementToBeClickable(element))
         );
     }
-    public void waitForInvisibilityOf(By locator) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(200));
+    public void waitForInvisibilityOfTextInDom(String text, int timeOutInSeconds) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOutInSeconds));
+        wait.pollingEvery(Duration.ofMillis(1000));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@text='" + text + "']")));
+    }
+    public void waitForInvisibilityOfByLocator(By locator, int timeOutInSeconds) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOutInSeconds));
         wait.pollingEvery(Duration.ofMillis(1000));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
     }
+    public void waitUntilElementGetsEnabled(WebElement element, Integer seconds) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
+        wait.pollingEvery(Duration.ofSeconds(1));
+        wait.until((ExpectedCondition<Boolean>) driver -> {
+            String enabled = element.getAttribute("enabled");
+            return "true".equals(enabled);
+        });
+    }
+    public void waitForVisibilityOf(String text, int timeOutInSeconds) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOutInSeconds));
+        wait.pollingEvery(Duration.ofMillis(1000));
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@text='" + text + "']")));
+    }
+    public void waitText(String textToBeDisplayed, int timeOutInSecond) {
+        waitForVisibilityOf(textToBeDisplayed,timeOutInSecond);
+    }
+
+
 
     //SELECTING
     private Select selectElement(WebElement element) {
@@ -71,6 +98,7 @@ public class DriverHelper {
     public void selectByIndexElement(WebElement element, int index) {
         selectElement(element).selectByIndex(index);
     }
+
     //SCROLLING
     public void scrollToElement(WebElement element) {
         JavascriptExecutor js = (JavascriptExecutor) driver;

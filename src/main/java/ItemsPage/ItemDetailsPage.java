@@ -1,4 +1,4 @@
-package utils;
+package ItemsPage;
 
 import helpers.PageHelper;
 import org.openqa.selenium.WebDriver;
@@ -6,8 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class ProductDetails extends PageHelper {
-    public ProductDetails(WebDriver driver) {
+public class ItemDetailsPage extends PageHelper {
+    public ItemDetailsPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }

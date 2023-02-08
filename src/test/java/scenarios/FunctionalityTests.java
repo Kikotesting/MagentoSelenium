@@ -10,7 +10,7 @@ import reports.ListenerTest;
 import randomData.FakeData;
 import pages.GlobalPage;
 import ItemsPage.ItemsView;
-import utils.ProductDetails;
+import ItemsPage.ItemDetailsPage;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ExtendWith(ListenerTest.class)
@@ -20,14 +20,14 @@ public class FunctionalityTests extends BaseTest{
     ItemsPage itemsPage;
     ItemsView itemsView;
     SearchItemsView searchItemsView;
-    ProductDetails productDetails;
+    ItemDetailsPage itemDetailsPage;
     @Test
     @DisplayName("TC-1. Lookup items with valid data by color")
     @Order(1)
     void searchItemsWithValidDataByColor(){
         //Initialize objects from classes
         globalPage = new GlobalPage(driver);
-        productDetails = new ProductDetails(driver);
+        itemDetailsPage = new ItemDetailsPage(driver);
         searchItemsView = new SearchItemsView(driver);
 
         // Typing valid data in the search input bar
@@ -40,16 +40,16 @@ public class FunctionalityTests extends BaseTest{
         searchItemsView.pauseSeconds(2);
         String itemNameChloe = "Chloe Compete Tank";
         Assertions.assertTrue(searchItemsView.getItemOne().getText().contains(itemNameChloe));
-        productDetails.getColorBlue().click();
-        Assertions.assertTrue(productDetails.getColorBlue().isDisplayed());
+        itemDetailsPage.getColorBlue().click();
+        Assertions.assertTrue(itemDetailsPage.getColorBlue().isDisplayed());
         searchItemsView.scrollToElement(searchItemsView.getItemThree());
         highLightElement(driver,searchItemsView.getItemThree());
         searchItemsView.hoverElement(searchItemsView.getItemThree());
         searchItemsView.pauseSeconds(2);
         String itemNameBella = "Bella Tank";
         Assertions.assertTrue(searchItemsView.getItemThree().getText().contains(itemNameBella));
-        productDetails.getColorBlue().click();
-        Assertions.assertTrue(productDetails.getColorBlue().isDisplayed());
+        itemDetailsPage.getColorBlue().click();
+        Assertions.assertTrue(itemDetailsPage.getColorBlue().isDisplayed());
     }
     @Test
     @DisplayName("TC-2. Lookup items with Invalid data")
