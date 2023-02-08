@@ -1,6 +1,6 @@
 package scenarios;
 
-import ItemsPage.ItemsSearchPage;
+import itemsUtils.ItemsSearchPage;
 import base.BaseTest;
 import constants.MessageConstants;
 import org.junit.jupiter.api.*;
@@ -9,7 +9,7 @@ import pages.GlobalPage;
 import pages.LoginPage;
 import reports.ListenerTest;
 import utils.CartContainer;
-import ItemsPage.ItemDetailsPage;
+import itemsUtils.ItemDetailsPage;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ExtendWith(ListenerTest.class)
@@ -122,11 +122,54 @@ public class CartTests extends BaseTest {
         cartContainer = new CartContainer(driver);
         itemsSearchPage = new ItemsSearchPage(driver);
         itemDetailsPage = new ItemDetailsPage(driver);
-        // Typing women jackets
+
+        // Search for first product
         globalPage.setText(globalPage.getSearchInputField(), "man");
         globalPage.pressEnter(globalPage.getSearchInputField());
 
+        // Add first item Rionna
+        String itemRionna = itemsSearchPage.getItemOne().getText();
+        highLightElement(driver,itemsSearchPage.getItemOne());
+        itemsSearchPage.hoverElement(itemsSearchPage.getItemOne());
+        itemsSearchPage.pauseSeconds(1);
+        itemDetailsPage.clickElement(itemDetailsPage.getSizeXS());
+        itemsSearchPage.pauseSeconds(1);
+        itemDetailsPage.clickElement(itemDetailsPage.getColorRed());
+        itemsSearchPage.pauseSeconds(1);
+        itemsSearchPage.clickElement(itemsSearchPage.getAddToCartButtonItemOne());
+        itemsSearchPage.waitToBeVisible(itemsSearchPage.getMessageForAddingItemToCartContainer(),5);
+        itemsSearchPage.scrollToElement(itemsSearchPage.getMessageForAddingItemToCartContainer());
+        System.out.println(itemsSearchPage.getMessageForAddingItemToCartContainer().getText());
+        itemsSearchPage.pauseSeconds(2);
+        Assertions.assertTrue(itemsSearchPage.getMessageForAddingItemToCartContainer().getText().contains("You added "+itemRionna+" to your shopping cart."));
 
+        // Search for second product
+        globalPage.setText(globalPage.getSearchInputField(), "josie");
+        globalPage.pressEnter(globalPage.getSearchInputField());
+        // Add second item Josie
+        String itemJosie = itemsSearchPage.getItemOne().getText();
+        highLightElement(driver,itemsSearchPage.getItemOne());
+        itemsSearchPage.hoverElement(itemsSearchPage.getItemOne());
+        itemsSearchPage.pauseSeconds(1);
+        itemDetailsPage.clickElement(itemDetailsPage.getSizeXS());
+        itemsSearchPage.pauseSeconds(1);
+        itemDetailsPage.clickElement(itemDetailsPage.getColorBlue());
+        itemsSearchPage.pauseSeconds(1);
+        itemsSearchPage.clickElement(itemsSearchPage.getAddToCartButtonItemOne());
+        itemsSearchPage.waitToBeVisible(itemsSearchPage.getMessageForAddingItemToCartContainer(),5);
+        itemsSearchPage.scrollToElement(itemsSearchPage.getMessageForAddingItemToCartContainer());
+        System.out.println(itemsSearchPage.getMessageForAddingItemToCartContainer().getText());
+        itemsSearchPage.pauseSeconds(2);
+        Assertions.assertTrue(itemsSearchPage.getMessageForAddingItemToCartContainer().getText().contains("You added "+itemJosie+" to your shopping cart."));
+        itemsSearchPage.pauseSeconds(1);
+        cartContainer.scrollToElement(cartContainer.getCartContainerButton());
+        cartContainer.clickElement(cartContainer.getCartContainerButton());
+        itemsSearchPage.pauseSeconds(1);
+        System.out.println("items counter is: " + cartContainer.getCartBadgeCounter().getText());
+        Assertions.assertTrue(cartContainer.getCartBadgeCounter().getText().contains("2"));
+        // Ordered by Alphabetical, so the josie product is first to check!
+        Assertions.assertTrue(cartContainer.getCartContainerItemNameOne().getText().contains(itemJosie));
+        Assertions.assertTrue(cartContainer.getCartContainerItemNameTwo().getText().contains(itemRionna));
     }
 
 }

@@ -9,5 +9,8 @@ public class FakeData {
     public String firstname = faker.name().firstName();
     public String lastname = faker.name().lastName();
     public String emailAddress = faker.internet().emailAddress().toLowerCase(Locale.ROOT);
+    public String streetAddress = faker.address().streetAddress().toLowerCase(Locale.US);
+    public String capital = faker.country().capital().toLowerCase(Locale.US);
+    public String postcode = faker.address().zipCode();
 
 }

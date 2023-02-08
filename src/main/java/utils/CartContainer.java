@@ -49,14 +49,21 @@ public class CartContainer extends PageHelper {
     public WebElement getCartContainerCloseButton() {
         return cartContainerCloseButton;
     }
-
     public WebElement getCartBadgeCounter() {
         return cartBadgeCounter;
     }
+    public WebElement getCartContainerItemNameOne() {
+        return cartContainerItemNameOne;
+    }
+    public WebElement getCartContainerItemNameTwo() {
+        return cartContainerItemNameTwo;
+    }
 
     @FindBy(xpath = "//*[@class='action showcart']") WebElement cartContainerButton;
-    @FindBy(xpath = "//*[@id=\"minicart-content-wrapper\"]/div[2]/strong") WebElement emptyCartMessage;
+    @FindBy(xpath = "//*[@id=\"btn-minicart-close\"]") WebElement cartContainerCloseButton;
     @FindBy(xpath = "//div[2]/header/div[2]/div[1]/a/span[2]/span[1]") WebElement cartBadgeCounter;
+    @FindBy(xpath = "//*[@id=\"minicart-content-wrapper\"]/div[2]/strong") WebElement emptyCartMessage;
+
 
     @FindBy(xpath = "//*[@id=\"minicart-content-wrapper\"]/div[2]/div[2]/div/span/span") WebElement cartSubtotalText;
     @FindBy(xpath = "//*[@id=\"top-cart-btn-checkout\"]") WebElement cartCheckout;
@@ -67,7 +74,9 @@ public class CartContainer extends PageHelper {
     @FindBy(xpath = "//*[@id=\"minicart-content-wrapper\"]/div[2]/div[5]/div/a") WebElement cartViewAndEditText;
     @FindBy(xpath = "//div[4]/aside[2]/div[2]/footer/button[1]") WebElement modalCancel;
     @FindBy(xpath = "//div[4]/aside[2]/div[2]/footer/button[2]") WebElement modalConfirm;
-    @FindBy(xpath = "//*[@id=\"btn-minicart-close\"]") WebElement cartContainerCloseButton;
+
+    @FindBy(xpath = "//*[@id=\"mini-cart\"]/li[1]/div/div/strong/a") WebElement cartContainerItemNameOne;
+    @FindBy(xpath = "//*[@id=\"mini-cart\"]/li[2]/div/div/strong/a") WebElement cartContainerItemNameTwo;
 
 
 }

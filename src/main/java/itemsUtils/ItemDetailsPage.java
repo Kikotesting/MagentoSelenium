@@ -1,4 +1,4 @@
-package ItemsPage;
+package itemsUtils;
 
 import helpers.PageHelper;
 import org.openqa.selenium.WebDriver;
@@ -47,6 +47,50 @@ public class ItemDetailsPage extends PageHelper {
         return sizeXL;
     }
 
+    public WebElement getSize28() {
+        return size28;
+    }
+
+    public WebElement getSize29() {
+        return size29;
+    }
+
+    public WebElement getSize30() {
+        return size30;
+    }
+
+    public WebElement getSize32() {
+        return size32;
+    }
+
+    public WebElement getSize33() {
+        return size33;
+    }
+
+    public WebElement getSize34() {
+        return size34;
+    }
+
+    public WebElement getSize36() {
+        return size36;
+    }
+
+    public WebElement getAddItemOne() {
+        return addItemOne;
+    }
+
+    public WebElement getAddItemTwo() {
+        return addItemTwo;
+    }
+
+    public WebElement getAddItemThree() {
+        return addItemThree;
+    }
+
+    public WebElement getAddItemFour() {
+        return addItemFour;
+    }
+
     public WebElement getColorBlack() {
         return colorBlack;
     }
@@ -91,12 +135,13 @@ public class ItemDetailsPage extends PageHelper {
         return colorYellow;
     }
 
+
     public WebElement getQuantityField() {
         return quantityField;
     }
 
-    public WebElement getAddToCartButton() {
-        return addToCartButton;
+    public WebElement getAddToCartDetailsButton() {
+        return addToCartDetailsButton;
     }
 
     public WebElement getSubmitButton() {
@@ -114,6 +159,8 @@ public class ItemDetailsPage extends PageHelper {
     public WebElement getTabDetails() {
         return tabDetails;
     }
+
+
 
     public WebElement getTabMoreInformation() {
         return tabMoreInformation;
@@ -173,12 +220,23 @@ public class ItemDetailsPage extends PageHelper {
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[2]/div/div[1]/div[3]/div[2]/div[1]") WebElement productInStock;
     @FindBy(xpath = "//*[@id=\"product-price-1194\"]/span") WebElement productPrice;
 
-    // SIZE
+    // TOPS SIZE
     @FindBy(xpath = "//*[@id=\"option-label-size-143-item-166\"]")  WebElement sizeXS;
     @FindBy(xpath = "//*[@id=\"option-label-size-143-item-167\"]") WebElement sizeS;
     @FindBy(xpath = "//*[@id=\"option-label-size-143-item-168\"]")  WebElement sizeM;
     @FindBy(xpath = "//*[@id=\"option-label-size-143-item-169\"]") WebElement sizeL;
     @FindBy(xpath = "//*[@id=\"option-label-size-143-item-170\"]") WebElement sizeXL;
+
+    // BOTTOMS SIZE
+    @FindBy(xpath = "//*[@id=\"option-label-size-143-item-171\"]") WebElement size28;
+    @FindBy(xpath = "//*[@id=\"option-label-size-143-item-172\"]") WebElement size29;
+    @FindBy(xpath = "//*[@id=\"option-label-size-143-item-173\"]") WebElement size30;
+    @FindBy(xpath = "//*[@id=\"option-label-size-143-item-175\"]") WebElement size32;
+
+    @FindBy(xpath = "//*[@id=\"option-label-size-143-item-176\"]") WebElement size33;
+    @FindBy(xpath = "//*[@id=\"option-label-size-143-item-177\"]") WebElement size34;
+    @FindBy(xpath = "//*[@id=\"option-label-size-143-item-178\"]") WebElement size36;
+
 
     // COLORS
     @FindBy(xpath = "//*[@id=\"option-label-color-93-item-49\"]") WebElement colorBlack;
@@ -197,8 +255,13 @@ public class ItemDetailsPage extends PageHelper {
     @FindBy(xpath = "//*[@id=\"qty\"]") WebElement quantityField;
 
     // BUTTONS
-    @FindBy(xpath = "//*[@id=\"product-addtocart-button\"]") WebElement addToCartButton;
+    @FindBy(xpath = "//*[@id=\"product-addtocart-button\"]") WebElement addToCartDetailsButton;
+    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[3]/ol/li[1]/div/div/div[3]/div/div[1]/form/button/span") WebElement addItemOne;
+    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[3]/ol/li[2]/div/div/div[3]/div/div[1]/form/button/span") WebElement addItemTwo;
+    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[3]/ol/li[2]/div/div/div[3]/div/div[1]/form/button/span") WebElement addItemThree;
+    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[3]/ol/li[2]/div/div/div[3]/div/div[1]/form/button/span") WebElement addItemFour;
     @FindBy(xpath = "//*[@id=\"review-form\"]/div/div/button") WebElement submitButton;
+
     // TEXT BUTTON
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[2]/div/div[1]/div[5]/div/a[1]") WebElement addToWishList;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[2]/div/div[1]/div[5]/div/a[2]") WebElement addToCompare;

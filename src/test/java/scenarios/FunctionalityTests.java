@@ -1,58 +1,59 @@
 package scenarios;
 
-import ItemsPage.SearchItemsView;
-import ItemsPage.ItemsPage;
+import itemsUtils.ItemsListPage;
 import base.BaseTest;
 import constants.MessageConstants;
+import itemsUtils.ItemsSearchPage;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import reports.ListenerTest;
 import randomData.FakeData;
 import pages.GlobalPage;
-import ItemsPage.ItemsView;
-import ItemsPage.ItemDetailsPage;
+import itemsUtils.ItemsView;
+import itemsUtils.ItemDetailsPage;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ExtendWith(ListenerTest.class)
 public class FunctionalityTests extends BaseTest{
     GlobalPage globalPage;
     FakeData fakeData;
-    ItemsPage itemsPage;
+    ItemsListPage itemsPage;
     ItemsView itemsView;
-    SearchItemsView searchItemsView;
     ItemDetailsPage itemDetailsPage;
+    ItemsSearchPage itemsSearchPage;
+
     @Test
-    @DisplayName("TC-1. Lookup items with valid data by color")
+    @DisplayName("TC-1. Search items with valid data by color")
     @Order(1)
     void searchItemsWithValidDataByColor(){
         //Initialize objects from classes
         globalPage = new GlobalPage(driver);
         itemDetailsPage = new ItemDetailsPage(driver);
-        searchItemsView = new SearchItemsView(driver);
+        itemsSearchPage = new ItemsSearchPage(driver);
 
         // Typing valid data in the search input bar
         globalPage.setText(globalPage.getSearchInputField(), "Blue");
         globalPage.pressEnter(globalPage.getSearchInputField());
         // Scroll to the found elements and check if its exists and color blue options is displayed
-        searchItemsView.scrollToElement(searchItemsView.getItemOne());
-        highLightElement(driver,searchItemsView.getItemOne());
-        searchItemsView.hoverElement(searchItemsView.getItemOne());
-        searchItemsView.pauseSeconds(2);
+        itemsSearchPage.scrollToElement(itemsSearchPage.getItemOne());
+        highLightElement(driver,itemsSearchPage.getItemOne());
+        itemsSearchPage.hoverElement(itemsSearchPage.getItemOne());
+        itemsSearchPage.pauseSeconds(2);
         String itemNameChloe = "Chloe Compete Tank";
-        Assertions.assertTrue(searchItemsView.getItemOne().getText().contains(itemNameChloe));
+        Assertions.assertTrue(itemsSearchPage.getItemOne().getText().contains(itemNameChloe));
         itemDetailsPage.getColorBlue().click();
         Assertions.assertTrue(itemDetailsPage.getColorBlue().isDisplayed());
-        searchItemsView.scrollToElement(searchItemsView.getItemThree());
-        highLightElement(driver,searchItemsView.getItemThree());
-        searchItemsView.hoverElement(searchItemsView.getItemThree());
-        searchItemsView.pauseSeconds(2);
+        itemsSearchPage.scrollToElement(itemsSearchPage.getItemThree());
+        highLightElement(driver,itemsSearchPage.getItemThree());
+        itemsSearchPage.hoverElement(itemsSearchPage.getItemThree());
+        itemsSearchPage.pauseSeconds(2);
         String itemNameBella = "Bella Tank";
-        Assertions.assertTrue(searchItemsView.getItemThree().getText().contains(itemNameBella));
+        Assertions.assertTrue(itemsSearchPage.getItemThree().getText().contains(itemNameBella));
         itemDetailsPage.getColorBlue().click();
         Assertions.assertTrue(itemDetailsPage.getColorBlue().isDisplayed());
     }
     @Test
-    @DisplayName("TC-2. Lookup items with Invalid data")
+    @DisplayName("TC-2. Search items with Invalid data")
     @Order(2)
     void searchItemsWithInvalidData(){
         //Initialize objects from classes
@@ -69,7 +70,7 @@ public class FunctionalityTests extends BaseTest{
     @Order(3)
     void getUrlFromDifferentPages(){
         globalPage = new GlobalPage(driver);
-        itemsPage = new ItemsPage(driver);
+        itemsPage = new ItemsListPage(driver);
 
         String baseUrl = "https://magento.softwaretestingboard.com/";
         Assertions.assertEquals(baseUrl,driver.getCurrentUrl());
@@ -144,7 +145,7 @@ public class FunctionalityTests extends BaseTest{
     @DisplayName("TC-6. Sort Items by value and change order directions")
     void sortItemsByValueAndChangeOrderDirection(){
         globalPage = new GlobalPage(driver);
-        itemsPage = new ItemsPage(driver);
+        itemsPage = new ItemsListPage(driver);
         itemsView = new ItemsView(driver);
 
         globalPage.hoverElement(globalPage.getMenuWomen());
@@ -183,7 +184,7 @@ public class FunctionalityTests extends BaseTest{
     @DisplayName("TC-7. Change items view from List to Grid ")
     void changeItemsViewToFromGridToList(){
         globalPage = new GlobalPage(driver);
-        itemsPage = new ItemsPage(driver);
+        itemsPage = new ItemsListPage(driver);
         itemsView = new ItemsView(driver);
 
         globalPage.hoverElement(globalPage.getMenuWomen());

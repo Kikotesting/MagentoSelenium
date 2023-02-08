@@ -1,4 +1,4 @@
-package ItemsPage;
+package itemsUtils;
 
 import helpers.PageHelper;
 import org.openqa.selenium.WebDriver;

@@ -1,6 +1,7 @@
 package scenarios;
 
 import constants.MessageConstants;
+import pages.AccountPage;
 import pages.LoginPage;
 import pages.SignOutPage;
 import reports.ListenerTest;
@@ -15,6 +16,7 @@ import utils.RegisteredUser;
 public class LoginTests extends BaseTest {
 
     GlobalPage globalPage;
+    AccountPage accountPage;
     LoginPage loginPage;
     RegisteredUser registeredUser;
     SignOutPage signOutPage;
@@ -25,6 +27,7 @@ public class LoginTests extends BaseTest {
     void userCanLoginWithValidUsernameAndPassword(){
         globalPage = new GlobalPage(driver);
         loginPage = new LoginPage(driver);
+        accountPage = new AccountPage(driver);
 
         globalPage.clickElement(globalPage.getSignInTextButton());
         highLightElement(driver, loginPage.getWelcomeDefaultMessage());
@@ -33,7 +36,8 @@ public class LoginTests extends BaseTest {
         loginPage.setValidEmail();
         loginPage.setValidPassword();
         loginPage.clickSignInButton();
-        loginPage.waitToBeVisible(loginPage.getWelcomeLoggedInMessage(), 10);
+        String welcomeText = "Welcome, Miso Misov!";
+        loginPage.waitForTextUpdated(loginPage.getWelcomeLoggedInMessage(), 10,welcomeText);
         highLightElement(driver, loginPage.getWelcomeLoggedInMessage());
         loginPage.pauseSeconds(2);
         Assertions.assertTrue(loginPage.getWelcomeLoggedInMessage().getText().contains("Miso Misov!"));
@@ -140,7 +144,7 @@ public class LoginTests extends BaseTest {
     }
     @Test
     @Order(8)
-    @DisplayName("TC-8. Cannot log in with wrong username and valid password")
+    @DisplayName("TC-8. Cannot login with wrong username and valid password")
     void userCannotLoginWithWrongUsernameAndValidPassword(){
         globalPage = new GlobalPage(driver);
         loginPage = new LoginPage(driver);
@@ -160,7 +164,7 @@ public class LoginTests extends BaseTest {
     }
     @Test
     @Order(9)
-    @DisplayName("TC-9. Cannot log in with Invalid password")
+    @DisplayName("TC-9. Cannot login with Invalid password")
     void userCannotLoginWithInvalidUsernameAndCorrectPassword(){
         globalPage = new GlobalPage(driver);
         loginPage = new LoginPage(driver);
