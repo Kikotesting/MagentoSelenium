@@ -214,8 +214,19 @@ public class ItemDetailsPage extends PageHelper {
         return reviewsTextArea;
     }
 
+    public WebElement getItemOneNameHeader() {
+        return itemOneNameHeader;
+    }
+
+    public WebElement getMessageAddedItemToCart() {
+        return messageAddedItemToCart;
+    }
+// MESSAGE
+
     // HEADERS
     @FindBy(xpath = "//*[@id=\"mini-cart\"]/li/div/div/strong/a") WebElement itemOneTitleName;
+    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[1]/div[2]/div[1]/div/div") WebElement messageAddedItemToCart;
+    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[2]/div/div[1]/div[1]/h1/span") WebElement itemOneNameHeader;
     @FindBy(xpath = "//*[@id=\"mini-cart\"]/li[2]/div/div/strong/a") WebElement itemTwoTitleName;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[2]/div/div[1]/div[3]/div[2]/div[1]") WebElement productInStock;
     @FindBy(xpath = "//*[@id=\"product-price-1194\"]/span") WebElement productPrice;

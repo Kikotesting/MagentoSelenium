@@ -38,6 +38,10 @@ public class GlobalPage extends PageHelper {
         return menuGear;
     }
 
+    public WebElement getMenuGearBags() {
+        return menuGearBags;
+    }
+
     public WebElement getMenuTraining() {
         return menuTraining;
     }
@@ -90,15 +94,7 @@ public class GlobalPage extends PageHelper {
         return messageSubscription;
     }
 
-    public void setText(WebElement element, String message){
-        element.isDisplayed();
-        element.clear();
-        element.sendKeys(message);
-    }
-    public void pressEnter(WebElement element){
-        element.isDisplayed();
-        element.sendKeys(Keys.ENTER);
-    }
+
 
     // MAIN MENU
 
@@ -108,6 +104,7 @@ public class GlobalPage extends PageHelper {
     @FindBy(xpath = "//*[@id=\"ui-id-11\"]/span") WebElement menuWomenTopsJackets;
     @FindBy(xpath = "//*[@id=\"ui-id-5\"]/span[2]") WebElement menuMen;
     @FindBy(xpath = "//*[@id=\"ui-id-6\"]/span[2]") WebElement menuGear;
+    @FindBy(xpath = "//*[@id=\"ui-id-25\"]/span") WebElement menuGearBags;
     @FindBy(xpath = "//*[@id=\"ui-id-7\"]/span[2]") WebElement menuTraining;
     @FindBy(xpath = "//*[@id=\"ui-id-8\"]/span") WebElement menuSale;
 

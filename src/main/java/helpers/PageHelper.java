@@ -1,4 +1,5 @@
 package helpers;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -20,6 +21,15 @@ public class PageHelper extends DriverHelper {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+    public void pressEnter(WebElement element){
+        element.isDisplayed();
+        element.sendKeys(Keys.ENTER);
+    }
+    public void setText(WebElement element, String message){
+        waitToBeVisible(element,10);
+        element.clear();
+        element.sendKeys(message);
     }
 
 //    public void clickOptionFromList(WebElement element, String option) {
