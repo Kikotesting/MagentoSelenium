@@ -13,7 +13,7 @@ import utils.RegisteredUser;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ExtendWith(ListenerTest.class)
-public class LoginTests extends BaseTest {
+public class LoginSuite extends BaseTest {
 
     GlobalPage globalPage;
     AccountPage accountPage;

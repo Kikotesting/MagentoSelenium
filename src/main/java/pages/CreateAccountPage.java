@@ -2,7 +2,7 @@ package pages;
 
 import helpers.PageHelper;
 import org.apache.commons.lang3.RandomStringUtils;
-import randomData.FakeData;
+import faker.FakeData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

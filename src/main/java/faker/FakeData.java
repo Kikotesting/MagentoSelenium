@@ -1,4 +1,4 @@
-package randomData;
+package faker;
 
 import net.datafaker.Faker;
 

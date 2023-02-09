@@ -7,11 +7,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import reports.ListenerPhoto;
+import reports.TakerPhoto;
 import java.time.Duration;
 public class BaseTest{
     public WebDriver driver;
-    ListenerPhoto listenerPhoto;
+    TakerPhoto listenerPhoto;
     @BeforeAll
     static void beforeAllTests() {
         WebDriverManager.chromedriver().setup();
@@ -32,7 +32,7 @@ public class BaseTest{
     void afterEachTest() {
         driver.manage().deleteAllCookies();
         // Activates this method if you want to see the photo after test finished or when it failed will be documents as capture
-        listenerPhoto = new ListenerPhoto(driver);
+        listenerPhoto = new TakerPhoto(driver);
         listenerPhoto.takeScreenshot();
         driver.quit();
     }

@@ -12,7 +12,7 @@ import pages.GlobalPage;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ExtendWith(ListenerTest.class)
-public class AccountTests extends BaseTest {
+public class AccountSuite extends BaseTest {
 
     GlobalPage globalPage;
     CreateAccountPage createAccountPage;

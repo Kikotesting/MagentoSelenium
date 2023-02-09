@@ -13,7 +13,7 @@ import itemsUtils.ItemDetailsPage;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ExtendWith(ListenerTest.class)
-public class CartTests extends BaseTest {
+public class CartContainerSuite extends BaseTest {
 
     LoginPage loginPage;
     CartContainer cartContainer;

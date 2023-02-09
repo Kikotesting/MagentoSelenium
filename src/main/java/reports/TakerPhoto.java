@@ -8,16 +8,13 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.annotation.Annotation;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ListenerPhoto{
-
+public class TakerPhoto {
     private final WebDriver driver;
 
-
-    public ListenerPhoto(WebDriver driver) {
+    public TakerPhoto(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
