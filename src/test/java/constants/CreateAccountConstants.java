@@ -4,7 +4,6 @@ public abstract class CreateAccountConstants {
     public static final String CREATE_ACCOUNT_PAGE_HEADER = "Create New Customer Account";
     public static final String CREATE_ACCOUNT_PERSONAL_INFORMATION = "Personal Information";
     public static final String CREATE_ACCOUNT_SIGNIN_INFORMATION = "Sign-in Information";
-
     public static final String ERROR_MESSAGE_REQUIRED = "This is a required field.";
     public static final String CONFIRMATION_PASSWORD_VALUE = "Please enter the same value again.";
     public static final String CREATE_ACCOUNT_URL = "https://magento.softwaretestingboard.com/customer/account/create/";
