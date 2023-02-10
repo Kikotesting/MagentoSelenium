@@ -18,13 +18,7 @@ public class AccountPage extends PageHelper {
         return registerNewAccountMessage;
     }
 
-    public WebElement getContactInformationText() {
-        return contactInformationText;
-    }
-
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[1]/div[2]/div/div/div") WebElement registerNewAccountMessage;
-
-    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[2]/div[1]/div[3]/div[2]/div[1]/div[1]/p") WebElement contactInformationText;
 
 
 }

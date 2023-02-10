@@ -1,21 +1,20 @@
 package scenarios;
 
 import base.BaseTest;
+import constants.MessageConstants;
 import faker.FakeData;
 import itemsUtils.ItemDetailsPage;
 import itemsUtils.ItemsListPage;
 import itemsUtils.ItemsSearchPage;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import pages.GlobalPage;
+import pages.PaymentsPage;
 import pages.ShippingPage;
-import reports.ListenerTest;
+import reports.WatcherTest;
 import utils.CartContainer;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@ExtendWith(ListenerTest.class)
+@ExtendWith(WatcherTest.class)
 public class PurchaseSuite extends BaseTest {
 
     GlobalPage globalPage;
@@ -25,8 +24,11 @@ public class PurchaseSuite extends BaseTest {
     ItemsListPage itemsListPage;
     ShippingPage shippingPage;
     FakeData fakeData;
+    PaymentsPage paymentsPage;
     @Test
-    void kiko(){
+    @Order(1)
+    @DisplayName("TC-1. User can purchase product and proceed to checkout")
+    void userCanPurchaseProductAndProceedToCheckout(){
         globalPage = new GlobalPage(driver);
         cartContainer = new CartContainer(driver);
         itemsSearchPage = new ItemsSearchPage(driver);
@@ -34,6 +36,7 @@ public class PurchaseSuite extends BaseTest {
         itemsListPage = new ItemsListPage(driver);
         shippingPage = new ShippingPage(driver);
         fakeData = new FakeData();
+        paymentsPage = new PaymentsPage(driver);
 
         // Navigate to Gear-> Bags
         globalPage.hoverElement(globalPage.getMenuGear());
@@ -70,15 +73,32 @@ public class PurchaseSuite extends BaseTest {
         shippingPage.setText(shippingPage.getCustomerEmailField(),fakeData.emailAddress);
         itemDetailsPage.pauseSeconds(2);
         shippingPage.setText(shippingPage.getFirstNameField(),fakeData.firstname);
-        itemDetailsPage.pauseSeconds(2);
         shippingPage.setText(shippingPage.getLastNameField(),fakeData.lastname);
-        itemDetailsPage.pauseSeconds(2);
+        shippingPage.scrollToElement(shippingPage.getStreetAddressField());
         shippingPage.setText(shippingPage.getStreetAddressField(),fakeData.streetAddress);
-        itemDetailsPage.pauseSeconds(2);
         shippingPage.setText(shippingPage.getCityField(),fakeData.capital);
+        //California
+        shippingPage.selectByValueElement(shippingPage.getStateProvinceDropdownSelector(), "12");
         itemDetailsPage.pauseSeconds(2);
-        shippingPage.setText(shippingPage.getProvidedZipPostalCode(),fakeData.postcode);
 
-
+        shippingPage.setText(shippingPage.getPostcode(),fakeData.postcode);
+        itemDetailsPage.pauseSeconds(2);
+        shippingPage.scrollToElement(shippingPage.getCountryDropdownSelector());
+        shippingPage.selectByValueElement(shippingPage.getCountryDropdownSelector(),"US");
+        itemDetailsPage.pauseSeconds(2);
+        shippingPage.setText(shippingPage.getPhoneNumber(), fakeData.phoneNumber);
+        shippingPage.clickElement(shippingPage.getRadioButtonBestWay());
+        shippingPage.clickElement(shippingPage.getNextButton());
+        shippingPage.pauseSeconds(3);
+        Assertions.assertTrue(paymentsPage.getBillingAddress().getText().contains(fakeData.firstname));
+        Assertions.assertTrue(paymentsPage.getBillingAddress().getText().contains(fakeData.lastname));
+        Assertions.assertTrue(paymentsPage.getBillingAddress().getText().contains(fakeData.streetAddress));
+        Assertions.assertTrue(paymentsPage.getBillingAddress().getText().contains(fakeData.capital));
+        Assertions.assertTrue(paymentsPage.getBillingAddress().getText().contains(fakeData.phoneNumber));
+        paymentsPage.clickElement(paymentsPage.getPlaceOrderButton());
+        shippingPage.pauseSeconds(5);
+        shippingPage.waitToBeVisible(paymentsPage.getOrderNumber(),5);
+        Assertions.assertTrue(paymentsPage.getOrderNumber().getText().contains("Your order # is: "));
+        Assertions.assertTrue(paymentsPage.getMessageThanksForPurchase().getText().contains(MessageConstants.MESSAGE_THANKS_FOR_PURCHASE));
     }
 }

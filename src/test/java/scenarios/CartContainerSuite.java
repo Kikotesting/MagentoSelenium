@@ -7,12 +7,12 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import pages.GlobalPage;
 import pages.LoginPage;
-import reports.ListenerTest;
+import reports.WatcherTest;
 import utils.CartContainer;
 import itemsUtils.ItemDetailsPage;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@ExtendWith(ListenerTest.class)
+@ExtendWith(WatcherTest.class)
 public class CartContainerSuite extends BaseTest {
 
     LoginPage loginPage;

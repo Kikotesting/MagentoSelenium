@@ -12,5 +12,6 @@ public class FakeData {
     public String streetAddress = faker.address().streetAddress().toLowerCase(Locale.US);
     public String capital = faker.country().capital().toLowerCase(Locale.US);
     public String postcode = faker.address().zipCode();
+    public String phoneNumber = faker.phoneNumber().phoneNumberNational();
 
 }

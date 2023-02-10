@@ -5,7 +5,7 @@ import org.junit.jupiter.api.extension.TestWatcher;
 
 import java.util.Optional;
 
-public class ListenerTest implements TestWatcher {
+public class WatcherTest implements TestWatcher {
 
 
     @Override

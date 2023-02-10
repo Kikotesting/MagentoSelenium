@@ -4,7 +4,7 @@ import constants.MessageConstants;
 import pages.AccountPage;
 import pages.LoginPage;
 import pages.SignOutPage;
-import reports.ListenerTest;
+import reports.WatcherTest;
 import base.BaseTest;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,7 +12,7 @@ import pages.GlobalPage;
 import utils.RegisteredUser;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@ExtendWith(ListenerTest.class)
+@ExtendWith(WatcherTest.class)
 public class LoginSuite extends BaseTest {
 
     GlobalPage globalPage;

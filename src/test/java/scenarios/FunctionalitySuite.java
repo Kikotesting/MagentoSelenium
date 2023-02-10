@@ -6,14 +6,14 @@ import constants.MessageConstants;
 import itemsUtils.ItemsSearchPage;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
-import reports.ListenerTest;
+import reports.WatcherTest;
 import faker.FakeData;
 import pages.GlobalPage;
 import itemsUtils.ItemsView;
 import itemsUtils.ItemDetailsPage;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@ExtendWith(ListenerTest.class)
+@ExtendWith(WatcherTest.class)
 public class FunctionalitySuite extends BaseTest{
     GlobalPage globalPage;
     FakeData fakeData;
