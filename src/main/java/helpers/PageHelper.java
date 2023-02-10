@@ -27,7 +27,8 @@ public class PageHelper extends DriverHelper {
         element.sendKeys(Keys.ENTER);
     }
     public void setText(WebElement element, String message){
-        waitToBeVisible(element,10);
+        waitToBeVisible(element,5);
+        element.click();
         element.clear();
         element.sendKeys(message);
     }

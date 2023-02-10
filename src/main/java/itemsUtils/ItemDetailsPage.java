@@ -229,7 +229,7 @@ public class ItemDetailsPage extends PageHelper {
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[2]/div/div[1]/div[1]/h1/span") WebElement itemOneNameHeader;
     @FindBy(xpath = "//*[@id=\"mini-cart\"]/li[2]/div/div/strong/a") WebElement itemTwoTitleName;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[2]/div/div[1]/div[3]/div[2]/div[1]") WebElement productInStock;
-    @FindBy(xpath = "//*[@id=\"product-price-1194\"]/span") WebElement productPrice;
+    @FindBy(xpath = "//*[@id=\"product-price-14\"]/span") WebElement productPrice;
 
     // TOPS SIZE
     @FindBy(xpath = "//*[@id=\"option-label-size-143-item-166\"]")  WebElement sizeXS;
