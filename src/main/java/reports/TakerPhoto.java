@@ -38,10 +38,10 @@ public class TakerPhoto {
         // Move the file from temp to the project folder
         try {
             FileUtils.copyFile(screenshot, new File(fullImagePath));
+            System.out.println("Screenshot taken: " + screenshot.getName());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("Screenshot taken: " + screenshot.getName());
     }
 
 }

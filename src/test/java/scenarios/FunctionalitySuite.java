@@ -7,6 +7,8 @@ import constants.MessageConstants;
 import itemsUtils.ItemsSearchPage;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
+import pages.AboutUsPage;
+import pages.CustomerServicePage;
 import reports.WatcherTest;
 import faker.FakeData;
 import pages.GlobalPage;
@@ -22,6 +24,8 @@ public class FunctionalitySuite extends BaseTest{
     ItemsView itemsView;
     ItemDetailsPage itemDetailsPage;
     ItemsSearchPage itemsSearchPage;
+    AboutUsPage aboutUsPage;
+    CustomerServicePage customerServicePage;
 
     @Test
     @DisplayName("TC-1. Search items with valid data by color")
@@ -215,22 +219,41 @@ public class FunctionalitySuite extends BaseTest{
     }
     @Test
     @Order(8)
-    @DisplayName("TC-8.  ")
+    @DisplayName("TC-8. Verify Footer links")
     void verifyFooterLinks(){
         globalPage = new GlobalPage(driver);
+        aboutUsPage = new AboutUsPage(driver);
+        customerServicePage = new CustomerServicePage(driver);
+
+        // Scroll to the end
         globalPage.scrollEndPage();
-        String headerAboutUs = "About us";
-        String hostedBy = "This site is hosted by";
 
-        globalPage.getFooterLinks(globalPage.getItemFromUnorderedList(globalPage.getFooterLinks(), "About us"));
-
-        System.out.println(globalPage.getFooterLinks().getText());
-        globalPage.waitForVisibilityOf(headerAboutUs,5);
-        globalPage.waitForVisibilityOf(hostedBy,5);
-
+        // About us link and information
+        String aboutUsHeading = "About us";
+        String hostedByParagraph = "This site is hosted by";
+        String coursesParagraph = "Bundle Course (100x value)";
+        globalPage.clickElement(globalPage.getFooterAboutUsLink());
         Assertions.assertTrue(driver.getCurrentUrl().contains(UrlConstants.ABOUT_US_URL));
-        Assertions.assertTrue(globalPage.getAboutUsPageText().getText().contains(headerAboutUs));
-        Assertions.assertTrue(globalPage.getAboutUsPageText().getText().contains(hostedBy));
+        aboutUsPage.pauseSeconds(2);
+        Assertions.assertTrue(aboutUsPage.getAboutUsHeader().getText().contains(aboutUsHeading));
+        Assertions.assertTrue(aboutUsPage.getAboutUsHostedBy().getText().contains(hostedByParagraph));
+        Assertions.assertTrue(aboutUsPage.getAboutUsCourse().getText().contains(coursesParagraph));
+
+        driver.navigate().back();
+
+        // Customer service link
+        String customerServiceHeading = "Customer Service";
+        String shippingHeading = "Shipping and Delivery";
+        String returnsHeading = "Returns and Replacements";
+        globalPage.scrollEndPage();
+        globalPage.clickElement(globalPage.getFooterCustomerServiceLink());
+        Assertions.assertTrue(driver.getCurrentUrl().contains(UrlConstants.CUSTOMER_SERVICE_URL));
+        aboutUsPage.pauseSeconds(2);
+        Assertions.assertTrue(customerServicePage.getCustomerServiceHeaderInfo().getText().contains(customerServiceHeading));
+        customerServicePage.scrollToElement(customerServicePage.getCustomerServiceShippingInfo());
+        Assertions.assertTrue(customerServicePage.getCustomerServiceShippingInfo().getText().contains(shippingHeading));
+        customerServicePage.scrollToElement(customerServicePage.getCustomerServiceReturnsInfo());
+        Assertions.assertTrue(customerServicePage.getCustomerServiceReturnsInfo().getText().contains(returnsHeading));
     }
 
 

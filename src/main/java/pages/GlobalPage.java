@@ -122,18 +122,10 @@ public class GlobalPage extends PageHelper {
     @FindBy(xpath = "//footer/div/div[2]/div/ul/li[3]/a") WebElement footerCustomerServiceLink;
     @FindBy(xpath = "//footer/div/ul/li[2]/a") WebElement footerPrivacyLink;
     @FindBy(xpath = "//footer/div/ul/li[3]/a") WebElement footerAdvancedSearchLink;
-    @FindBy(xpath = "/html/body/div[2]/footer/div/ul/li[4]/a") WebElement footerOrdersReturnsLink;
+    @FindBy(xpath = "//div[2]/footer/div/ul/li[4]/a") WebElement footerOrdersReturnsLink;
 
     // MESSAGES
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[2]/div[2]/div/div/div") WebElement messageSubscription;
-    @FindBy(xpath = "/html/body/div[2]/footer/div/div[2]/div/ul") WebElement footerLinks;
-    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div") WebElement aboutUsPageText;
 
-    public WebElement getAboutUsPageText() {
-        return aboutUsPageText;
-    }
 
-    public WebElement getFooterLinks() {
-        return footerLinks;
-    }
 }

@@ -1,10 +1,11 @@
 package helpers;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 public class PageHelper extends DriverHelper {
@@ -13,9 +14,9 @@ public class PageHelper extends DriverHelper {
         super(driver);
         PageFactory.initElements(driver, this);
     }
-
     public void clickElement(WebElement element){
         waitToBeVisible(element,5);
+        waitToBeClickable(element,5);
         element.click();
     }
     public void pauseSeconds(Integer seconds) {
@@ -35,28 +36,5 @@ public class PageHelper extends DriverHelper {
         element.clear();
         element.sendKeys(message);
     }
-    public WebElement getItemFromUnorderedList(WebElement element, String option) {
-        List<WebElement> links = element.findElements(By.tagName("a"));
-        for (int i = 0; i < links.size(); i++) {
-            if (links.get(i).getText().equals(option)) {
-                System.out.println(links.get(i).getText());
-            }
-        }
-        return element;
-    }
-
-//    public void clickOptionFromList(WebElement element, String option) {
-//        List<WebElement> links = element.findElements(By.tagName("i"));
-//        for (int i = 0; i < links.size(); i++) {
-//            if (links.get(i).getText().equals(option)) {
-//                System.out.println(links.get(i).getText());
-//                links.get(i).click();
-//            }
-//        }
-//    }
-
-//    public List<WebElement> getItems(List<WebElement> elements){
-//        return elements;
-//    }
 
 }

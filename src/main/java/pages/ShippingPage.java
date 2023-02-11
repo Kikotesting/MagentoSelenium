@@ -27,7 +27,6 @@ public class ShippingPage extends PageHelper {
     public WebElement getStreetAddressField() {
         return streetAddressField;
     }
-
     public WebElement getCityField() {
         return cityField;
     }
@@ -35,13 +34,8 @@ public class ShippingPage extends PageHelper {
     public WebElement getStateProvinceDropdownSelector() {
         return stateProvinceDropdownSelector;
     }
-
     public WebElement getPostcode() {
         return postcode;
-    }
-
-    public WebElement getProvidedZipPostalCode() {
-        return providedZipPostalCode;
     }
 
     public WebElement getPhoneNumber() {
@@ -56,10 +50,6 @@ public class ShippingPage extends PageHelper {
         return nextButton;
     }
 
-    public WebElement getSideBarSummary() {
-        return sideBarSummary;
-    }
-
     public WebElement getRadioButtonBestWay() {
         return radioButtonBestWay;
     }
@@ -72,12 +62,10 @@ public class ShippingPage extends PageHelper {
     @FindBy(name = "region_id") WebElement stateProvinceDropdownSelector;
     @FindBy(name = "postcode") WebElement postcode;
     @FindBy(name = "ko_unique_5") WebElement radioButtonBestWay;
-    @FindBy(xpath = "//*[@id=\"shipping-new-address-form\"]/div[7]/div/div/span") WebElement providedZipPostalCode;
 
     @FindBy(name = "telephone") WebElement phoneNumber;
     @FindBy(name = "country_id") WebElement countryDropdownSelector;
     @FindBy(xpath = "//div[@id='shipping-method-buttons-container']/div/button/span") WebElement nextButton;
-    @FindBy(xpath = "//*[@id=\"opc-sidebar\"]/div[1]/div/div[1]") WebElement sideBarSummary;
 
 
 }
