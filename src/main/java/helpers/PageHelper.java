@@ -1,12 +1,6 @@
 package helpers;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
-import java.util.Collections;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 public class PageHelper extends DriverHelper {
     WebDriver driver;
