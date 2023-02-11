@@ -1,8 +1,11 @@
 package helpers;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 public class PageHelper extends DriverHelper {
     WebDriver driver;
@@ -32,6 +35,15 @@ public class PageHelper extends DriverHelper {
         element.clear();
         element.sendKeys(message);
     }
+    public WebElement getItemFromUnorderedList(WebElement element, String option) {
+        List<WebElement> links = element.findElements(By.tagName("a"));
+        for (int i = 0; i < links.size(); i++) {
+            if (links.get(i).getText().equals(option)) {
+                System.out.println(links.get(i).getText());
+            }
+        }
+        return element;
+    }
 
 //    public void clickOptionFromList(WebElement element, String option) {
 //        List<WebElement> links = element.findElements(By.tagName("i"));
@@ -42,14 +54,7 @@ public class PageHelper extends DriverHelper {
 //            }
 //        }
 //    }
-//    public void getOptionFromList(WebElement element, String option) {
-//        List<WebElement> links = element.findElements(By.tagName("a"));
-//        for (int i = 0; i < links.size(); i++) {
-//            if (links.get(i).getText().equals(option)) {
-//                System.out.println(links.get(i).getText());
-//            }
-//        }
-//    }
+
 //    public List<WebElement> getItems(List<WebElement> elements){
 //        return elements;
 //    }

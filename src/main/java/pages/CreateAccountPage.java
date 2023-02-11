@@ -33,7 +33,7 @@ public class CreateAccountPage extends PageHelper {
         fakeData = new FakeData();
         getFirstnameField().isDisplayed();
         getFirstnameField().clear();
-        getFirstnameField().sendKeys(fakeData.firstname);
+        getFirstnameField().sendKeys(fakeData.getFirstname());
     }
     public void setEmptyFirstname() {
         getFirstnameField().isDisplayed();
@@ -47,7 +47,7 @@ public class CreateAccountPage extends PageHelper {
         fakeData = new FakeData();
         getLastnameField().isDisplayed();
         getLastnameField().clear();
-        getLastnameField().sendKeys(fakeData.lastname);
+        getLastnameField().sendKeys(fakeData.getLastname());
     }
     public void setEmptyLastname() {
         getLastnameField().isDisplayed();
@@ -61,8 +61,8 @@ public class CreateAccountPage extends PageHelper {
         fakeData = new FakeData();
         getEmailAddressField().isDisplayed();
         getEmailAddressField().clear();
-        getEmailAddressField().sendKeys(fakeData.emailAddress);
-        String saveNewEmail = fakeData.emailAddress;
+        getEmailAddressField().sendKeys(fakeData.getEmailAddress());
+        String saveNewEmail = fakeData.getEmailAddress();
         System.out.println(saveNewEmail);
     }
     public void setEmptyEmailAddress() {

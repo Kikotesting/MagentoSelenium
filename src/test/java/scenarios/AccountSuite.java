@@ -2,6 +2,7 @@ package scenarios;
 
 import constants.CreateAccountConstants;
 import constants.MessageConstants;
+import constants.UrlConstants;
 import pages.AccountPage;
 import pages.CreateAccountPage;
 import reports.WatcherTest;
@@ -28,7 +29,7 @@ public class AccountSuite extends BaseTest {
         // Go to create account page
         globalPage.clickElement(globalPage.getCreateAccountTextButton());
         // Check URL of create account page and page-header
-        Assertions.assertTrue(driver.getCurrentUrl().contains(CreateAccountConstants.CREATE_ACCOUNT_URL));
+        Assertions.assertTrue(driver.getCurrentUrl().contains(UrlConstants.CREATE_ACCOUNT_URL));
         // Scrolling
         createAccountPage.scrollToElement(createAccountPage.getCreateAccountPersonalInfoText());
         // Populate all the fields
@@ -78,7 +79,7 @@ public class AccountSuite extends BaseTest {
 
         globalPage.clickElement(globalPage.getCreateAccountTextButton());
         // Check URL of create account page and page-header
-        Assertions.assertTrue(driver.getCurrentUrl().contains(CreateAccountConstants.CREATE_ACCOUNT_URL));
+        Assertions.assertTrue(driver.getCurrentUrl().contains(UrlConstants.CREATE_ACCOUNT_URL));
         Assertions.assertTrue(createAccountPage.getCreateAccountHeaderText().getText()
                 .contains(CreateAccountConstants.CREATE_ACCOUNT_PAGE_HEADER));
         // Check Personal section with empty field firstname
@@ -119,7 +120,7 @@ public class AccountSuite extends BaseTest {
 
         globalPage.clickElement(globalPage.getCreateAccountTextButton());
         // Check URL of create account page and page-header
-        Assertions.assertTrue(driver.getCurrentUrl().contains(CreateAccountConstants.CREATE_ACCOUNT_URL));
+        Assertions.assertTrue(driver.getCurrentUrl().contains(UrlConstants.CREATE_ACCOUNT_URL));
         // Personal section is populated correctly
         createAccountPage.scrollToElement(createAccountPage.getCreateAccountPersonalInfoText());
         createAccountPage.setFirstname();
@@ -161,7 +162,7 @@ public class AccountSuite extends BaseTest {
 
         globalPage.clickElement(globalPage.getCreateAccountTextButton());
         // Check URL of create account page and page-header
-        Assertions.assertTrue(driver.getCurrentUrl().contains(CreateAccountConstants.CREATE_ACCOUNT_URL));
+        Assertions.assertTrue(driver.getCurrentUrl().contains(UrlConstants.CREATE_ACCOUNT_URL));
         Assertions.assertTrue(createAccountPage.getCreateAccountHeaderText().getText()
                 .contains(CreateAccountConstants.CREATE_ACCOUNT_PAGE_HEADER));
         // Populate all information

@@ -2,7 +2,6 @@ package constants;
 
 public abstract class MessageConstants {
     public static final String MESSAGE_NO_RESULT = "Your search returned no results.";
-    public static final String BASE_URL = "https://magento.softwaretestingboard.com/";
     public static final String MESSAGE_ALREADY_SUBSCRIBED  = "This email address is already subscribed.";
     public static final String MESSAGE_FOR_SUBSCRIBE  = "Thank you for your subscription.";
     public static final String MESSAGE_INVALID_SUBSCRIBE  = "Invalid Form Key. Please refresh the page.";

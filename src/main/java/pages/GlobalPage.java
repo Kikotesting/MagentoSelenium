@@ -126,5 +126,14 @@ public class GlobalPage extends PageHelper {
 
     // MESSAGES
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[2]/div[2]/div/div/div") WebElement messageSubscription;
+    @FindBy(xpath = "/html/body/div[2]/footer/div/div[2]/div/ul") WebElement footerLinks;
+    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div") WebElement aboutUsPageText;
 
+    public WebElement getAboutUsPageText() {
+        return aboutUsPageText;
+    }
+
+    public WebElement getFooterLinks() {
+        return footerLinks;
+    }
 }

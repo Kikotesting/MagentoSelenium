@@ -1,6 +1,7 @@
 package scenarios;
 
 import constants.MessageConstants;
+import constants.UrlConstants;
 import pages.AccountPage;
 import pages.LoginPage;
 import pages.SignOutPage;
@@ -68,7 +69,7 @@ public class LoginSuite extends BaseTest {
         System.out.println(signOutUrl);
         Assertions.assertTrue(driver.getCurrentUrl().contains(signOutUrl));
         signOutPage.pauseSeconds(6);
-        Assertions.assertTrue(driver.getCurrentUrl().contains(MessageConstants.BASE_URL));
+        Assertions.assertTrue(driver.getCurrentUrl().contains(UrlConstants.BASE_URL));
     }
     @Test
     @Order(3)

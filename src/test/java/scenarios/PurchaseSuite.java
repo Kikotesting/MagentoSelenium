@@ -70,31 +70,31 @@ public class PurchaseSuite extends BaseTest {
         Assertions.assertTrue(cartContainer.getCartSubtotalText().getText().contains("225"));
         // Process Checkout
         cartContainer.clickElement(cartContainer.getCartCheckout());
-        shippingPage.setText(shippingPage.getCustomerEmailField(),fakeData.emailAddress);
+        shippingPage.setText(shippingPage.getCustomerEmailField(),fakeData.getEmailAddress());
         itemDetailsPage.pauseSeconds(2);
-        shippingPage.setText(shippingPage.getFirstNameField(),fakeData.firstname);
-        shippingPage.setText(shippingPage.getLastNameField(),fakeData.lastname);
+        shippingPage.setText(shippingPage.getFirstNameField(),fakeData.getFirstname());
+        shippingPage.setText(shippingPage.getLastNameField(),fakeData.getLastname());
         shippingPage.scrollToElement(shippingPage.getStreetAddressField());
-        shippingPage.setText(shippingPage.getStreetAddressField(),fakeData.streetAddress);
-        shippingPage.setText(shippingPage.getCityField(),fakeData.capital);
+        shippingPage.setText(shippingPage.getStreetAddressField(),fakeData.getStreetAddress());
+        shippingPage.setText(shippingPage.getCityField(),fakeData.getCapital());
         //California
         shippingPage.selectByValueElement(shippingPage.getStateProvinceDropdownSelector(), "12");
         itemDetailsPage.pauseSeconds(2);
 
-        shippingPage.setText(shippingPage.getPostcode(),fakeData.postcode);
+        shippingPage.setText(shippingPage.getPostcode(),fakeData.getPostcode());
         itemDetailsPage.pauseSeconds(2);
         shippingPage.scrollToElement(shippingPage.getCountryDropdownSelector());
         shippingPage.selectByValueElement(shippingPage.getCountryDropdownSelector(),"US");
         itemDetailsPage.pauseSeconds(2);
-        shippingPage.setText(shippingPage.getPhoneNumber(), fakeData.phoneNumber);
+        shippingPage.setText(shippingPage.getPhoneNumber(), fakeData.getPhoneNumber());
         shippingPage.clickElement(shippingPage.getRadioButtonBestWay());
         shippingPage.clickElement(shippingPage.getNextButton());
         shippingPage.pauseSeconds(3);
-        Assertions.assertTrue(paymentsPage.getBillingAddress().getText().contains(fakeData.firstname));
-        Assertions.assertTrue(paymentsPage.getBillingAddress().getText().contains(fakeData.lastname));
-        Assertions.assertTrue(paymentsPage.getBillingAddress().getText().contains(fakeData.streetAddress));
-        Assertions.assertTrue(paymentsPage.getBillingAddress().getText().contains(fakeData.capital));
-        Assertions.assertTrue(paymentsPage.getBillingAddress().getText().contains(fakeData.phoneNumber));
+        Assertions.assertTrue(paymentsPage.getBillingAddress().getText().contains(fakeData.getFirstname()));
+        Assertions.assertTrue(paymentsPage.getBillingAddress().getText().contains(fakeData.getLastname()));
+        Assertions.assertTrue(paymentsPage.getBillingAddress().getText().contains(fakeData.getStreetAddress()));
+        Assertions.assertTrue(paymentsPage.getBillingAddress().getText().contains(fakeData.getCapital()));
+        Assertions.assertTrue(paymentsPage.getBillingAddress().getText().contains(fakeData.getPhoneNumber()));
         paymentsPage.clickElement(paymentsPage.getPlaceOrderButton());
         shippingPage.pauseSeconds(5);
         shippingPage.waitToBeVisible(paymentsPage.getOrderNumber(),5);

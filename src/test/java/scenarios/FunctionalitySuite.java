@@ -1,5 +1,6 @@
 package scenarios;
 
+import constants.UrlConstants;
 import itemsUtils.ItemsListPage;
 import base.BaseTest;
 import constants.MessageConstants;
@@ -96,7 +97,7 @@ public class FunctionalitySuite extends BaseTest{
         globalPage = new GlobalPage(driver);
         fakeData = new FakeData();
         globalPage.scrollToElement(globalPage.getNewsLetterField());
-        globalPage.setText(globalPage.getNewsLetterField(), fakeData.emailAddress);
+        globalPage.setText(globalPage.getNewsLetterField(), fakeData.getEmailAddress());
         globalPage.clickElement(globalPage.getSubscribeButton());
         globalPage.pauseSeconds(1);
         globalPage.waitToBeVisible(globalPage.getMessageSubscription(), 3);
@@ -111,7 +112,7 @@ public class FunctionalitySuite extends BaseTest{
             while(globalPage.getMessageSubscription().getText().equals(MessageConstants.MESSAGE_ALREADY_SUBSCRIBED)){
                 trials +=1;
                 globalPage.scrollToElement(globalPage.getNewsLetterField());
-                globalPage.setText(globalPage.getNewsLetterField(), fakeData.emailAddress);
+                globalPage.setText(globalPage.getNewsLetterField(), fakeData.getEmailAddress());
                 globalPage.clickElement(globalPage.getSubscribeButton());
                 globalPage.pauseSeconds(1);
                 globalPage.waitToBeVisible(globalPage.getMessageSubscription(), 3);
@@ -211,6 +212,25 @@ public class FunctionalitySuite extends BaseTest{
         System.out.println(itemsView.getItemAmountMessage().getText());
         itemsPage.scrollToElement(itemsPage.getItemTen());
         Assertions.assertEquals("Augusta Pullover Jacket",itemsPage.getItemTen().getText());
+    }
+    @Test
+    @Order(8)
+    @DisplayName("TC-8.  ")
+    void verifyFooterLinks(){
+        globalPage = new GlobalPage(driver);
+        globalPage.scrollEndPage();
+        String headerAboutUs = "About us";
+        String hostedBy = "This site is hosted by";
+
+        globalPage.getFooterLinks(globalPage.getItemFromUnorderedList(globalPage.getFooterLinks(), "About us"));
+
+        System.out.println(globalPage.getFooterLinks().getText());
+        globalPage.waitForVisibilityOf(headerAboutUs,5);
+        globalPage.waitForVisibilityOf(hostedBy,5);
+
+        Assertions.assertTrue(driver.getCurrentUrl().contains(UrlConstants.ABOUT_US_URL));
+        Assertions.assertTrue(globalPage.getAboutUsPageText().getText().contains(headerAboutUs));
+        Assertions.assertTrue(globalPage.getAboutUsPageText().getText().contains(hostedBy));
     }
 
 
