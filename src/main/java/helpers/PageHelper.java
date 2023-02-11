@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 public class PageHelper extends DriverHelper {
     WebDriver driver;
+
     public PageHelper(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -17,6 +18,7 @@ public class PageHelper extends DriverHelper {
     public void clickElement(WebElement element){
         waitToBeVisible(element,5);
         waitToBeClickable(element,5);
+        highLightElement(element);
         element.click();
     }
     public void pauseSeconds(Integer seconds) {
@@ -31,8 +33,8 @@ public class PageHelper extends DriverHelper {
         element.sendKeys(Keys.ENTER);
     }
     public void setText(WebElement element, String message){
-        waitToBeVisible(element,5);
-        element.click();
+        waitToBeVisible(element,10);
+        highLightElement(element);
         element.clear();
         element.sendKeys(message);
     }

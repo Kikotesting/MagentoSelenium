@@ -9,13 +9,13 @@ import reports.WatcherTest;
 import base.BaseTest;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
-import pages.GlobalPage;
+import utils.GlobalElements;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ExtendWith(WatcherTest.class)
 public class AccountSuite extends BaseTest {
 
-    GlobalPage globalPage;
+    GlobalElements globalElements;
     CreateAccountPage createAccountPage;
     AccountPage accountPage;
     @Test
@@ -23,11 +23,11 @@ public class AccountSuite extends BaseTest {
     @DisplayName("TC-1. Verify the password Strength and Requirements")
     void verifyPasswordStrengthRequirements(){
         // Object instances
-        globalPage = new GlobalPage(driver);
+        globalElements = new GlobalElements(driver);
         createAccountPage = new CreateAccountPage(driver);
         accountPage = new AccountPage(driver);
         // Go to create account page
-        globalPage.clickElement(globalPage.getCreateAccountTextButton());
+        globalElements.clickElement(globalElements.getCreateAccountTextButton());
         // Check URL of create account page and page-header
         Assertions.assertTrue(driver.getCurrentUrl().contains(UrlConstants.CREATE_ACCOUNT_URL));
         // Scrolling
@@ -41,7 +41,8 @@ public class AccountSuite extends BaseTest {
         Assertions.assertTrue(createAccountPage.getPasswordStrength().getText().contains(CreateAccountConstants.PASSWORD_NO));
         // One char
         createAccountPage.setWeakPasswordOneChar();
-        createAccountPage.waitForTextUpdated(createAccountPage.getPasswordStrength(),5,CreateAccountConstants.PASSWORD_WEAK);
+        createAccountPage.pauseSeconds(2);
+        createAccountPage.waitForTextUpdated(createAccountPage.getPasswordStrength(),10,CreateAccountConstants.PASSWORD_WEAK);
         Assertions.assertTrue(createAccountPage.getPasswordStrength().getText().contains(CreateAccountConstants.PASSWORD_WEAK));
         Assertions.assertTrue(createAccountPage.getPasswordRequired().getText().contains(CreateAccountConstants.MIN_LENGTH_EIGHT_SYMBOLS_REQUIRED));
         // Three characters lower
@@ -73,11 +74,11 @@ public class AccountSuite extends BaseTest {
     @DisplayName("TC-2. Cannot create account with empty Firstname or Lastname fields in Personal section")
     void cannotCreateAccountWithEmptyFieldsInPersonalInformationSection() {
         // Object instances
-        globalPage = new GlobalPage(driver);
+        globalElements = new GlobalElements(driver);
         createAccountPage = new CreateAccountPage(driver);
         accountPage = new AccountPage(driver);
 
-        globalPage.clickElement(globalPage.getCreateAccountTextButton());
+        globalElements.clickElement(globalElements.getCreateAccountTextButton());
         // Check URL of create account page and page-header
         Assertions.assertTrue(driver.getCurrentUrl().contains(UrlConstants.CREATE_ACCOUNT_URL));
         Assertions.assertTrue(createAccountPage.getCreateAccountHeaderText().getText()
@@ -114,11 +115,11 @@ public class AccountSuite extends BaseTest {
     @DisplayName("TC-3. Cannot create account with empty Email address or Password fields in Sign-in section")
     void cannotCreateAccountWithEmptyFieldsInSignInSection() {
         // Object instances
-        globalPage = new GlobalPage(driver);
+        globalElements = new GlobalElements(driver);
         createAccountPage = new CreateAccountPage(driver);
         accountPage = new AccountPage(driver);
 
-        globalPage.clickElement(globalPage.getCreateAccountTextButton());
+        globalElements.clickElement(globalElements.getCreateAccountTextButton());
         // Check URL of create account page and page-header
         Assertions.assertTrue(driver.getCurrentUrl().contains(UrlConstants.CREATE_ACCOUNT_URL));
         // Personal section is populated correctly
@@ -156,11 +157,11 @@ public class AccountSuite extends BaseTest {
     @DisplayName("TC-4. Create a new account")
     void userCanCreateNewAccount() {
         // Object instances
-        globalPage = new GlobalPage(driver);
+        globalElements = new GlobalElements(driver);
         createAccountPage = new CreateAccountPage(driver);
         accountPage = new AccountPage(driver);
 
-        globalPage.clickElement(globalPage.getCreateAccountTextButton());
+        globalElements.clickElement(globalElements.getCreateAccountTextButton());
         // Check URL of create account page and page-header
         Assertions.assertTrue(driver.getCurrentUrl().contains(UrlConstants.CREATE_ACCOUNT_URL));
         Assertions.assertTrue(createAccountPage.getCreateAccountHeaderText().getText()

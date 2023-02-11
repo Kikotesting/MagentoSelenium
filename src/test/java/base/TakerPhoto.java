@@ -1,4 +1,4 @@
-package reports;
+package base;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -12,14 +12,19 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class TakerPhoto {
-    private final WebDriver driver;
+    public WebDriver driver;
 
     public TakerPhoto(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver, this);
     }
-    private static final String SCREENSHOTS_DIR = "resources/screenshots";
 
+    String newNameOfPhoto = "";
+
+    public String getNewNameOfPhoto() {
+        return newNameOfPhoto;
+    }
+
+    private static final String SCREENSHOTS_DIR = "resources/screenshots";
     // Take a photo and save to the right source
     public void takeScreenshot(){
         // Driver for screenshot
@@ -30,7 +35,8 @@ public class TakerPhoto {
         String timestamp = new SimpleDateFormat("kk-mm-ss-dd_MM_yy").format(new Date());
 
         // Rename the photo
-        String img = "-"+ timestamp + ".png";
+        String  img = "-"+ timestamp + ".png";
+        newNameOfPhoto = img;
 
         // Add timestamp to the photo
         String fullImagePath = SCREENSHOTS_DIR + img;
@@ -38,7 +44,6 @@ public class TakerPhoto {
         // Move the file from temp to the project folder
         try {
             FileUtils.copyFile(screenshot, new File(fullImagePath));
-            System.out.println("Screenshot taken: " + screenshot.getName());
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -5,7 +5,7 @@ import base.BaseTest;
 import constants.MessageConstants;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
-import pages.GlobalPage;
+import utils.GlobalElements;
 import pages.LoginPage;
 import reports.WatcherTest;
 import utils.CartContainer;
@@ -17,17 +17,17 @@ public class CartContainerSuite extends BaseTest {
 
     LoginPage loginPage;
     CartContainer cartContainer;
-    GlobalPage globalPage;
+    GlobalElements globalElements;
     ItemsSearchPage itemsSearchPage;
     ItemDetailsPage itemDetailsPage;
     @Test
     @Order(1)
     @DisplayName("TC-1. Check Cart container which is empty without added product")
     void verifyEmptyCartContainer(){
-        globalPage = new GlobalPage(driver);
+        globalElements = new GlobalElements(driver);
         loginPage = new LoginPage(driver);
         cartContainer = new CartContainer(driver);
-        globalPage.clickElement(globalPage.getSignInTextButton());
+        globalElements.clickElement(globalElements.getSignInTextButton());
         loginPage.defaultLogin();
         cartContainer.clickElement(cartContainer.getCartContainerButton());
         cartContainer.waitToBeVisible(cartContainer.getEmptyCartMessage(), 5);
@@ -38,16 +38,15 @@ public class CartContainerSuite extends BaseTest {
     @Order(2)
     @DisplayName("TC-2. Add item to the Cart container")
     void addItemToCartContainer(){
-        globalPage = new GlobalPage(driver);
+        globalElements = new GlobalElements(driver);
         cartContainer = new CartContainer(driver);
         itemsSearchPage = new ItemsSearchPage(driver);
         itemDetailsPage = new ItemDetailsPage(driver);
         // Typing women jackets
-        globalPage.setText(globalPage.getSearchInputField(), "Women Jackets");
-        globalPage.pressEnter(globalPage.getSearchInputField());
+        globalElements.setText(globalElements.getSearchInputField(), "Women Jackets");
+        globalElements.pressEnter(globalElements.getSearchInputField());
         // Scroll to the found elements and click on first one
         itemsSearchPage.scrollToElement(itemsSearchPage.getItemOne());
-        highLightElement(driver,itemsSearchPage.getItemOne());
         itemsSearchPage.hoverElement(itemsSearchPage.getItemOne());
         itemsSearchPage.pauseSeconds(2);
         String itemOne = "Jade Yoga Jacket";
@@ -75,19 +74,18 @@ public class CartContainerSuite extends BaseTest {
     @Order(3)
     @DisplayName("TC-3. Delete item from Cart container")
     void deleteItemFromCartContainer(){
-        globalPage = new GlobalPage(driver);
+        globalElements = new GlobalElements(driver);
         cartContainer = new CartContainer(driver);
         itemsSearchPage = new ItemsSearchPage(driver);
         itemDetailsPage = new ItemDetailsPage(driver);
 
         // Typing women jackets
-        globalPage.setText(globalPage.getSearchInputField(), "women wear");
-        globalPage.pressEnter(globalPage.getSearchInputField());
+        globalElements.setText(globalElements.getSearchInputField(), "women wear");
+        globalElements.pressEnter(globalElements.getSearchInputField());
 
         // Add item number two
         itemsSearchPage.waitToBeVisible(itemsSearchPage.getItemTwo(),5);
         itemsSearchPage.scrollToElement(itemsSearchPage.getItemTwo());
-        highLightElement(driver,itemsSearchPage.getItemTwo());
         itemsSearchPage.hoverElement(itemsSearchPage.getItemTwo());
         itemsSearchPage.pauseSeconds(1);
         itemDetailsPage.clickElement(itemDetailsPage.getSizeXS());
@@ -118,18 +116,17 @@ public class CartContainerSuite extends BaseTest {
     @Order(4)
     @DisplayName("TC-4. Add more than one item to the Cart container")
     void addMoreItemsToCartContainer(){
-        globalPage = new GlobalPage(driver);
+        globalElements = new GlobalElements(driver);
         cartContainer = new CartContainer(driver);
         itemsSearchPage = new ItemsSearchPage(driver);
         itemDetailsPage = new ItemDetailsPage(driver);
 
         // Search for first product
-        globalPage.setText(globalPage.getSearchInputField(), "man");
-        globalPage.pressEnter(globalPage.getSearchInputField());
+        globalElements.setText(globalElements.getSearchInputField(), "man");
+        globalElements.pressEnter(globalElements.getSearchInputField());
 
         // Add first item Rionna
         String itemRionna = itemsSearchPage.getItemOne().getText();
-        highLightElement(driver,itemsSearchPage.getItemOne());
         itemsSearchPage.hoverElement(itemsSearchPage.getItemOne());
         itemsSearchPage.pauseSeconds(1);
         itemDetailsPage.clickElement(itemDetailsPage.getSizeXS());
@@ -144,11 +141,10 @@ public class CartContainerSuite extends BaseTest {
         Assertions.assertTrue(itemsSearchPage.getMessageForAddingItemToCartContainer().getText().contains("You added "+itemRionna+" to your shopping cart."));
 
         // Search for second product
-        globalPage.setText(globalPage.getSearchInputField(), "josie");
-        globalPage.pressEnter(globalPage.getSearchInputField());
+        globalElements.setText(globalElements.getSearchInputField(), "josie");
+        globalElements.pressEnter(globalElements.getSearchInputField());
         // Add second item Josie
         String itemJosie = itemsSearchPage.getItemOne().getText();
-        highLightElement(driver,itemsSearchPage.getItemOne());
         itemsSearchPage.hoverElement(itemsSearchPage.getItemOne());
         itemsSearchPage.pauseSeconds(1);
         itemDetailsPage.clickElement(itemDetailsPage.getSizeXS());

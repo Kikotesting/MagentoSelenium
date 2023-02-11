@@ -8,7 +8,7 @@ import itemsUtils.ItemsListPage;
 import itemsUtils.ItemsSearchPage;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
-import pages.GlobalPage;
+import utils.GlobalElements;
 import pages.PaymentsPage;
 import pages.ShippingPage;
 import reports.WatcherTest;
@@ -17,7 +17,7 @@ import utils.CartContainer;
 @ExtendWith(WatcherTest.class)
 public class PurchaseSuite extends BaseTest {
 
-    GlobalPage globalPage;
+    GlobalElements globalElements;
     CartContainer cartContainer;
     ItemDetailsPage itemDetailsPage;
     ItemsSearchPage itemsSearchPage;
@@ -29,7 +29,7 @@ public class PurchaseSuite extends BaseTest {
     @Order(1)
     @DisplayName("TC-1. User can purchase product and proceed to checkout")
     void userCanPurchaseProductAndProceedToCheckout(){
-        globalPage = new GlobalPage(driver);
+        globalElements = new GlobalElements(driver);
         cartContainer = new CartContainer(driver);
         itemsSearchPage = new ItemsSearchPage(driver);
         itemDetailsPage = new ItemDetailsPage(driver);
@@ -39,9 +39,9 @@ public class PurchaseSuite extends BaseTest {
         paymentsPage = new PaymentsPage(driver);
 
         // Navigate to Gear-> Bags
-        globalPage.hoverElement(globalPage.getMenuGear());
-        globalPage.waitToBeVisible(globalPage.getMenuGearBags(),5);
-        globalPage.hoverElementClick(globalPage.getMenuGearBags());
+        globalElements.hoverElement(globalElements.getMenuGear());
+        globalElements.waitToBeVisible(globalElements.getMenuGearBags(),5);
+        globalElements.hoverElementClick(globalElements.getMenuGearBags());
 
         // Click on first item
         itemsListPage.clickElement(itemsListPage.getItemOne());
@@ -71,7 +71,7 @@ public class PurchaseSuite extends BaseTest {
         // Process Checkout
         cartContainer.clickElement(cartContainer.getCartCheckout());
         shippingPage.setText(shippingPage.getCustomerEmailField(),fakeData.getEmailAddress());
-        itemDetailsPage.pauseSeconds(2);
+        itemDetailsPage.pauseSeconds(5);
         shippingPage.setText(shippingPage.getFirstNameField(),fakeData.getFirstname());
         shippingPage.setText(shippingPage.getLastNameField(),fakeData.getLastname());
         shippingPage.scrollToElement(shippingPage.getStreetAddressField());

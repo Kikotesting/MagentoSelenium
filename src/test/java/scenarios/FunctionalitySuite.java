@@ -11,14 +11,14 @@ import pages.AboutUsPage;
 import pages.CustomerServicePage;
 import reports.WatcherTest;
 import faker.FakeData;
-import pages.GlobalPage;
+import utils.GlobalElements;
 import itemsUtils.ItemsView;
 import itemsUtils.ItemDetailsPage;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ExtendWith(WatcherTest.class)
 public class FunctionalitySuite extends BaseTest{
-    GlobalPage globalPage;
+    GlobalElements globalElements;
     FakeData fakeData;
     ItemsListPage itemsPage;
     ItemsView itemsView;
@@ -32,16 +32,15 @@ public class FunctionalitySuite extends BaseTest{
     @Order(1)
     void searchItemsWithValidDataByColor(){
         //Initialize objects from classes
-        globalPage = new GlobalPage(driver);
+        globalElements = new GlobalElements(driver);
         itemDetailsPage = new ItemDetailsPage(driver);
         itemsSearchPage = new ItemsSearchPage(driver);
 
         // Typing valid data in the search input bar
-        globalPage.setText(globalPage.getSearchInputField(), "Blue");
-        globalPage.pressEnter(globalPage.getSearchInputField());
+        globalElements.setText(globalElements.getSearchInputField(), "Blue");
+        globalElements.pressEnter(globalElements.getSearchInputField());
         // Scroll to the found elements and check if its exists and color blue options is displayed
         itemsSearchPage.scrollToElement(itemsSearchPage.getItemOne());
-        highLightElement(driver,itemsSearchPage.getItemOne());
         itemsSearchPage.hoverElement(itemsSearchPage.getItemOne());
         itemsSearchPage.pauseSeconds(2);
         String itemNameChloe = "Chloe Compete Tank";
@@ -49,7 +48,6 @@ public class FunctionalitySuite extends BaseTest{
         itemDetailsPage.getColorBlue().click();
         Assertions.assertTrue(itemDetailsPage.getColorBlue().isDisplayed());
         itemsSearchPage.scrollToElement(itemsSearchPage.getItemThree());
-        highLightElement(driver,itemsSearchPage.getItemThree());
         itemsSearchPage.hoverElement(itemsSearchPage.getItemThree());
         itemsSearchPage.pauseSeconds(2);
         String itemNameBella = "Bella Tank";
@@ -62,29 +60,29 @@ public class FunctionalitySuite extends BaseTest{
     @Order(2)
     void searchItemsWithInvalidData(){
         //Initialize objects from classes
-        globalPage = new GlobalPage(driver);
+        globalElements = new GlobalElements(driver);
         itemsView = new ItemsView(driver);
         // Typing valid data in the search input bar
-        globalPage.setText(globalPage.getSearchInputField(), "jhsddhjgh");
-        globalPage.pressEnter(globalPage.getSearchInputField());
-        globalPage.waitToBeVisible(itemsView.getNoResults(), 3);
+        globalElements.setText(globalElements.getSearchInputField(), "jhsddhjgh");
+        globalElements.pressEnter(globalElements.getSearchInputField());
+        globalElements.waitToBeVisible(itemsView.getNoResults(), 3);
         Assertions.assertEquals(MessageConstants.MESSAGE_NO_RESULT,itemsView.getNoResults().getText());
     }
     @Test
     @DisplayName("TC-3. Get correct URL from each page")
     @Order(3)
     void getUrlFromDifferentPages(){
-        globalPage = new GlobalPage(driver);
+        globalElements = new GlobalElements(driver);
         itemsPage = new ItemsListPage(driver);
 
         String baseUrl = "https://magento.softwaretestingboard.com/";
         Assertions.assertEquals(baseUrl,driver.getCurrentUrl());
         String menuWomenUrl = "https://magento.softwaretestingboard.com/women.html";
-        globalPage.clickElement(globalPage.getMenuWomen());
+        globalElements.clickElement(globalElements.getMenuWomen());
         Assertions.assertEquals(menuWomenUrl,driver.getCurrentUrl());
-        globalPage.hoverElement(globalPage.getMenuWomen());
-        globalPage.waitToBeVisible(globalPage.getMenuWomenTops(), 5);
-        globalPage.hoverElementClick(globalPage.getMenuWomenTops());
+        globalElements.hoverElement(globalElements.getMenuWomen());
+        globalElements.waitToBeVisible(globalElements.getMenuWomenTops(), 5);
+        globalElements.hoverElementClick(globalElements.getMenuWomenTops());
         String menuWomenTopsUrl = "https://magento.softwaretestingboard.com/women/tops-women.html";
         Assertions.assertEquals(menuWomenTopsUrl,driver.getCurrentUrl());
 
@@ -98,50 +96,47 @@ public class FunctionalitySuite extends BaseTest{
     @DisplayName("TC-4. Subscribe to a newsletter for the first time")
     @Order(4)
     void subscribesNewsletterForFirstTime(){
-        globalPage = new GlobalPage(driver);
+        globalElements = new GlobalElements(driver);
         fakeData = new FakeData();
-        globalPage.scrollToElement(globalPage.getNewsLetterField());
-        globalPage.setText(globalPage.getNewsLetterField(), fakeData.getEmailAddress());
-        globalPage.clickElement(globalPage.getSubscribeButton());
-        globalPage.pauseSeconds(1);
-        globalPage.waitToBeVisible(globalPage.getMessageSubscription(), 3);
-        highLightElement(driver,globalPage.getMessageSubscription());
+        globalElements.scrollToElement(globalElements.getNewsLetterField());
+        globalElements.setText(globalElements.getNewsLetterField(), fakeData.getEmailAddress());
+        globalElements.clickElement(globalElements.getSubscribeButton());
+        globalElements.pauseSeconds(1);
+        globalElements.waitToBeVisible(globalElements.getMessageSubscription(), 3);
         int trials = 0;
-        if(globalPage.getMessageSubscription().getText().equals(MessageConstants.MESSAGE_FOR_SUBSCRIBE)){
-            Assertions.assertEquals(MessageConstants.MESSAGE_FOR_SUBSCRIBE, globalPage.getMessageSubscription().getText());
-        } else if (globalPage.getMessageSubscription().getText().equals(MessageConstants.MESSAGE_INVALID_SUBSCRIBE)) {
-            Assertions.assertEquals(MessageConstants.MESSAGE_INVALID_SUBSCRIBE,globalPage.getMessageSubscription().getText());
+        if(globalElements.getMessageSubscription().getText().equals(MessageConstants.MESSAGE_FOR_SUBSCRIBE)){
+            Assertions.assertEquals(MessageConstants.MESSAGE_FOR_SUBSCRIBE, globalElements.getMessageSubscription().getText());
+        } else if (globalElements.getMessageSubscription().getText().equals(MessageConstants.MESSAGE_INVALID_SUBSCRIBE)) {
+            Assertions.assertEquals(MessageConstants.MESSAGE_INVALID_SUBSCRIBE, globalElements.getMessageSubscription().getText());
             System.out.println("Form Invalid key message!");
         } else {
-            while(globalPage.getMessageSubscription().getText().equals(MessageConstants.MESSAGE_ALREADY_SUBSCRIBED)){
+            while(globalElements.getMessageSubscription().getText().equals(MessageConstants.MESSAGE_ALREADY_SUBSCRIBED)){
                 trials +=1;
-                globalPage.scrollToElement(globalPage.getNewsLetterField());
-                globalPage.setText(globalPage.getNewsLetterField(), fakeData.getEmailAddress());
-                globalPage.clickElement(globalPage.getSubscribeButton());
-                globalPage.pauseSeconds(1);
-                globalPage.waitToBeVisible(globalPage.getMessageSubscription(), 3);
-                highLightElement(driver,globalPage.getMessageSubscription());
+                globalElements.scrollToElement(globalElements.getNewsLetterField());
+                globalElements.setText(globalElements.getNewsLetterField(), fakeData.getEmailAddress());
+                globalElements.clickElement(globalElements.getSubscribeButton());
+                globalElements.pauseSeconds(1);
+                globalElements.waitToBeVisible(globalElements.getMessageSubscription(), 3);
             }
             System.out.println("Trials for unique emails: " + trials);
-            Assertions.assertEquals(MessageConstants.MESSAGE_FOR_SUBSCRIBE,globalPage.getMessageSubscription().getText());
+            Assertions.assertEquals(MessageConstants.MESSAGE_FOR_SUBSCRIBE, globalElements.getMessageSubscription().getText());
         }
     }
     @Test
     @DisplayName("TC-5. Subscribe to a newsletter with a user who has already subscribed")
     @Order(5)
     void subscribesForNewsletterWithAlreadySubscribedEmail(){
-        globalPage = new GlobalPage(driver);
-        globalPage.scrollToElement(globalPage.getNewsLetterField());
-        globalPage.setText(globalPage.getNewsLetterField(), "mislead4@mail.bg");
-        globalPage.clickElement(globalPage.getSubscribeButton());
-        globalPage.pauseSeconds(1);
-        globalPage.waitToBeVisible(globalPage.getMessageSubscription(), 3);
-        highLightElement(driver,globalPage.getMessageSubscription());
-        if (globalPage.getMessageSubscription().getText().equals(MessageConstants.MESSAGE_ALREADY_SUBSCRIBED)) {
-            Assertions.assertEquals(MessageConstants.MESSAGE_ALREADY_SUBSCRIBED,globalPage.getMessageSubscription().getText());
+        globalElements = new GlobalElements(driver);
+        globalElements.scrollToElement(globalElements.getNewsLetterField());
+        globalElements.setText(globalElements.getNewsLetterField(), "mislead4@mail.bg");
+        globalElements.clickElement(globalElements.getSubscribeButton());
+        globalElements.pauseSeconds(1);
+        globalElements.waitToBeVisible(globalElements.getMessageSubscription(), 3);
+        if (globalElements.getMessageSubscription().getText().equals(MessageConstants.MESSAGE_ALREADY_SUBSCRIBED)) {
+            Assertions.assertEquals(MessageConstants.MESSAGE_ALREADY_SUBSCRIBED, globalElements.getMessageSubscription().getText());
             System.out.println("Correct message!");
         } else {
-            Assertions.assertEquals(MessageConstants.MESSAGE_INVALID_SUBSCRIBE,globalPage.getMessageSubscription().getText());
+            Assertions.assertEquals(MessageConstants.MESSAGE_INVALID_SUBSCRIBE, globalElements.getMessageSubscription().getText());
             System.out.println("Form Invalid key message!");
         }
     }
@@ -149,13 +144,13 @@ public class FunctionalitySuite extends BaseTest{
     @Order(6)
     @DisplayName("TC-6. Sort Items by value and change order directions")
     void sortItemsByValueAndChangeOrderDirection(){
-        globalPage = new GlobalPage(driver);
+        globalElements = new GlobalElements(driver);
         itemsPage = new ItemsListPage(driver);
         itemsView = new ItemsView(driver);
 
-        globalPage.hoverElement(globalPage.getMenuWomen());
-        globalPage.waitToBeVisible(globalPage.getMenuWomenTops(), 3);
-        globalPage.hoverElementClick(globalPage.getMenuWomenTops());
+        globalElements.hoverElement(globalElements.getMenuWomen());
+        globalElements.waitToBeVisible(globalElements.getMenuWomenTops(), 3);
+        globalElements.hoverElementClick(globalElements.getMenuWomenTops());
 
         // Default sorting is by Position
         itemsView.scrollToElement(itemsView.getItemAmountMessage());
@@ -188,15 +183,15 @@ public class FunctionalitySuite extends BaseTest{
     @Order(7)
     @DisplayName("TC-7. Change items view from List to Grid ")
     void changeItemsViewToFromGridToList(){
-        globalPage = new GlobalPage(driver);
+        globalElements = new GlobalElements(driver);
         itemsPage = new ItemsListPage(driver);
         itemsView = new ItemsView(driver);
 
-        globalPage.hoverElement(globalPage.getMenuWomen());
-        globalPage.waitToBeVisible(globalPage.getMenuWomenTops(), 3);
-        globalPage.hoverElement(globalPage.getMenuWomenTops());
-        globalPage.waitToBeVisible(globalPage.getMenuWomenTopsJackets(), 3);
-        globalPage.hoverElementClick(globalPage.getMenuWomenTopsJackets());
+        globalElements.hoverElement(globalElements.getMenuWomen());
+        globalElements.waitToBeVisible(globalElements.getMenuWomenTops(), 3);
+        globalElements.hoverElement(globalElements.getMenuWomenTops());
+        globalElements.waitToBeVisible(globalElements.getMenuWomenTopsJackets(), 3);
+        globalElements.hoverElementClick(globalElements.getMenuWomenTopsJackets());
 
         // Check for amount of items on page ( by default is Grid )
         itemsView.scrollToElement(itemsView.getItemAmountMessage());
@@ -221,39 +216,44 @@ public class FunctionalitySuite extends BaseTest{
     @Order(8)
     @DisplayName("TC-8. Verify Footer links")
     void verifyFooterLinks(){
-        globalPage = new GlobalPage(driver);
+        globalElements = new GlobalElements(driver);
         aboutUsPage = new AboutUsPage(driver);
         customerServicePage = new CustomerServicePage(driver);
 
         // Scroll to the end
-        globalPage.scrollEndPage();
+        globalElements.scrollEndPage();
 
         // About us link and information
         String aboutUsHeading = "About us";
         String hostedByParagraph = "This site is hosted by";
         String coursesParagraph = "Bundle Course (100x value)";
-        globalPage.clickElement(globalPage.getFooterAboutUsLink());
+        globalElements.clickElement(globalElements.getFooterAboutUsLink());
         Assertions.assertTrue(driver.getCurrentUrl().contains(UrlConstants.ABOUT_US_URL));
         aboutUsPage.pauseSeconds(2);
+        aboutUsPage.highLightElement(aboutUsPage.getAboutUsHeader());
         Assertions.assertTrue(aboutUsPage.getAboutUsHeader().getText().contains(aboutUsHeading));
+        aboutUsPage.highLightElement(aboutUsPage.getAboutUsHostedBy());
         Assertions.assertTrue(aboutUsPage.getAboutUsHostedBy().getText().contains(hostedByParagraph));
+        aboutUsPage.highLightElement(aboutUsPage.getAboutUsCourse());
         Assertions.assertTrue(aboutUsPage.getAboutUsCourse().getText().contains(coursesParagraph));
-
+        aboutUsPage.pauseSeconds(2);
         driver.navigate().back();
-
         // Customer service link
         String customerServiceHeading = "Customer Service";
         String shippingHeading = "Shipping and Delivery";
         String returnsHeading = "Returns and Replacements";
-        globalPage.scrollEndPage();
-        globalPage.clickElement(globalPage.getFooterCustomerServiceLink());
+        globalElements.scrollEndPage();
+        globalElements.clickElement(globalElements.getFooterCustomerServiceLink());
         Assertions.assertTrue(driver.getCurrentUrl().contains(UrlConstants.CUSTOMER_SERVICE_URL));
         aboutUsPage.pauseSeconds(2);
+        customerServicePage.highLightElement(customerServicePage.getCustomerServiceHeaderInfo());
         Assertions.assertTrue(customerServicePage.getCustomerServiceHeaderInfo().getText().contains(customerServiceHeading));
-        customerServicePage.scrollToElement(customerServicePage.getCustomerServiceShippingInfo());
+        customerServicePage.highLightElement(customerServicePage.getCustomerServiceShippingInfo());
         Assertions.assertTrue(customerServicePage.getCustomerServiceShippingInfo().getText().contains(shippingHeading));
         customerServicePage.scrollToElement(customerServicePage.getCustomerServiceReturnsInfo());
+        customerServicePage.highLightElement(customerServicePage.getCustomerServiceReturnsInfo());
         Assertions.assertTrue(customerServicePage.getCustomerServiceReturnsInfo().getText().contains(returnsHeading));
+
     }
 
 

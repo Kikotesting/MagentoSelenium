@@ -19,8 +19,10 @@ public class DriverHelper {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-
-
+    public void highLightElement(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].setAttribute('style', 'background: gray; border: 2px solid red;');", element);
+    }
     //HOVERING
     public void hoverElement(WebElement element) {
         Actions action = new Actions(driver);
@@ -28,6 +30,7 @@ public class DriverHelper {
     }
     public void hoverElementClick(WebElement element) {
         Actions action = new Actions(driver);
+        highLightElement(element);
         action.moveToElement(element).click().perform();
     }
 
@@ -41,11 +44,13 @@ public class DriverHelper {
         final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
         wait.pollingEvery(Duration.ofSeconds(1));
         // wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(element)));
+        highLightElement(element);
         wait.until(ExpectedConditions.textToBePresentInElement(element,text));
     }
     public void waitToBeInvisible(WebElement element, int seconds) {
         final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
         wait.pollingEvery(Duration.ofMillis(1000));
+        highLightElement(element);
         wait.until(ExpectedConditions.refreshed(ExpectedConditions.invisibilityOf(element)));
     }
     public void waitToBeClickable(WebElement element, int timeOutInSeconds) {
@@ -54,6 +59,7 @@ public class DriverHelper {
         wait.until(ExpectedConditions.refreshed(
                 ExpectedConditions.elementToBeClickable(element))
         );
+        highLightElement(element);
     }
     public void waitForInvisibilityOfTextInDom(String text, int timeOutInSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOutInSeconds));
@@ -89,13 +95,16 @@ public class DriverHelper {
         return new Select(element);
     }
     public void selectByVisibleTextElement(WebElement element, String valueText) {
+        highLightElement(element);
         element.click();
         selectElement(element).selectByVisibleText(valueText);
     }
     public void selectByValueElement(WebElement element, String value) {
+        highLightElement(element);
         selectElement(element).selectByValue(value);
     }
     public void selectByIndexElement(WebElement element, int index) {
+        highLightElement(element);
         selectElement(element).selectByIndex(index);
     }
 
@@ -103,6 +112,7 @@ public class DriverHelper {
     public void scrollToElement(WebElement element) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView();", element);
+        highLightElement(element);
     }
     public void scrollToPixels(int pixels) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
