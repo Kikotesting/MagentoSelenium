@@ -261,7 +261,7 @@ public class FunctionalityTests extends BaseTest{
     @Test
     @Order(9)
     @DisplayName("TC-9. Set shopping options")
-    void setShoppingOptionsAndPurchaseProduct(){
+    void setShoppingOptions(){
         globalElements = new GlobalElements(driver);
         itemsView = new ItemsView(driver);
         shoppingOptions = new ShoppingOptions(driver);
@@ -290,6 +290,25 @@ public class FunctionalityTests extends BaseTest{
         shoppingOptions.clickElement(shoppingOptions.getClearAllButton());
         shoppingOptions.waitToBeVisible(itemsView.getItemViewAmountText(),10);
         Assertions.assertTrue(itemsView.getItemViewAmountText().getText().contains("Items 1-12 of 50"));
+
+    }
+
+    @Test
+    @Order(10)
+    @DisplayName("TC-10. Set shopping options advanced")
+    void setAdvancedShoppingOptions(){
+        globalElements = new GlobalElements(driver);
+        itemsView = new ItemsView(driver);
+        shoppingOptions = new ShoppingOptions(driver);
+
+        // Navigate to Women->Tops
+        globalElements.hoverElement(globalElements.getMenuWomen());
+        globalElements.waitToBeVisible(globalElements.getMenuWomenTops(), 3);
+        globalElements.hoverElementClick(globalElements.getMenuWomenTops());
+        // Assert for results and correct url
+        Assertions.assertTrue(itemsView.getItemViewAmountText().getText().contains("Items 1-12 of 50"));
+        Assertions.assertTrue(driver.getCurrentUrl().contains(UrlConstants.WOMEN_MENU_TOPS));
+
 
     }
 }
