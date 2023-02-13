@@ -12,8 +12,8 @@ public class ItemsView extends PageHelper {
         PageFactory.initElements(driver, this);
     }
 
-    public WebElement getItemAmountMessage() {
-        return itemAmountMessage;
+    public WebElement getItemViewAmountText() {
+        return itemViewAmountText;
     }
 
     public WebElement getGridView() {
@@ -49,7 +49,7 @@ public class ItemsView extends PageHelper {
     }
 
 
-    @FindBy(xpath = "//*[@id=\"toolbar-amount\"]") WebElement itemAmountMessage;
+    @FindBy(xpath = "//*[@id=\"toolbar-amount\"]") WebElement itemViewAmountText;
     @FindBy(xpath = "//*[@id=\"maincontent\"]/div[3]/div[1]/div[2]/div") WebElement noResults;
 
     @FindBy(xpath = "//*[@id=\"mode-grid\"]") WebElement gridView;

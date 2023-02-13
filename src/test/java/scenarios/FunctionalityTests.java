@@ -14,10 +14,11 @@ import faker.FakeData;
 import utils.GlobalElements;
 import itemsUtils.ItemsView;
 import itemsUtils.ItemDetailsPage;
+import utils.ShoppingOptions;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ExtendWith(WatcherTest.class)
-public class FunctionalitySuite extends BaseTest{
+public class FunctionalityTests extends BaseTest{
     GlobalElements globalElements;
     FakeData fakeData;
     ItemsListPage itemsPage;
@@ -26,6 +27,7 @@ public class FunctionalitySuite extends BaseTest{
     ItemsSearchPage itemsSearchPage;
     AboutUsPage aboutUsPage;
     CustomerServicePage customerServicePage;
+    ShoppingOptions  shoppingOptions;
 
     @Test
     @DisplayName("TC-1. Search items with valid data by color")
@@ -153,28 +155,28 @@ public class FunctionalitySuite extends BaseTest{
         globalElements.hoverElementClick(globalElements.getMenuWomenTops());
 
         // Default sorting is by Position
-        itemsView.scrollToElement(itemsView.getItemAmountMessage());
+        itemsView.scrollToElement(itemsView.getItemViewAmountText());
         Assertions.assertTrue(itemsPage.getItemOne().getText().contains("Breathe-Easy Tank"));
         System.out.println("1 default "+ itemsPage.getItemOne().getText());
 
         // Sort by product name
         itemsView.clickElement(itemsView.getSelectSortBy());
         itemsView.selectByValueElement(itemsView.getSelectSortBy(), "name");
-        itemsView.scrollToElement(itemsView.getItemAmountMessage());
+        itemsView.scrollToElement(itemsView.getItemViewAmountText());
         itemsPage.waitToBeVisible(itemsPage.getItemOne(), 5);
         Assertions.assertTrue(itemsPage.getItemOne().getText().contains("Adrienne Trek Jacket"));
         System.out.println("1 after sort "+ itemsPage.getItemOne().getText());
 
         // Set Descending order
         itemsView.clickElement(itemsView.getOrderFilter());
-        itemsView.scrollToElement(itemsView.getItemAmountMessage());
+        itemsView.scrollToElement(itemsView.getItemViewAmountText());
         itemsPage.waitToBeVisible(itemsPage.getItemOne(), 5);
         Assertions.assertTrue(itemsPage.getItemOne().getText().contains("Zoe Tank"));
         System.out.println("1 descending "+ itemsPage.getItemOne().getText());
 
         // Set Ascending order (revert the old one)
         itemsView.clickElement(itemsView.getOrderFilter());
-        itemsView.scrollToElement(itemsView.getItemAmountMessage());
+        itemsView.scrollToElement(itemsView.getItemViewAmountText());
         itemsPage.waitToBeVisible(itemsPage.getItemOne(), 5);
         Assertions.assertTrue(itemsPage.getItemOne().getText().contains("Adrienne Trek Jacket"));
         System.out.println("1 after revert "+ itemsPage.getItemOne().getText());
@@ -194,9 +196,9 @@ public class FunctionalitySuite extends BaseTest{
         globalElements.hoverElementClick(globalElements.getMenuWomenTopsJackets());
 
         // Check for amount of items on page ( by default is Grid )
-        itemsView.scrollToElement(itemsView.getItemAmountMessage());
-        System.out.println(itemsView.getItemAmountMessage().getText());
-        String defaultAmount = itemsView.getItemAmountMessage().getText();
+        itemsView.scrollToElement(itemsView.getItemViewAmountText());
+        System.out.println(itemsView.getItemViewAmountText().getText());
+        String defaultAmount = itemsView.getItemViewAmountText().getText();
         Assertions.assertEquals(defaultAmount,"12 Items");
         itemsPage.scrollToElement(itemsPage.getItemOne());
         Assertions.assertTrue(itemsPage.getItemOne().getText().contains("Olivia 1/4 Zip Light Jacket"));
@@ -206,9 +208,9 @@ public class FunctionalitySuite extends BaseTest{
         // Change view to List
         itemsView.clickElement(itemsView.getListView());
         itemsPage.scrollToElement(itemsPage.getItemOne());
-        String defaultListAmount = itemsView.getItemAmountMessage().getText();
+        String defaultListAmount = itemsView.getItemViewAmountText().getText();
         Assertions.assertTrue(defaultListAmount.contains("10"));
-        System.out.println(itemsView.getItemAmountMessage().getText());
+        System.out.println(itemsView.getItemViewAmountText().getText());
         itemsPage.scrollToElement(itemsPage.getItemTen());
         Assertions.assertEquals("Augusta Pullover Jacket",itemsPage.getItemTen().getText());
     }
@@ -256,5 +258,38 @@ public class FunctionalitySuite extends BaseTest{
 
     }
 
+    @Test
+    @Order(9)
+    @DisplayName("TC-9. Set shopping options")
+    void setShoppingOptionsAndPurchaseProduct(){
+        globalElements = new GlobalElements(driver);
+        itemsView = new ItemsView(driver);
+        shoppingOptions = new ShoppingOptions(driver);
 
+        // Navigate to Women->Tops
+        globalElements.hoverElement(globalElements.getMenuWomen());
+        globalElements.waitToBeVisible(globalElements.getMenuWomenTops(), 3);
+        globalElements.hoverElementClick(globalElements.getMenuWomenTops());
+        // Assert for results and correct url
+        Assertions.assertTrue(itemsView.getItemViewAmountText().getText().contains("Items 1-12 of 50"));
+        Assertions.assertTrue(driver.getCurrentUrl().contains(UrlConstants.WOMEN_MENU_TOPS));
+        // Click category options and choose jackets
+        shoppingOptions.clickElement(shoppingOptions.getCategoryOption());
+        shoppingOptions.clickListElement(shoppingOptions.getCategoryList(), "Jackets");
+        // Assert after filter
+        Assertions.assertTrue(itemsView.getItemViewAmountText().getText().contains("12 Items"));
+        shoppingOptions.scrollToElement(shoppingOptions.getClimateOption());
+        // Click Climate options and choose cold
+        shoppingOptions.clickElement(shoppingOptions.getClimateOption());
+        shoppingOptions.clickListElement(shoppingOptions.getClimateOptionList(), "Cold");
+        shoppingOptions.pauseSeconds(2);
+        // Assert both filters
+        Assertions.assertTrue(itemsView.getItemViewAmountText().getText().contains("2 Items"));
+        shoppingOptions.clickElement(shoppingOptions.getClimateOptionRemoveButton());
+        Assertions.assertTrue(itemsView.getItemViewAmountText().getText().contains("12 Items"));
+        shoppingOptions.clickElement(shoppingOptions.getClearAllButton());
+        shoppingOptions.waitToBeVisible(itemsView.getItemViewAmountText(),10);
+        Assertions.assertTrue(itemsView.getItemViewAmountText().getText().contains("Items 1-12 of 50"));
+
+    }
 }

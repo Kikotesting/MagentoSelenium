@@ -1,10 +1,13 @@
 package utils;
 
 import helpers.PageHelper;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.List;
 
 public class ShoppingOptions extends PageHelper {
     public ShoppingOptions(WebDriver driver) {
@@ -63,7 +66,31 @@ public class ShoppingOptions extends PageHelper {
         return climateOption;
     }
 
+    public WebElement getCategoryList() {
+        return categoryList;
+    }
+
+    public WebElement getCategoryRemoveButton() {
+        return categoryRemoveButton;
+    }
+
+
+    public WebElement getClearAllButton() {
+        return clearAllButton;
+    }
+
+    public WebElement getClimateOptionList() {
+        return climateOptionList;
+    }
+
+    public WebElement getClimateOptionRemoveButton() {
+        return climateOptionRemoveButton;
+    }
+
     @FindBy(xpath = "//*[@id=\"narrow-by-list\"]/div[1]") WebElement categoryOption;
+    @FindBy(xpath = "//*[@id=\"narrow-by-list\"]/div[1]/div[2]/ol") WebElement categoryList;
+    @FindBy(xpath = "//*[@id=\"layered-filter-block\"]/div[2]/div[1]/ol/li[1]/a") WebElement categoryRemoveButton;
+
     @FindBy(xpath = "//*[@id=\"narrow-by-list\"]/div[2]") WebElement styleOption;
     @FindBy(xpath = "//*[@id=\"narrow-by-list\"]/div[3]") WebElement sizeOption;
     @FindBy(xpath = "//*[@id=\"narrow-by-list\"]/div[4]") WebElement priceOption;
@@ -75,5 +102,10 @@ public class ShoppingOptions extends PageHelper {
     @FindBy(xpath = "//*[@id=\"narrow-by-list\"]/div[10]") WebElement newOption;
     @FindBy(xpath = "//*[@id=\"narrow-by-list\"]/div[11]") WebElement saleOption;
     @FindBy(xpath = "//*[@id=\"narrow-by-list\"]/div[12]") WebElement patternOption;
-    @FindBy(xpath = "//*[@id=\"narrow-by-list\"]/div[13]") WebElement climateOption;
+    @FindBy(xpath = "//*[@id=\"narrow-by-list\"]/div[12]/div[1]") WebElement climateOption;
+    @FindBy(xpath = "//*[@id=\"narrow-by-list\"]/div[12]/div[2]/ol") WebElement climateOptionList;
+    @FindBy(xpath = "//*[@id=\"layered-filter-block\"]/div[2]/div[1]/ol/li[2]/a") WebElement climateOptionRemoveButton;
+
+    @FindBy(xpath = "//*[@id=\"layered-filter-block\"]/div[2]/div[2]/a/span") WebElement clearAllButton;
+
 }

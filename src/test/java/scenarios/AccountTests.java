@@ -13,7 +13,7 @@ import utils.GlobalElements;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ExtendWith(WatcherTest.class)
-public class AccountSuite extends BaseTest {
+public class AccountTests extends BaseTest {
 
     GlobalElements globalElements;
     CreateAccountPage createAccountPage;

@@ -2,14 +2,10 @@ package base;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-
 import java.time.Duration;
-import java.util.ArrayList;
 
 public class BaseTest{
     public WebDriver driver;
@@ -24,9 +20,9 @@ public class BaseTest{
         options.addArguments("disable-info-bars");
         options.addArguments("--disable-extensions");
         // comment this option ''headless'' for visual test on browser
-        options.addArguments("headless");
+        //options.addArguments("headless");
         // if you want to see what happend, just remove the "options" in brackets
-        driver = new ChromeDriver(options);
+        driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.manage().window().maximize();
         final String baseUrl = "https://magento.softwaretestingboard.com/";
@@ -41,8 +37,4 @@ public class BaseTest{
         driver.quit();
         System.out.println("Test name of photo: "+takerPhoto.getNewNameOfPhoto());
     }
-
-
-
-
 }

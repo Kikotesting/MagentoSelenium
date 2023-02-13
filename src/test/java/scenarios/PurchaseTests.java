@@ -6,6 +6,7 @@ import faker.FakeData;
 import itemsUtils.ItemDetailsPage;
 import itemsUtils.ItemsListPage;
 import itemsUtils.ItemsSearchPage;
+import itemsUtils.ItemsView;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import utils.GlobalElements;
@@ -13,18 +14,20 @@ import pages.PaymentsPage;
 import pages.ShippingPage;
 import reports.WatcherTest;
 import utils.CartContainer;
+
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ExtendWith(WatcherTest.class)
-public class PurchaseSuite extends BaseTest {
-
+public class PurchaseTests extends BaseTest {
     GlobalElements globalElements;
     CartContainer cartContainer;
     ItemDetailsPage itemDetailsPage;
     ItemsSearchPage itemsSearchPage;
     ItemsListPage itemsListPage;
+    ItemsView itemsView;
     ShippingPage shippingPage;
     FakeData fakeData;
     PaymentsPage paymentsPage;
+
     @Test
     @Order(1)
     @DisplayName("TC-1. User can purchase product and proceed to checkout")
@@ -101,4 +104,6 @@ public class PurchaseSuite extends BaseTest {
         Assertions.assertTrue(paymentsPage.getOrderNumber().getText().contains("Your order # is: "));
         Assertions.assertTrue(paymentsPage.getMessageThanksForPurchase().getText().contains(MessageConstants.MESSAGE_THANKS_FOR_PURCHASE));
     }
+
+
 }

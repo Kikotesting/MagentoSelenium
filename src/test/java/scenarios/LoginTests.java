@@ -14,8 +14,7 @@ import utils.RegisteredUser;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ExtendWith(WatcherTest.class)
-public class LoginSuite extends BaseTest {
-
+public class LoginTests extends BaseTest {
     GlobalElements globalElements;
     AccountPage accountPage;
     LoginPage loginPage;

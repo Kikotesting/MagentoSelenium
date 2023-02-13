@@ -4,8 +4,6 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
-
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -13,17 +11,13 @@ import java.util.Date;
 
 public class TakerPhoto {
     public WebDriver driver;
-
     public TakerPhoto(WebDriver driver) {
         this.driver = driver;
     }
-
     String newNameOfPhoto = "";
-
     public String getNewNameOfPhoto() {
         return newNameOfPhoto;
     }
-
     private static final String SCREENSHOTS_DIR = "resources/screenshots";
     // Take a photo and save to the right source
     public void takeScreenshot(){

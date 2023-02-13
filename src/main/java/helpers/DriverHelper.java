@@ -55,7 +55,7 @@ public class DriverHelper {
     }
     public void waitToBeClickable(WebElement element, int timeOutInSeconds) {
         final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOutInSeconds));
-        wait.pollingEvery(Duration.ofMillis(100));
+        wait.pollingEvery(Duration.ofMillis(1));
         wait.until(ExpectedConditions.refreshed(
                 ExpectedConditions.elementToBeClickable(element))
         );
