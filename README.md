@@ -61,6 +61,7 @@ version 1.0
 - Add/Remove products items in the card container
 - Purchase and proceed to checkout tests
 - Grid/List view for items
+- Shopping filter tests
 
 
 
